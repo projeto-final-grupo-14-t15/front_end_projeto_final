@@ -6,6 +6,7 @@ export default createGlobalStyle`
         --color-brand2: #5126EA;
         --color-brand3: #B0A6F0;
         --color-brand4: #EDEAFD;
+
         --color-grey0: #0B0D0D;
         --color-grey1: #212529;
         --color-grey2: #495057;
@@ -17,13 +18,17 @@ export default createGlobalStyle`
         --color-grey8: #F1F3F5;
         --color-grey9: #F8F9FA;
         --color-grey10: #FDFDFD;
+
         --color-whiteFixed: #FFFFFF;
+
         --color-alert1: #CD2B31; 
         --color-alert2: #FDD8D8;
         --color-alert3: #FFE5E5;
+
         --color-sucess1: #18794E;
         --color-sucess2: #CCEBD7;
         --color-sucess2: #DDF3E4;
+        
         --color-random1: #E34D8C;
         --color-random2: #C04277;
         --color-random3: #7D2A4D;
@@ -36,6 +41,53 @@ export default createGlobalStyle`
         --color-random10: #6100FF;
         --color-random11: #5700E3;
         --color-random12: #30007D;
+
+        --font-family-1: 'Roboto', sans-serif;
+        --font-family-2: 'Lexend', sans-serif;
+        
+        --font-heading-1-weight: 700;
+        --font-heading-1-size: 44px;
+        --font-heading-1-lh: 56px;
+
+        --font-heading-2-weight: 600;
+        --font-heading-2-size: 36px;
+        --font-heading-2-lh: 45px;
+
+        --font-heading-3-weight-5: 500;
+        --font-heading-3-weight-6: 600;
+        --font-heading-3-size: 32px;
+        --font-heading-3-lh: 40px;
+
+        --font-heading-4-weight-5: 500;
+        --font-heading-4-weight-6: 600;
+        --font-heading-4-size: 28px;
+        --font-heading-4-lh: 35px;
+
+        --font-heading-5-weight-5: 500;
+        --font-heading-5-weight-6: 600;
+        --font-heading-5-size: 24px;
+        --font-heading-5-lh: 30px;
+
+        --font-heading-6-weight-5: 500;
+        --font-heading-6-weight-6: 600;
+        --font-heading-6-size: 20px;
+        --font-heading-6-lh: 25px;
+
+        --font-heading-7-weight-5: 500;
+        --font-heading-7-weight-6: 600;
+        --font-heading-7-size: 16px;
+        --font-heading-7-lh: 20px;
+
+        --font-body-1-weight-4: 400;
+        --font-body-1-weight-6: 600;
+        --font-body-1-size: 16px;
+        --font-body-1-lh: 28px;
+
+        --font-body-2-weight-4: 400;
+        --font-body-2-weight-5: 500;
+        --font-body-2-size: 14px;
+        --font-body-2-lh: 24px;
+
     }
     @media (min-width: 700px) {
         :root {
@@ -53,12 +105,12 @@ export default createGlobalStyle`
         height: 100vh;
     }
     body {
-        background: var(--color-grey0);
-        color: var(--color-grey10);
+        background: var(--color-grey10);
+        color: var(--color-grey0);
         -webkit-font-smoothing: antialiased;
     }
     body, input, button, textarea {
-        font-family: 'Roboto', sans-serif;
+        font-family: var(--font-family-1)
     }
     button {
         cursor: pointer;
@@ -77,8 +129,5 @@ export default createGlobalStyle`
     }
     a:hover {
         color: #535bf2;
-    }
-    filtro-text {
-        font-family: 'Lexend', sans-serif;
     }
 `;
