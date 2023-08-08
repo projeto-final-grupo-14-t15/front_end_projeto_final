@@ -2,9 +2,7 @@ import { Link } from "react-router-dom"
 import { StyledNavbar } from "./style"
 
 export const Navbar = () => {
-    const user  = null
-
-
+    const user  = "null"
 
     return(
         <StyledNavbar>
