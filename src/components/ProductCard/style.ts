@@ -9,6 +9,7 @@ export const StyledCard = styled.div`
     .container__img-product{
         background-color: #E9ECEF;
         height: 152px;
+        position: relative;
     }
     .container__content-product{
         margin-top: 20px;
@@ -49,5 +50,36 @@ export const StyledCard = styled.div`
     }
     .price{
         font-weight: var(--color-grey1);
+    }
+
+
+    .icon-fipe{
+        background-color: #349974;
+        padding: 2px;
+        color: #E9ECEF;
+        width: fit-content;
+        position: absolute;
+        top: 1px;
+        right: 0px;
+        border: 1px solid #48A382;
+        border-radius: 2px;
+    }
+    .icon-active{
+        background-color: #4529E6;
+        padding: 5px;
+        color: #E9ECEF;
+        width: fit-content;
+        position: absolute;
+        left: 8px;
+        top: 8px;
+    }
+    .icon-inactive{
+        background-color: #ADB5BD;
+        padding: 5px;
+        color: #E9ECEF;
+        width: fit-content;
+        position: absolute;
+        left: 8px;
+        top: 8px;
     }
 `

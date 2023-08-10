@@ -23,6 +23,7 @@ export const StyledHeader = styled.header`
         height: 80px;
         border-left: 2px solid var(--color-grey6);
     }
+
     img {
         transition: 400ms;
     }
@@ -50,7 +51,7 @@ export const StyledHeader = styled.header`
 
             position: absolute;
             right: 0px;
-            top: 10vh;
+            top: 80px;
 
             width: 100%;
             height: 100vh;

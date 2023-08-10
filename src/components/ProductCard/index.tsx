@@ -1,32 +1,49 @@
+import { UserIcon } from "../UserIcon";
 import { StyledCard } from "./style"
 
-export const ProductCard = () => {
+interface Iproduct {
+    name: string;
+    description: string;
+    seller:string;
+    km:string;
+    year:string;
+    price:string;
+    higherThanFipe:boolean;
+    active:boolean;
+}
+
+interface IProductProps {
+    product:Iproduct;
+}
+
+export const ProductCard = ({product}:IProductProps) => {
     
     return(
         <StyledCard>
 
             <div className="container__img-product">
 
+            
+            {product.higherThanFipe ? null : <p className="icon-fipe"> $ </p>}
+            {product.active ? <p className="icon-active"> Ativo </p> : <p className="icon-inactive"> Inativo</p>}
+
             </div>
 
             <div className="container__content-product">
 
-                <h2> Maserati - Ghibli </h2>
-                <p className="card-description"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...</p>
+                <h2> {product.name} </h2>
+                <p className="card-description"> {product.description} </p>
 
-                <div className="container__owner">
-                    <span> SL </span>
-                    <p> Samuel Leão </p>
-                </div>
+                <UserIcon username="Mazda"/>
 
                 <div className="container__car-info">
 
                     <div className="info">
-                        <p> 0KM </p>
-                        <p> 2019 </p>
+                        <p> {product.km}KM </p>
+                        <p> {product.year} </p>
                     </div>
 
-                    <p className="price"> R$ 00.000,00 </p>
+                    <p className="price"> R$ {product.price} </p>
                 </div>
 
             </div>
