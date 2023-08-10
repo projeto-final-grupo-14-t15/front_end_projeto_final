@@ -3,5 +3,7 @@ export interface IHeaderContext {
     menuVisibility: () => void;
     iconBurger: string;
     swapBurgerIcon: () => void;
+    userSetDropDownVisibility:() => void;
+    dropDownVisibility:string;
   }
   

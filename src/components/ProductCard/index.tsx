@@ -1,3 +1,4 @@
+import { UserIcon } from "../UserIcon";
 import { StyledCard } from "./style"
 
 interface Iproduct {
@@ -33,10 +34,7 @@ export const ProductCard = ({product}:IProductProps) => {
                 <h2> {product.name} </h2>
                 <p className="card-description"> {product.description} </p>
 
-                <div className="container__owner">
-                    <span> SL </span>
-                    <p> {product.seller} </p>
-                </div>
+                <UserIcon username="Mazda"/>
 
                 <div className="container__car-info">
 
