@@ -29,7 +29,6 @@ export const Filter = () => {
         getAllAnnouncementsForFilter(checkDataBase);
     }, []);
 
-
    function getUniqueBrands(carList:any) {
       const uniqueBrands:any = [];
   
