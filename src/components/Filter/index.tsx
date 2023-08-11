@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { FilterContext } from "../../context/FilterContext";
 import { StyledFilter } from "./style";
 import { Slider } from "@mui/material";
-import { IFilterData } from "../../interfaces/filterContext";
+import { IFilterData } from "../../interfaces/announcementsContext.types";
+import { AnnouncementsContext } from "../../context/AnnouncementsContext";
 
 export const Filter = () => {
 
-   const { Announcements, getAnnouncements, getAllAnnouncementsForFilter,allAnnouncementsForFilter } = useContext(FilterContext);
+   const { Announcements, getAnnouncements, getAllAnnouncementsForFilter,allAnnouncementsForFilter } = useContext(AnnouncementsContext);
    
     const [dataFilter, setDataFilter] = useState <IFilterData> ({
         brand: "",
