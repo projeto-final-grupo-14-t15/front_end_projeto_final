@@ -10,7 +10,7 @@ export const Filter = () => {
    
     const [dataFilter, setDataFilter] = useState <IFilterData> ({
         brand: "",
-        model: "Cruze",
+        model: "",
         year: "",
         fuel: "",
         color: "",
@@ -20,9 +20,16 @@ export const Filter = () => {
         maxKm:"",
     })
 
+    const handleFilterFieldClick = (fieldName: keyof IFilterData, value: any) => {
+        setDataFilter((prevFilter) => ({
+          ...prevFilter,
+          [fieldName]: value,
+        }));
+      };
+
    useEffect(() => {
       getAnnouncements(dataFilter);
-   }, []);
+   }, [dataFilter]);
 
    const checkDataBase = {brand: "",model: "",year: "",fuel: "",color: "",minPrice: "",maxPrice: "",minKm:"",maxKm:"",}
     useEffect(() => {
@@ -112,48 +119,98 @@ export const Filter = () => {
 
     const lowestAndHighestPrices = findLowestAndHighestPrices(Announcements)
 
-    const [value, setValue] = useState<number[]>([...lowestAndHighestPrices]);
+    function findLowestAndHighestKm(carList:any) {
+        let lowestKm = Number.MAX_SAFE_INTEGER;
+        let highestKm = Number.MIN_SAFE_INTEGER;
+    
+        carList.forEach((car:any) => {
+            if (car.km < lowestKm) {
+                lowestKm = car.km;
+            }
+            if (car.km > highestKm) {
+                highestKm = car.km;
+            }
+        });
+    
+        return [lowestKm, highestKm];
+    }
 
-    const handleChange = (_event: Event, newValue: number | number[]) => {
-        setValue(newValue as number[]);
+    const lowestAndHighestKm = findLowestAndHighestKm(Announcements)
+
+
+    const [valueKm, setValueKm] = useState<number[]>([...lowestAndHighestKm]);
+    const [valuePrice, setValuePrice] = useState<number[]>([...lowestAndHighestPrices]);
+
+    const handleChangeKm = (_event: Event, newValue: number | number[]) => {
+        setValueKm(newValue as number[]);
+    }; 
+
+    const handleChangePrice = (_event: Event, newValue: number | number[]) => {
+        setValuePrice(newValue as number[]);
     }; 
 
    return (
-      <StyledFilter>
+    <StyledFilter>
         <h2> Marcas </h2>
-         {  
-         brandsRegistered.map((brand:any) => (
-           <button key={brand}>{brand}</button>
+        {brandsRegistered.map((brand: any) => (
+        <button
+            key={brand}
+            onClick={() => handleFilterFieldClick("brand", brand)}
+        >
+            {brand}
+        </button>
         ))}
         <h2> Modelos </h2>
-        {  
-         modelsRegistered.map((model:any) => (
-           <button key={model}>{model}</button>
+        {modelsRegistered.map((model: any) => (
+        <button
+            key={model}
+            onClick={() => handleFilterFieldClick("model", model)}
+        >
+            {model}
+        </button>
         ))}
         <h2> Cor </h2>
-        {  
-         colorsRegistered.map((color:any) => (
-           <button key={color}>{color}</button>
+        {colorsRegistered.map((color: any) => (
+        <button
+            key={color}
+            onClick={() => handleFilterFieldClick("color", color)}
+        >{color}
+        </button>
         ))}
         <h2> Ano </h2>
-        {  
-         yearRegistered.map((year:any) => (
-           <button key={year}>{year}</button>
+        {yearRegistered.map((year: any) => (
+        <button key={year} onClick={() => handleFilterFieldClick("year", year)}>
+            {year}
+        </button>
         ))}
         <h2> Combustivel </h2>
-        {  
-         fuelRegistered.map((fuel:any) => (
-           <button key={fuel}>{fuel}</button>
+        {fuelRegistered.map((fuel: any) => (
+        <button key={fuel} onClick={() => handleFilterFieldClick("fuel", fuel)}>
+            {fuel}
+        </button>
         ))}
+        <h2> KM </h2>
 
         <Slider
-        getAriaLabel={() => 'Temperature range'}
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        max={1000000}
-        min={50000}
-        step={1000}
+            getAriaLabel={() => 'Km range'}
+            value={valueKm}
+            onChange={handleChangeKm}
+            valueLabelDisplay="auto"
+            max={1000000}
+            min={50000}
+            step={1000}
+        />
+
+        <h2> Preço </h2>
+
+        <Slider
+            getAriaLabel={() => 'Price range'}
+            value={valuePrice}
+            onChange={handleChangePrice}
+            valueLabelDisplay="auto"
+            max={1000000}
+            min={50000}
+            step={1000}
         />
 
       </StyledFilter>
