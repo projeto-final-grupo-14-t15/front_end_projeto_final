@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { FilterContext } from "../../context/FilterContext";
 import { ProductCard } from "../../components/ProductCard";
+import { Filter } from "../../components/Filter";
 
 export const Home = () => {
 
@@ -24,6 +25,7 @@ export const Home = () => {
 
    return (
       <main>
+         <Filter/>
          <ul>
             {Announcements.map((announcement) => (
                <ProductCard key={announcement.id} announcement={announcement} />

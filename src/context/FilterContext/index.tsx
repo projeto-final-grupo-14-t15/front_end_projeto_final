@@ -17,7 +17,7 @@ export default function FilterProvider({ children }: IChildrenProps) {
 
    const getAnnouncements = async (data: IFilterData) => {
 
-      const {brand,color,fuel,maxKm,model,maxPrice,minKm,minPrice,year,} = data;
+      const {brand,color,fuel,maxKm,model,maxPrice,minKm,minPrice,year} = data;
 
       try {
 
