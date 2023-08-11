@@ -1,15 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { FilterContext } from "../../context/FilterContext";
+import { useContext, useEffect } from "react";
 import { ProductCard } from "../../components/ProductCard";
 import { Filter } from "../../components/Filter";
-import AnnouncementForm from "../../components/Forms/AnnouncementForm";
-import useAnnouncements from "../../hooks/useAnnouncements";
+import { AnnouncementsContext } from "../../context/AnnouncementsContext";
 
 export const Home = () => {
-    const { createAnnouncement } = useAnnouncements();
-    const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
+    
 
-   const { Announcements, getAnnouncements } = useContext(FilterContext);
+   const { Announcements, getAnnouncements } = useContext(AnnouncementsContext);
    
       const dataTeste = {
       brand: "",
@@ -35,12 +32,7 @@ export const Home = () => {
                <ProductCard key={announcement.id} announcement={announcement} />
             ))}
          </ul>
-         <AnnouncementForm
-        isCreateForm={true}
-        open={openAnnouncementModal}
-        setOpen={setOpenAnnouncementModal}
-        submitFunction={createAnnouncement}
-      />
+         
       </main>
 )
 }

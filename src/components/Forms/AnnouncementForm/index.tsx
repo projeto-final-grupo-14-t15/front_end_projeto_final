@@ -1,5 +1,14 @@
 import { useForm } from "react-hook-form";
 
+// const { createAnnouncement } = useAnnouncements();
+//     const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
+//     <AnnouncementForm
+//         isCreateForm={true}
+//         open={openAnnouncementModal}
+//         setOpen={setOpenAnnouncementModal}
+//         submitFunction={createAnnouncement}
+//       />
+
 import { StyledForm } from "./style";
 import { IAnnouncementFormProps } from "./types";
 import AnnouncementInput from "./AnnouncementInput";
