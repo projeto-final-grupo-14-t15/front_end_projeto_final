@@ -11,7 +11,7 @@ export const ProductCard = ({announcement}:cardsProps) => {
    return (
       <StyledCard>
          <div className="container__img-product">
-            {announcement.photos?[0] && <img src={announcement.photos[0]} alt=""/> : <p>carregando...</p>}
+            {announcement.photos ? <img src={announcement.photos[0].link} alt=""/> : <p>carregando...</p>}
             {announcement.higher_than_fipe ? null : <p className="icon-fipe"> $ </p>}
             {announcement.active ? <p className="icon-active"> Ativo </p> : <p className="icon-inactive"> Inativo</p>}
          </div>
@@ -22,7 +22,7 @@ export const ProductCard = ({announcement}:cardsProps) => {
                {announcement.description}
             </p>
 
-            <UserIcon username="Cesar Romero"/>
+            <UserIcon username={announcement.user.name}/>
 
             <div className="container__car-info">
                <div className="info">

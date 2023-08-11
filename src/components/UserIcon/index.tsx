@@ -15,7 +15,8 @@ export const UserIcon = ({username}:IUserNameProps) => {
                 initials += word[0].toUpperCase();
             }
         }
-        return initials;
+
+        return initials.slice(0, 2);
     }
     
     return(

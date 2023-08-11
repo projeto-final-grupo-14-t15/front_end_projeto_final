@@ -19,6 +19,10 @@ export const StyledCard = styled.div`
         gap: 20px;
         justify-content: space-around;
     }
+    .container__img-product img{
+        width: 312px;
+        height: 152px;
+    }
     .card-description{
         color: var(--color-grey2);
     }
