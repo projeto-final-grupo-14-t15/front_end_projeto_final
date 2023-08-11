@@ -13,6 +13,7 @@ export interface IFilterResponse{
    updated_at?: Date,
    active?:boolean,
    higherThanFipe?:boolean,
+   photos?:string[]
 }
 export interface IFilterData{
    brand?: string,
