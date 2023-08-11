@@ -1,53 +1,36 @@
-import { UserIcon } from "../UserIcon";
-import { StyledCard } from "./style"
-
-interface Iproduct {
-    name: string;
-    description: string;
-    seller:string;
-    km:string;
-    year:string;
-    price:string;
-    higherThanFipe:boolean;
-    active:boolean;
+import { IFilterResponse } from "../../interfaces/filterContext";
+import { StyledCard } from "./style";
+   
+interface cardsProps {
+   announcement:IFilterResponse;
 }
 
-interface IProductProps {
-    product:Iproduct;
-}
+export const ProductCard = ({announcement}:cardsProps) => {
+   
+   return (
+      <StyledCard>
+         <div className="container__img-product"></div>
 
-export const ProductCard = ({product}:IProductProps) => {
-    
-    return(
-        <StyledCard>
+         <div className="container__content-product">
+            <h2> {announcement.brand} - {announcement.model} </h2>
+            <p className="card-description">
+               {announcement.description}
+            </p>
 
-            <div className="container__img-product">
-
-            
-            {product.higherThanFipe ? null : <p className="icon-fipe"> $ </p>}
-            {product.active ? <p className="icon-active"> Ativo </p> : <p className="icon-inactive"> Inativo</p>}
-
+            <div className="container__owner">
+               <span> SL </span>
+               <p> Samuel Leão </p>
             </div>
 
-            <div className="container__content-product">
+            <div className="container__car-info">
+               <div className="info">
+                  <p> `${announcement.km}KM` </p>
+                  <p> {announcement.year} </p>
+             </div>
 
-                <h2> {product.name} </h2>
-                <p className="card-description"> {product.description} </p>
-
-                <UserIcon username="Mazda"/>
-
-                <div className="container__car-info">
-
-                    <div className="info">
-                        <p> {product.km}KM </p>
-                        <p> {product.year} </p>
-                    </div>
-
-                    <p className="price"> R$ {product.price} </p>
-                </div>
-
+               <p className="price"> `R${announcement.price}` </p>
             </div>
-
-        </StyledCard>
-    )
-}
+         </div>
+      </StyledCard>
+   );
+};
