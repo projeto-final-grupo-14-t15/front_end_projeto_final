@@ -1,4 +1,3 @@
-
 import { IFilterResponse } from "../../interfaces/filterContext";
 import { StyledCard } from "./style";
    
@@ -27,7 +26,7 @@ export const ProductCard = ({announcement}:cardsProps) => {
                <div className="info">
                   <p> `${announcement.km}KM` </p>
                   <p> {announcement.year} </p>
-               </div>
+             </div>
 
                <p className="price"> `R${announcement.price}` </p>
             </div>
