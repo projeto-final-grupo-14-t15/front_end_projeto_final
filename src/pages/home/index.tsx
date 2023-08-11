@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FilterContext } from "../../context/FilterContext";
 import { ProductCard } from "../../components/ProductCard";
+import { Filter } from "../../components/Filter";
 import AnnouncementForm from "../../components/Forms/AnnouncementForm";
 import useAnnouncements from "../../hooks/useAnnouncements";
 
@@ -28,6 +29,7 @@ export const Home = () => {
 
    return (
       <main>
+         <Filter/>
          <ul>
             {Announcements.map((announcement) => (
                <ProductCard key={announcement.id} announcement={announcement} />
