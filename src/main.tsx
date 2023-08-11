@@ -18,3 +18,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
          </FilterProvider>
       </BrowserRouter>
    </React.StrictMode>
+)

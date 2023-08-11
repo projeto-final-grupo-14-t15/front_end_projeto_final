@@ -8,7 +8,7 @@ export const Navbar = () => {
 
     const { dropDownVisibility, userSetDropDownVisibility } = useHeader();
     
-    const user  = "null"
+    const user  = null
 
     return(
         <StyledNavbar>
