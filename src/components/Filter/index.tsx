@@ -1,28 +1,33 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FilterContext } from "../../context/FilterContext";
 import { StyledFilter } from "./style";
 import { Slider } from "@mui/material";
-import * as React from 'react';
+import { IFilterData } from "../../interfaces/filterContext";
 
 export const Filter = () => {
 
-   const { Announcements, getAnnouncements } = useContext(FilterContext);
+   const { Announcements, getAnnouncements, getAllAnnouncementsForFilter,allAnnouncementsForFilter } = useContext(FilterContext);
    
-   const dataTeste = {
-      brand: "",
-      model: "",
-      year: "",
-      fuel: "",
-      color: "",
-      minPrice: "",
-      maxPrice: "",
-      minKm:"",
-      maxKm:"",
-   }
+    const [dataFilter, setDataFilter] = useState <IFilterData> ({
+        brand: "",
+        model: "Cruze",
+        year: "",
+        fuel: "",
+        color: "",
+        minPrice: "",
+        maxPrice: "",
+        minKm:"",
+        maxKm:"",
+    })
 
    useEffect(() => {
-      getAnnouncements(dataTeste);
+      getAnnouncements(dataFilter);
    }, []);
+
+   const checkDataBase = {brand: "",model: "",year: "",fuel: "",color: "",minPrice: "",maxPrice: "",minKm:"",maxKm:"",}
+    useEffect(() => {
+        getAllAnnouncementsForFilter(checkDataBase);
+    }, []);
 
    function getUniqueBrands(carList:any) {
       const uniqueBrands:any = [];
@@ -34,34 +39,34 @@ export const Filter = () => {
       });
   
       return uniqueBrands;
-  }
-  const brandsRegistered = getUniqueBrands(Announcements)
-
-  function getUniqueModels(carList:any) {
-    const uniqueModels:any = [];
-
-    carList.forEach((car:any) => {
-        if (!uniqueModels.includes(car.model)) {
-            uniqueModels.push(car.model);
-        }
-    });
-
-    return uniqueModels;
     }
-    const modelsRegistered = getUniqueModels(Announcements)
+    const brandsRegistered = getUniqueBrands(allAnnouncementsForFilter)
 
-    function getUniqueColors(carList:any) {
-        const uniqueColors:any = [];
-        
+    function getUniqueModels(carList:any) {
+        const uniqueModels:any = [];
+
         carList.forEach((car:any) => {
-            if (!uniqueColors.includes(car.color)) {
-                uniqueColors.push(car.color);
+            if (!uniqueModels.includes(car.model)) {
+                uniqueModels.push(car.model);
             }
         });
-        
-        return uniqueColors;
+
+        return uniqueModels;
+        }
+        const modelsRegistered = getUniqueModels(allAnnouncementsForFilter)
+
+        function getUniqueColors(carList:any) {
+            const uniqueColors:any = [];
+            
+            carList.forEach((car:any) => {
+                if (!uniqueColors.includes(car.color)) {
+                    uniqueColors.push(car.color);
+                }
+            });
+            
+            return uniqueColors;
     }
-    const colorsRegistered = getUniqueColors(Announcements)
+    const colorsRegistered = getUniqueColors(allAnnouncementsForFilter)
 
     function getUniqueYear(carList:any) {
         const uniqueYear:any = [];
@@ -74,7 +79,7 @@ export const Filter = () => {
         
         return uniqueYear;
     }
-    const yearRegistered = getUniqueYear(Announcements)
+    const yearRegistered = getUniqueYear(allAnnouncementsForFilter)
 
     function getUniqueFuel(carList:any) {
         const uniqueFuel:any = [];
@@ -87,7 +92,7 @@ export const Filter = () => {
         
         return uniqueFuel;
     }
-    const fuelRegistered = getUniqueFuel(Announcements)
+    const fuelRegistered = getUniqueFuel(allAnnouncementsForFilter)
 
     function findLowestAndHighestPrices(carList:any) {
         let lowestPrice = Number.MAX_SAFE_INTEGER;
@@ -107,11 +112,11 @@ export const Filter = () => {
 
     const lowestAndHighestPrices = findLowestAndHighestPrices(Announcements)
 
-    const [value, setValue] = React.useState<number[]>([...lowestAndHighestPrices]);
+    const [value, setValue] = useState<number[]>([...lowestAndHighestPrices]);
 
     const handleChange = (_event: Event, newValue: number | number[]) => {
         setValue(newValue as number[]);
-    };
+    }; 
 
    return (
       <StyledFilter>

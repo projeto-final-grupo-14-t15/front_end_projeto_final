@@ -29,6 +29,8 @@ export interface IFilterData{
 }
 
 export interface IFilterContext{
-   Announcements: IFilterResponse[]
-   getAnnouncements: (data: IFilterData) => Promise<void>
+   Announcements: IFilterResponse[];
+   getAnnouncements: (data: IFilterData) => Promise<void>;
+   getAllAnnouncementsForFilter:(data: IFilterData) => Promise<void>;
+   allAnnouncementsForFilter:IFilterResponse[];
 }
