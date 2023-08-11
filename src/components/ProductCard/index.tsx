@@ -1,4 +1,4 @@
-import { IFilterResponse } from "../../interfaces/filterContext";
+import { IFilterResponse } from "../../interfaces/announcementsContext.types";
 import { UserIcon } from "../UserIcon";
 import { StyledCard } from "./style";
    

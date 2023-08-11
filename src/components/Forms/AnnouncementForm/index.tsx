@@ -4,7 +4,6 @@ import { StyledForm } from "./style";
 import { IAnnouncementFormProps } from "./types";
 import AnnouncementInput from "./AnnouncementInput";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IAnnouncementsForm } from "../../../context/AnnouncementsContext/types";
 import { announcementSchema } from "./validations";
 import {
   Button,
@@ -13,6 +12,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
+import { IAnnouncementsForm } from "../../../interfaces/announcementsContext.types";
 
 const AnnouncementForm = ({
   submitFunction,
@@ -21,6 +21,18 @@ const AnnouncementForm = ({
   setOpen,
 }: IAnnouncementFormProps) => {
   // const theme = useTheme();
+
+  
+//   const { createAnnouncement } = useAnnouncements();
+//   const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
+  
+//   <AnnouncementForm
+//   isCreateForm={true}
+//   open={openAnnouncementModal}
+//   setOpen={setOpenAnnouncementModal}
+//   submitFunction={createAnnouncement}
+// />
+
 
   const handleClickOpen = () => {
     setOpen(true);
