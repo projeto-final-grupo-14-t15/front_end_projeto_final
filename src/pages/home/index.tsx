@@ -30,5 +30,5 @@ export const Home = () => {
             ))}
          </ul>
       </main>
-   );
-
+)
+}
