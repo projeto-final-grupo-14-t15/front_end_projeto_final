@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ProductCard } from "../../components/ProductCard";
 import { Filter } from "../../components/Filter";
 import useAnnouncements from "../../hooks/useAnnouncements";
+import HomeHeader from "../../components/homeHeader/HomeHeader";
 
 export const Home = () => {
   const { Announcements, getAnnouncements } = useAnnouncements();
@@ -24,6 +25,7 @@ export const Home = () => {
 
   return (
     <main>
+      <HomeHeader/>
       <Filter />
       <ul>
         {Announcements.map((announcement) => (
