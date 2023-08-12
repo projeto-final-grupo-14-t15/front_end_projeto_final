@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
-    width: 100vw;
+    width: 100%;
     height: 70px;
     background-color: var(--color-grey0);
     color: var(--color-grey10);
@@ -27,6 +27,7 @@ export const StyledFooterButton = styled.button`
     cursor: pointer;
     > img {
         width:10px;
-        heigth:18px;
+        height:18px;
+
     }
 `

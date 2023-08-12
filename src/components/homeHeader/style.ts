@@ -11,6 +11,7 @@ export const StyledHomeHeader = styled.header`
   justify-content: center;
   border: none;
   z-index: 3;
+  margin-bottom: 40px;
 
   h1 {
     color: var(--color-grey10);

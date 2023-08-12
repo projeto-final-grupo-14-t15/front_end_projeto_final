@@ -152,6 +152,7 @@ export const Filter = () => {
    return (
     <StyledFilter>
         <header className="filter-header">
+        <div>
         <h2> Marcas </h2>
         {brandsRegistered.map((brand: any) => (
         <button
@@ -162,7 +163,7 @@ export const Filter = () => {
             {brand}
         </button>
         ))}
-        </header>
+        </div>      
         <div>
         <h2> Modelos </h2>
         {modelsRegistered.map((model: any) => (
@@ -176,6 +177,7 @@ export const Filter = () => {
         </button>
         ))}
         </div>
+        <div>
         <h2> Cor </h2>
         {colorsRegistered.map((color: any) => (
         <button
@@ -185,6 +187,8 @@ export const Filter = () => {
         >{color}
         </button>
         ))}
+        </div>
+        <div>
         <h2> Ano </h2>
         {yearRegistered.map((year: any) => (
         <button key={year} onClick={() => handleFilterFieldClick("year", year)}
@@ -193,6 +197,7 @@ export const Filter = () => {
             
         </button>
         ))}
+        </div>
         <h2> Combustivel </h2>
         {fuelRegistered.map((fuel: any) => (
         <button key={fuel} onClick={() => handleFilterFieldClick("fuel", fuel)}
@@ -200,22 +205,26 @@ export const Filter = () => {
             {fuel}
         </button>
         ))}
+        </header>
         <h2> KM </h2>
-
+        <div className="filter-input">
         <Slider
             getAriaLabel={() => 'Km range'}
             value={valueKm}
             onChange={handleChangeKm}
             valueLabelDisplay="auto"
-            max={1000000}
+            max={1000000} 
             min={50000}
             step={1000}
-            className="filter-input"
+            
         />
+        </div>
 
+        
         <h2> Preço </h2>
-
+        <div className="filter-input">
         <Slider
+            
             getAriaLabel={() => 'Price range'}
             value={valuePrice}
             onChange={handleChangePrice}
@@ -223,8 +232,9 @@ export const Filter = () => {
             max={1000000}
             min={50000}
             step={1000}
-            className="filter-input"
+            
         />
+        </div>
          {/* <button onClick={clearFilter} className={`clear-filter ${Object.keys(filterWithoutPage).length === 0 && "hidden-clear-filter"}`}>
                 Limpar Filtros
         </button> */}

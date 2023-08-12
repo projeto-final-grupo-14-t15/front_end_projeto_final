@@ -6,11 +6,14 @@ const StyledHome = styled.main`
     height: 90%;
     display: flex;
     flex-direction: row;
+    gap: 20px;
     } 
 
     aside {
         width: 20%;
+        height: 100%;
         margin-left: 20px;
+      
 
     }
 
@@ -18,9 +21,8 @@ const StyledHome = styled.main`
         display: flex;
         flex-wrap: wrap;
         width: 80%;
-        gap: 48px;
-        border: red 1px solid;
-        margin-top: 40px;
+        gap: 45px;
+       
                
     }
 

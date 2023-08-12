@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const StyledCard = styled.li`
     display: flex;
     flex-direction: column;
-    width: 315px;
-    height: 292px;
+    width: calc((100% - 90px)/3);
     margin-bottom: 28px;
-  
+   
    
 
     .container__img-product{
@@ -15,15 +14,21 @@ export const StyledCard = styled.li`
     }
     .container__content-product{
         margin-top: 20px; 
-
         display: flex;
         flex-direction: column;
         gap: 20px;
         justify-content: space-around;
+       
+    }
+    figure {
+        width: 100%;
+        height: 152px;
+        overflow: hidden;
+        background-color: var(--color-grey7);
     }
     .container__img-product img{
-        width: 319px;
-        height: 152px;
+        width: 100%;
+       
     }
     .card-description{
         color: var(--color-grey2);

@@ -127,7 +127,7 @@ export default createGlobalStyle`
         color: #646cff;
         text-decoration: inherit;
     }
-    a:hover {
+    a:hover {      
         color: #535bf2;
     }
 `;

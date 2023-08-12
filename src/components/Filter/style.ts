@@ -1,93 +1,61 @@
 import styled from "styled-components";
 
 export const StyledFilter = styled.aside`
-  background-color: variables.$color-white-fixed;
-
-  top: 65px;
+  
   z-index: 9;
+  height: 100%;
 
-  padding-top: 40px;
+  padding-top: 10px;
 
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 32px variables.$color-grey-3;
-
-  max-height: 90vh;
+ 
+  max-height: 100%;
   overflow-y: auto;
 
-  .clear-filter {
-    width: 100%;
-    padding: 1.3rem;
+  .filter-input {
+        padding: 8px ;           
+        width: 80%;     
+        font-family: var(--font-family-2);
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
 
-    font-size: 1.5rem;
-    text-align: center;
+        display: inline-block;
 
-    background-color: variables.$color-brand-2;
-    color: variables.$color-grey-10;
-
-    transition: 0.6s ease;
+        &::placeholder{          
+            text-transform: uppercase;
+        }
   }
 
-  &:hover {
-    background-color: variables.$color-brand-1;
-  }
-
-  &:active {
-    background-color: variables.$color-sucess-3;
-  }
- 
-  /* button {
-    background-color: transparent;
-    border: none;
-    padding: 5px;
-    opacity: 0.6;
-    width: 100%;
-    height: 100%;
-  } */
+    transition: 0.4s ease;
 
   div {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   h2 {
     margin-bottom: 15px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
-    color: variables.$color-grey-1;
+    font-family: var(--font-family-2);
+    color: black;
+    
   }
-  .filter-list {
-    color: variables.$color-grey-3;
-    font-weight: 500;
-    list-style: none;
-    padding: 0 10px;
-
-    .selected {
-      color: variables.$color-brand-2;
-      font-weight: 600;
-    }
-    li {
-      margin-bottom: 10px;
-
-      transition: 0.3s ease;
-      font-size: 1.75rem;
-      color: variables.$color-grey-4;
-      font-weight: 500;
-
-      &:hover {
-        color: variables.$color-grey-2;
-      }
-    }
-  }
+  
   .filter-button {
     display: flex;
     justify-content: left;
-    width: 100%;
+    width: 90%;
     font-family: var(--font-family-2);
     font-size: 12px;
     font-weight: 600;
     background-color: transparent;
     border: none;
     opacity: 0.6;
-    gap: 20px
+    gap: 20px;
+    margin-left: 10px;
+    color: var(--color-grey3);
+    text-transform: uppercase;
  
   
   }
@@ -108,9 +76,14 @@ export const StyledFilter = styled.aside`
     transform: translateX(-100vw);
   }
   .filter-header {
-    margin-bottom: 30px;
+    margin-bottom: 40px;    
     display: flex;
     flex-direction: column;
+    width: 272px;
+    font-family: var(--font-family-2);
+    font-size: 20px;
+    color: var(--color-grey3);
+    text-transform: uppercase;
 
   }
-`;
+`
