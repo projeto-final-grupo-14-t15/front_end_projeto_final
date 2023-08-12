@@ -149,6 +149,19 @@ export const Filter = () => {
         setValuePrice(newValue as number[]);
     }; 
 
+    const clearFilter = () => {
+        setDataFilter ({ brand: "",
+        model: "",
+        year: "",
+        fuel: "",
+        color: "",
+        minPrice: "",
+        maxPrice: "",
+        minKm:"",
+        maxKm:"",});
+      
+    }
+      
    return (
     <StyledFilter>
         <header className="filter-header">
@@ -209,6 +222,7 @@ export const Filter = () => {
         <h2> KM </h2>
         <div className="filter-input">
         <Slider
+            size="small"
             getAriaLabel={() => 'Km range'}
             value={valueKm}
             onChange={handleChangeKm}
@@ -224,7 +238,7 @@ export const Filter = () => {
         <h2> Preço </h2>
         <div className="filter-input">
         <Slider
-            
+            size="small"
             getAriaLabel={() => 'Price range'}
             value={valuePrice}
             onChange={handleChangePrice}
@@ -235,9 +249,11 @@ export const Filter = () => {
             
         />
         </div>
-         {/* <button onClick={clearFilter} className={`clear-filter ${Object.keys(filterWithoutPage).length === 0 && "hidden-clear-filter"}`}>
+        <div className="div-Filter">
+         <button onClick={clearFilter} className= "hidden-clear-filter">
                 Limpar Filtros
-        </button> */}
+        </button>
+        </div>
 
       </StyledFilter>
 )

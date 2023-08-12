@@ -4,11 +4,20 @@ export const StyledFooter = styled.footer`
     width: 100%;
     height: 70px;
     background-color: var(--color-grey0);
-    color: var(--color-grey10);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    color: var(--color-grey10);
     padding: 45px, 59px, 45px, 59px;
+    
+    div {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 `
 
 export const StyledFooterText = styled.p`
