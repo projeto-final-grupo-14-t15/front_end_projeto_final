@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div`
+export const StyledCard = styled.li`
+    display: flex;
+    flex-direction: column;
+    width: 315px;
+    height: 292px;
+    margin-bottom: 28px;
+  
+   
 
-    width: 312px;
-    height: 350px;
-
-    margin: 50px;
     .container__img-product{
-        background-color: #E9ECEF;
         height: 152px;
         position: relative;
     }
     .container__content-product{
-        margin-top: 20px;
+        margin-top: 20px; 
 
         display: flex;
         flex-direction: column;
@@ -20,7 +22,7 @@ export const StyledCard = styled.div`
         justify-content: space-around;
     }
     .container__img-product img{
-        width: 312px;
+        width: 319px;
         height: 152px;
     }
     .card-description{

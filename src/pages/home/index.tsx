@@ -3,6 +3,8 @@ import { ProductCard } from "../../components/ProductCard";
 import { Filter } from "../../components/Filter";
 import useAnnouncements from "../../hooks/useAnnouncements";
 import HomeHeader from "../../components/homeHeader/HomeHeader";
+import StyledHome from "./style";
+import { Footer } from "../../components/Footer";
 
 export const Home = () => {
   const { Announcements, getAnnouncements } = useAnnouncements();
@@ -24,14 +26,18 @@ export const Home = () => {
   }, []);
 
   return (
-    <main>
+    
+    <StyledHome>
       <HomeHeader/>
+      <section>        
       <Filter />
       <ul>
         {Announcements.map((announcement) => (
           <ProductCard key={announcement.id} announcement={announcement} />
         ))}
       </ul>
-    </main>
+      </section>
+      <Footer/>
+      </StyledHome>
   );
 };

@@ -151,41 +151,52 @@ export const Filter = () => {
 
    return (
     <StyledFilter>
+        <header className="filter-header">
         <h2> Marcas </h2>
         {brandsRegistered.map((brand: any) => (
         <button
+            className="filter-button"
             key={brand}
             onClick={() => handleFilterFieldClick("brand", brand)}
         >
             {brand}
         </button>
         ))}
+        </header>
+        <div>
         <h2> Modelos </h2>
         {modelsRegistered.map((model: any) => (
         <button
             key={model}
             onClick={() => handleFilterFieldClick("model", model)}
+            className="filter-button"
+            
         >
             {model}
         </button>
         ))}
+        </div>
         <h2> Cor </h2>
         {colorsRegistered.map((color: any) => (
         <button
             key={color}
             onClick={() => handleFilterFieldClick("color", color)}
+            className="filter-button"
         >{color}
         </button>
         ))}
         <h2> Ano </h2>
         {yearRegistered.map((year: any) => (
-        <button key={year} onClick={() => handleFilterFieldClick("year", year)}>
+        <button key={year} onClick={() => handleFilterFieldClick("year", year)}
+        className="filter-button">
             {year}
+            
         </button>
         ))}
         <h2> Combustivel </h2>
         {fuelRegistered.map((fuel: any) => (
-        <button key={fuel} onClick={() => handleFilterFieldClick("fuel", fuel)}>
+        <button key={fuel} onClick={() => handleFilterFieldClick("fuel", fuel)}
+        className="filter-button">
             {fuel}
         </button>
         ))}
@@ -199,6 +210,7 @@ export const Filter = () => {
             max={1000000}
             min={50000}
             step={1000}
+            className="filter-input"
         />
 
         <h2> Preço </h2>
@@ -211,7 +223,11 @@ export const Filter = () => {
             max={1000000}
             min={50000}
             step={1000}
+            className="filter-input"
         />
+         {/* <button onClick={clearFilter} className={`clear-filter ${Object.keys(filterWithoutPage).length === 0 && "hidden-clear-filter"}`}>
+                Limpar Filtros
+        </button> */}
 
       </StyledFilter>
 )

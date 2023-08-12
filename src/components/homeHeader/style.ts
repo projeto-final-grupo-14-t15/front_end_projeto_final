@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHomeHeader = styled.header`
-  width: 1600px;
+  width: 100%;
   height: 544px;
 
   position: relative;
