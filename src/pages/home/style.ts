@@ -20,7 +20,7 @@ const StyledHome = styled.main`
     ul {
         display: flex;
         flex-wrap: wrap;
-        width: 80%;
+        width: 74%;
         gap: 45px;
        
                
