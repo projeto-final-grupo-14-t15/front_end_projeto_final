@@ -15,7 +15,6 @@ export const StyledHeader = styled.header`
         cursor: pointer;
     }
 
-
     nav{
         padding-left: 10%;
         display: flex;
@@ -57,6 +56,7 @@ export const StyledHeader = styled.header`
 
             width: 100%;
             height: 100vh;
+            z-index:15;
 
             a{
                 padding: 20px;
@@ -65,6 +65,7 @@ export const StyledHeader = styled.header`
                 justify-content: center;
             }
         }
+        
         .visible{
             display: flex;
         }

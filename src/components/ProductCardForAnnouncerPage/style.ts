@@ -62,6 +62,7 @@ export const StyledCard = styled.li`
         font-weight: var(--color-grey1);
     }
 
+
     .icon-fipe{
         background-color: #349974;
         padding: 2px;

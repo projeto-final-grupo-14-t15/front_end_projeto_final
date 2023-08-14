@@ -12,6 +12,7 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const [allAnnouncementsForFilter, SetAllAnnouncementsForFilter] = useState<
     IFilterResponse[]
   >([]);
+  const [allUserAnnouncements, setAllUserAnnouncements] = useState<any>([])
 
   const createAnnouncement = async (
     dataAnnouncement: IAnnouncementsForm
@@ -90,6 +91,16 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
     }
   };
 
+  const getAnnouncementsByUserId = async (userId: number) => {
+    try {
+      const response: AxiosResponse<any> = await api.get(`/announcements/byannouncer/${userId}`);
+      console.log(response)
+      setAllUserAnnouncements(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <AnnouncementsContext.Provider
       value={{
@@ -97,7 +108,9 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
         getAnnouncements,
         getAllAnnouncementsForFilter,
         allAnnouncementsForFilter,
-        Announcements
+        Announcements,
+        allUserAnnouncements,
+        getAnnouncementsByUserId,
       }}
     >
       {children}
