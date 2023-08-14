@@ -8,7 +8,7 @@ export const StyledFilter = styled.aside`
   flex-direction: column; 
   max-height: 100%;
   overflow-y: auto;
-
+  min-width: 150px;
 
   .filter-input {
         padding: 8px ;           

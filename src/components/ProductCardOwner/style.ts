@@ -5,6 +5,8 @@ export const StyledCard = styled.li`
     flex-direction: column;
     width: 312px;
     margin-bottom: 28px;
+   
+   
 
     .container__img-product{
         height: 152px;
@@ -24,7 +26,6 @@ export const StyledCard = styled.li`
         overflow: hidden;
         background-color: var(--color-grey7);
     }
-    
     .container__img-product img{
         width: 100%;
        
@@ -61,6 +62,7 @@ export const StyledCard = styled.li`
     .price{
         font-weight: var(--color-grey1);
     }
+
 
     .icon-fipe{
         background-color: #349974;

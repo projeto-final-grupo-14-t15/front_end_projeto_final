@@ -11,6 +11,8 @@ export interface IAnnouncementsContext {
   getAnnouncements: (data: IFilterData) => Promise<void>;
   getAllAnnouncementsForFilter:(data: IFilterData) => Promise<void>;
   allAnnouncementsForFilter:IFilterResponse[];
+  allUserAnnouncements: IFilterResponse[];
+  getAnnouncementsByUserId:(userId: number) => Promise<void>;
 }
 
 export interface IAnnouncement {
