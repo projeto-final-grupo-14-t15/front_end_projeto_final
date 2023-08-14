@@ -7,12 +7,14 @@ export const StyledHeader = styled.header`
     grid-template-columns: 75% 25%;
     
     height: 80px;
+    width: 100%;
 
     .container__logo{
         align-self: center;
-        margin-left: 10%;
+        margin-left: 6%;
         cursor: pointer;
     }
+
 
     nav{
         padding-left: 10%;

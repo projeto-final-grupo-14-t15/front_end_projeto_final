@@ -101,8 +101,8 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
         body,html{
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
     }
     body {
         background: var(--color-grey10);
@@ -127,7 +127,7 @@ export default createGlobalStyle`
         color: #646cff;
         text-decoration: inherit;
     }
-    a:hover {
+    a:hover {      
         color: #535bf2;
     }
 `;

@@ -149,61 +149,96 @@ export const Filter = () => {
         setValuePrice(newValue as number[]);
     }; 
 
+    const clearFilter = () => {
+        setDataFilter ({ brand: "",
+        model: "",
+        year: "",
+        fuel: "",
+        color: "",
+        minPrice: "",
+        maxPrice: "",
+        minKm:"",
+        maxKm:"",});
+      
+    }
+      
    return (
     <StyledFilter>
+        <header className="filter-header">
+        <div>
         <h2> Marcas </h2>
         {brandsRegistered.map((brand: any) => (
         <button
+            className="filter-button"
             key={brand}
             onClick={() => handleFilterFieldClick("brand", brand)}
         >
             {brand}
         </button>
         ))}
+        </div>      
+        <div>
         <h2> Modelos </h2>
         {modelsRegistered.map((model: any) => (
         <button
             key={model}
             onClick={() => handleFilterFieldClick("model", model)}
+            className="filter-button"
+            
         >
             {model}
         </button>
         ))}
+        </div>
+        <div>
         <h2> Cor </h2>
         {colorsRegistered.map((color: any) => (
         <button
             key={color}
             onClick={() => handleFilterFieldClick("color", color)}
+            className="filter-button"
         >{color}
         </button>
         ))}
+        </div>
+        <div>
         <h2> Ano </h2>
         {yearRegistered.map((year: any) => (
-        <button key={year} onClick={() => handleFilterFieldClick("year", year)}>
+        <button key={year} onClick={() => handleFilterFieldClick("year", year)}
+        className="filter-button">
             {year}
+            
         </button>
         ))}
+        </div>
         <h2> Combustivel </h2>
         {fuelRegistered.map((fuel: any) => (
-        <button key={fuel} onClick={() => handleFilterFieldClick("fuel", fuel)}>
+        <button key={fuel} onClick={() => handleFilterFieldClick("fuel", fuel)}
+        className="filter-button">
             {fuel}
         </button>
         ))}
+        </header>
         <h2> KM </h2>
-
+        <div className="filter-input">
         <Slider
+            size="small"
             getAriaLabel={() => 'Km range'}
             value={valueKm}
             onChange={handleChangeKm}
             valueLabelDisplay="auto"
-            max={1000000}
+            max={1000000} 
             min={50000}
             step={1000}
+            
         />
+        </div>
 
+        
         <h2> Preço </h2>
-
+        <div className="filter-input">
         <Slider
+            size="small"
             getAriaLabel={() => 'Price range'}
             value={valuePrice}
             onChange={handleChangePrice}
@@ -211,7 +246,14 @@ export const Filter = () => {
             max={1000000}
             min={50000}
             step={1000}
+            
         />
+        </div>
+        <div className="div-Filter">
+         <button onClick={clearFilter} className= "hidden-clear-filter">
+                Limpar Filtros
+        </button>
+        </div>
 
       </StyledFilter>
 )
