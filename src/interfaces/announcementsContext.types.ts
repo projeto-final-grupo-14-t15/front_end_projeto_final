@@ -9,8 +9,6 @@ export interface IAnnouncementsContext {
   createAnnouncement: (dataAnnouncement: IAnnouncementsForm) => Promise<void>;
   Announcements: IFilterResponse[];
   getAnnouncements: (data: IFilterData) => Promise<void>;
-  getAllAnnouncementsForFilter:(data: IFilterData) => Promise<void>;
-  allAnnouncementsForFilter:IFilterResponse[];
   allUserAnnouncements: IFilterResponse[];
   getAnnouncementsByUserId:(userId: number) => Promise<void>;
 }

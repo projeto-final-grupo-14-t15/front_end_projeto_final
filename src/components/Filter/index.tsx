@@ -6,7 +6,7 @@ import { AnnouncementsContext } from "../../context/AnnouncementsContext";
 
 export const Filter = () => {
 
-   const { Announcements, getAnnouncements, getAllAnnouncementsForFilter,allAnnouncementsForFilter } = useContext(AnnouncementsContext);
+   const { Announcements, getAnnouncements } = useContext(AnnouncementsContext);
    
     const [dataFilter, setDataFilter] = useState <IFilterData> ({
         brand: "",
@@ -31,11 +31,6 @@ export const Filter = () => {
       getAnnouncements(dataFilter);
    }, [dataFilter]);
 
-   const checkDataBase = {brand: "",model: "",year: "",fuel: "",color: "",minPrice: "",maxPrice: "",minKm:"",maxKm:"",}
-    useEffect(() => {
-        getAllAnnouncementsForFilter(checkDataBase);
-    }, []);
-
    function getUniqueBrands(carList:any) {
       const uniqueBrands:any = [];
   
@@ -47,7 +42,7 @@ export const Filter = () => {
   
       return uniqueBrands;
     }
-    const brandsRegistered = getUniqueBrands(allAnnouncementsForFilter)
+    const brandsRegistered = getUniqueBrands(Announcements)
 
     function getUniqueModels(carList:any) {
         const uniqueModels:any = [];
@@ -60,7 +55,7 @@ export const Filter = () => {
 
         return uniqueModels;
         }
-        const modelsRegistered = getUniqueModels(allAnnouncementsForFilter)
+        const modelsRegistered = getUniqueModels(Announcements)
 
         function getUniqueColors(carList:any) {
             const uniqueColors:any = [];
@@ -73,7 +68,7 @@ export const Filter = () => {
             
             return uniqueColors;
     }
-    const colorsRegistered = getUniqueColors(allAnnouncementsForFilter)
+    const colorsRegistered = getUniqueColors(Announcements)
 
     function getUniqueYear(carList:any) {
         const uniqueYear:any = [];
@@ -86,7 +81,7 @@ export const Filter = () => {
         
         return uniqueYear;
     }
-    const yearRegistered = getUniqueYear(allAnnouncementsForFilter)
+    const yearRegistered = getUniqueYear(Announcements)
 
     function getUniqueFuel(carList:any) {
         const uniqueFuel:any = [];
@@ -99,7 +94,7 @@ export const Filter = () => {
         
         return uniqueFuel;
     }
-    const fuelRegistered = getUniqueFuel(allAnnouncementsForFilter)
+    const fuelRegistered = getUniqueFuel(Announcements)
 
     function findLowestAndHighestPrices(carList:any) {
         let lowestPrice = Number.MAX_SAFE_INTEGER;
