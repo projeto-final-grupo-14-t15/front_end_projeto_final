@@ -9,9 +9,6 @@ export const AnnouncementsContext = createContext<IAnnouncementsContext>(
 
 const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const [Announcements, SetAnnouncements] = useState<IFilterResponse[]>([]);
-  const [allAnnouncementsForFilter, SetAllAnnouncementsForFilter] = useState<
-    IFilterResponse[]
-  >([]);
   const [allUserAnnouncements, setAllUserAnnouncements] = useState<any>([])
 
   const createAnnouncement = async (
@@ -65,31 +62,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
     }
   };
 
-  const getAllAnnouncementsForFilter = async (data: IFilterData) => {
-    const {
-      brand,
-      color,
-      fuel,
-      maxKm,
-      model,
-      maxPrice,
-      minKm,
-      minPrice,
-      year,
-    } = data;
-
-    try {
-      const response: AxiosResponse<IFilterResponse[]> = await api.get(
-        `announcements?brand=${brand}&model=${model}&color=${color}&year=${year}&minKm=${minKm}&max
-            Km=${maxKm}&minPrice=${minPrice}&maxPrice=${maxPrice}&fuel=${fuel}`
-      );
-      console.log(response.data);
-
-      SetAllAnnouncementsForFilter(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const getAnnouncementsByUserId = async (userId: number) => {
     try {
@@ -106,8 +78,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
       value={{
         createAnnouncement,
         getAnnouncements,
-        getAllAnnouncementsForFilter,
-        allAnnouncementsForFilter,
         Announcements,
         allUserAnnouncements,
         getAnnouncementsByUserId,
