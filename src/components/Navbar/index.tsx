@@ -23,8 +23,8 @@ export const Navbar = () => {
                 </>
                 :
                 <>
-                    <Link to="/login"> login </Link>
-                    <Link to="/register"> Cadastro </Link>
+                    <Link to="/login" className="link-login"> Fazer Login </Link>
+                    <Link to="/register" className="link-register"> Cadastrar </Link>
                 </>
             }
         </StyledNavbar>

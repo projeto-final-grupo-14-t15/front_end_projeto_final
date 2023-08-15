@@ -11,6 +11,19 @@ export const StyledNavbar = styled.nav`
     .drop-down-visibility-visible{
         display: flex;
     }
+    .link-login{
+        color: var(--color-brand1);
+        font-weight:600 ;
+        font-size: var(--font-body-1-size);
+    }
+    .link-register{
+        color: var(--color-grey0);
+        border: 1px solid var(--color-grey4);
+        font-weight:600 ;
+        font-size: var(--font-body-1-size);
+        padding: 10px 20px;
+        border-radius: 4px;
+    }
     
     @media (max-width:1024px) {
         .btn-dropdown-profile{
@@ -19,8 +32,5 @@ export const StyledNavbar = styled.nav`
         
     }
     @media (min-width: 1024px) {
-        /* .drop-down-visibility{
-            display: none;
-        } */
     }
 `
