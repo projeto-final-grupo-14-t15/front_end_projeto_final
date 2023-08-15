@@ -5,6 +5,10 @@ import { StyledCardUser } from "./style";
     user:IUser | null;
     } */
 
+    const btnFunction = () => {
+        return console.log('abrir modal referente ao botao clicado!')
+    }
+
 export const BigCardUser = (/* {user}:ICardUserProps */) => {
 
     const user  = 'null'
@@ -18,7 +22,7 @@ export const BigCardUser = (/* {user}:ICardUserProps */) => {
             {
                 user ?
                 <>
-                    <DefaultButton text="Criar Anuncio" textcolor="--color-brand1" type="button" backgroundColor="--color-grey10" bordercolor="--color-brand1" buttonFunction={console.log()}/>
+                    <DefaultButton text="Criar Anuncio" textcolor="--color-brand1" type="button" backgroundColor="--color-grey10" bordercolor="--color-brand1" buttonFunction={btnFunction}/>
                     
                 </>
                 :

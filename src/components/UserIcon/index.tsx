@@ -20,7 +20,7 @@ export const UserIcon = ({username}:IUserNameProps) => {
     }
     
     return(
-        <StyledUserIcon>
+        <StyledUserIcon onClick={() => console.log(username)}>
                 <span> {getInitials(username)} </span>
                 <p> {username} </p>
         </StyledUserIcon>

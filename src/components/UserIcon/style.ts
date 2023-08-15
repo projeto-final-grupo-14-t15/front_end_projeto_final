@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
-export const StyledUserIcon = styled.div`
+export const StyledUserIcon = styled.button`
     display: flex;
     align-items: center;
     gap:5px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
     
     span{
         width: 32px;
