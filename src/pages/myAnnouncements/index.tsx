@@ -2,17 +2,14 @@ import { useEffect } from "react";
 import useAnnouncements from "../../hooks/useAnnouncements";
 import { StyledAnnoucerPage } from "./style";
 import { useParams } from "react-router-dom";
-import { ProductCardForUserPage } from "../../components/ProductCardForAnnouncerPage";
 import { BigCardUser } from "../../components/BigCardUserPage";
+import { ProductCardAnnoucer } from "../../components/ProductCardOwner";
 
-export const AnnoucerPage = () => {
+export const MyAnnouncementsPage = () => {
   const { allUserAnnouncements, getAnnouncementsByUserId } = useAnnouncements();
 
   const { userId } = useParams();
 
-  console.log(userId)
-
-  
   useEffect(() => {
     getAnnouncementsByUserId(Number(userId));
   }, []); 
@@ -35,7 +32,7 @@ export const AnnoucerPage = () => {
           <h2 className="title-announces"> Anúncios </h2>
           <ul>
             {allUserAnnouncements.map((announcement) => (
-              <ProductCardForUserPage key={announcement.id} announcement={announcement} />
+              <ProductCardAnnoucer key={announcement.id} announcement={announcement} />
             ))}
           </ul>
         </section>

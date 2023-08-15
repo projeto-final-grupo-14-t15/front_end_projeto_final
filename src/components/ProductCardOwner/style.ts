@@ -93,4 +93,9 @@ export const StyledCard = styled.li`
         left: 8px;
         top: 8px;
     }
+    .container__btns-edif-info{
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+    }
 `
