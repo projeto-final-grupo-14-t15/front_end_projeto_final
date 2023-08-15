@@ -23,7 +23,7 @@ export const DefaultButton = ({
       textcolor={textcolor}
       bordercolor={bordercolor}
       type={type}
-      onClick={buttonFunction}
+      onClick={()=>buttonFunction()}
     >
       {text}
     </StyledButton>
