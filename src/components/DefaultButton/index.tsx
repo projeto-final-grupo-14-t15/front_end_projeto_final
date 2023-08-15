@@ -2,16 +2,16 @@ import { StyledButton } from "./style";
 
 interface IButtonProps {
     text: string;
-    color: string;
+    backgroundColor: string;
     textcolor:string;
     bordercolor:string;
     type:"button" | "submit" | "reset" | undefined;
     buttonFunction:any;
   }
 
-export const DefaultButton = ({text, color, textcolor,bordercolor,type,buttonFunction}:IButtonProps) => {
+export const DefaultButton = ({text, backgroundColor, textcolor,bordercolor,type,buttonFunction}:IButtonProps) => {
     return (
-        <StyledButton color={color} textcolor={textcolor} bordercolor={bordercolor} type={type} onClick={buttonFunction}>
+        <StyledButton backgroundColor={backgroundColor} textcolor={textcolor} bordercolor={bordercolor} type={type} onClick={buttonFunction}>
             {text}
         </StyledButton>
     )

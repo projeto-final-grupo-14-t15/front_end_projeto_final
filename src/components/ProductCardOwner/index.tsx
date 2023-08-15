@@ -1,12 +1,12 @@
 import { IFilterResponse } from "../../interfaces/announcementsContext.types";
-import { UserIcon } from "../UserIcon";
+import { DefaultButton } from "../DefaultButton";
 import { StyledCard } from "./style";
    
 interface cardsProps {
    announcement:IFilterResponse;
 }
 
-export const ProductCardOwner = ({announcement}:cardsProps) => {
+export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
    
    return (
       <StyledCard>
@@ -24,8 +24,6 @@ export const ProductCardOwner = ({announcement}:cardsProps) => {
                {announcement.description}
             </p>
 
-            <UserIcon username={announcement.user.name}/>
-
             <div className="container__car-info">
                <div className="info">
                   <p> {announcement.km}KM </p>
@@ -35,6 +33,10 @@ export const ProductCardOwner = ({announcement}:cardsProps) => {
                <p className="price"> R$ {announcement.price} </p>
             </div>
          </div>
+        <div className="container__btns-edif-info">
+         <DefaultButton text="Editar" textcolor="--color-grey1" type="button" backgroundColor="--color-grey8" bordercolor="--color-grey1" buttonFunction={console.log()}/>
+         <DefaultButton text="Ver detalhes" textcolor="--color-grey1" type="button" backgroundColor="--color-grey8" bordercolor="--color-grey1" buttonFunction={console.log()}/>
+        </div>
       </StyledCard>
    );
 };
