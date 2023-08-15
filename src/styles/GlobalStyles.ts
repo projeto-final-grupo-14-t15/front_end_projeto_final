@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+   
     :root {
         --color-brand1: #4529E6;
         --color-brand2: #5126EA;
@@ -105,7 +106,7 @@ export default createGlobalStyle`
         height: 100%;
     }
     body {
-        background: var(--color-grey10);
+        background: var(--color-grey8);
         color: var(--color-grey0);
         -webkit-font-smoothing: antialiased;
     }
