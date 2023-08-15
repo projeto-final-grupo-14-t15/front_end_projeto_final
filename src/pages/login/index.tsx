@@ -10,8 +10,7 @@ import { schema } from "./validator";
 import {
   ThemeH5_500,
   ThemeP2,
-  ThemeP2_500,
-  ThemeP2_600,
+  ThemeP2_500
 } from "../../styles/Typography";
 
 export const Login = () => {

@@ -9,14 +9,19 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <LoginProvider>
-        <Header />
 
-        <RoutesMain />
-        <Footer />
+      <LoginProvider>
+
+      <Header />
+
+      <RoutesMain />
+
       </LoginProvider>
 
       <ToastContainer />
+
+      <Footer />
+      
     </>
   );
 }
