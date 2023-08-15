@@ -15,6 +15,10 @@ export const StyledNavbar = styled.nav`
         color: var(--color-brand1);
         font-weight:600 ;
         font-size: var(--font-body-1-size);
+        transition: 300ms;
+    }
+    .link-login:hover{
+        transform: scale(1.05);
     }
     .link-register{
         color: var(--color-grey0);
@@ -23,6 +27,10 @@ export const StyledNavbar = styled.nav`
         font-size: var(--font-body-1-size);
         padding: 10px 20px;
         border-radius: 4px;
+        transition: 300ms;
+    }
+    .link-register:hover{
+        transform: scale(1.05);
     }
     
     @media (max-width:1024px) {
