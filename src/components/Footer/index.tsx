@@ -3,11 +3,18 @@ import angleUp from "../../assets/img/angle-up.svg";
 import { LogoWhite } from "../LogoWhite";
 
 export const Footer = () => {
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+      };
     return (
         <StyledFooter>
                 <LogoWhite/>
                 <StyledFooterText>© 2022 - Todos os direitos reservados.</StyledFooterText>
-                <StyledFooterButton><img src={angleUp}/></StyledFooterButton> 
+                <StyledFooterButton onClick={()=>scrollToTop()}><img src={angleUp}/></StyledFooterButton> 
         </StyledFooter>
     )
 }
