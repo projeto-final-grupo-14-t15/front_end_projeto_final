@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { DefaultButton } from "../DefaultButton";
 import { StyledCardUser } from "./style";
 import { api } from "../../services/api";
 
@@ -6,7 +7,7 @@ import { api } from "../../services/api";
     userId:undefined | string;
     }
 
-export const BigCardUser = ({userId}:ICardUserProps) => {
+export const BigCardUserLogged = ({userId}:ICardUserProps) => {
 
     const [userAnnouncer, setUserAnnouncer] = useState<IUser | null>(null);
 
@@ -35,6 +36,10 @@ export const BigCardUser = ({userId}:ICardUserProps) => {
         return initials.slice(0, 2);
     }
 
+    const btnFunction = () => {
+        return console.log('abrir modal referente ao botao clicado!')
+    }
+    
     return (
         <StyledCardUser >
             {
@@ -44,6 +49,8 @@ export const BigCardUser = ({userId}:ICardUserProps) => {
                     <div className="icon-initials"> {getInitials(userAnnouncer.name)} </div>
                     <p>  <strong className="text-user-name"> {userAnnouncer.name} </strong> <span className="tag-announcer"> Anunciante </span> </p> 
                     <p className="text-user-description"> {userAnnouncer.description} </p>
+
+                    <DefaultButton text="Criar Anuncio" textcolor="--color-brand1" type="button" backgroundColor="--color-grey10" bordercolor="--color-brand1" buttonFunction={btnFunction}/>
                 </>
                 :
                 <p> carregando... </p>

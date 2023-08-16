@@ -26,7 +26,7 @@ export const AnnoucerPage = () => {
           </div>
           
           <div className="container_user-info">
-              <BigCardUser/>
+              <BigCardUser userId={userId}/>
           </div>
         </section>
         
