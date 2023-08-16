@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import useAnnouncements from "../../hooks/useAnnouncements";
 import { StyledAnnoucerPage } from "./style";
 import { useParams } from "react-router-dom";
-import { BigCardUser } from "../../components/BigCardUserPage";
 import { ProductCardAnnoucer } from "../../components/ProductCardOwner";
+import { BigCardUserLogged } from "../../components/BigCardUserPageLogged";
 
 export const MyAnnouncementsPage = () => {
   const { allUserAnnouncements, getAnnouncementsByUserId } = useAnnouncements();
@@ -23,7 +23,7 @@ export const MyAnnouncementsPage = () => {
           </div>
           
           <div className="container_user-info">
-              <BigCardUser/>
+              <BigCardUserLogged userId={userId}/>
           </div>
         </section>
         
