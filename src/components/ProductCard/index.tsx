@@ -24,7 +24,7 @@ export const ProductCard = ({announcement}:cardsProps) => {
                {announcement.description}
             </p>
 
-            <UserIcon username={announcement.user.name}/>
+            <UserIcon user={announcement.user}/>
 
             <div className="container__car-info">
                <div className="info">

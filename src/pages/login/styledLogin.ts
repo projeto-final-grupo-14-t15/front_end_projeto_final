@@ -4,7 +4,7 @@ export const StyledLogin = styled.div`
   background-color: var(--color-grey8);
   overflow: hidden;
   margin-top: 5%;
-
+  
   .form_Container {
     height: 542px;
     background-color: var(--color-whiteFixed);

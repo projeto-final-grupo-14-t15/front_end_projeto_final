@@ -7,6 +7,10 @@ interface cardsProps {
 }
 
 export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
+
+   const btnFunction = () => {
+      return console.log('abrir modal referente ao botao clicado!')
+  }
    
    return (
       <StyledCard>
@@ -34,8 +38,8 @@ export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
             </div>
          </div>
         <div className="container__btns-edif-info">
-         <DefaultButton text="Editar" textcolor="--color-grey1" type="button" backgroundColor="--color-grey8" bordercolor="--color-grey1" buttonFunction={console.log()}/>
-         <DefaultButton text="Ver detalhes" textcolor="--color-grey1" type="button" backgroundColor="--color-grey8" bordercolor="--color-grey1" buttonFunction={console.log()}/>
+         <DefaultButton text="Editar" textcolor="--color-grey1" type="button" backgroundColor="--color-grey8" bordercolor="--color-grey1" buttonFunction={btnFunction}/>
+         <DefaultButton text="Ver detalhes" textcolor="--color-grey1" type="button" backgroundColor="--color-grey8" bordercolor="--color-grey1" buttonFunction={btnFunction}/>
         </div>
       </StyledCard>
    );
