@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
+
   background-color: var(--color-grey0);
   color: var(--color-grey10);
   width: 100%;
