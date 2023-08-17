@@ -31,9 +31,6 @@ export interface IAnnouncement {
 
   export type IAnnouncementsForm = Omit<IAnnouncement, 'id' | 'createdAt' | 'updated_at' >;
 
-// TODO: Adicionar cover Photo field, user_id field
-
-
 export interface IFilterResponse{
    id?: number,
    brand?: string,

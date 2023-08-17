@@ -14,13 +14,17 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   >([]);
 
   const createAnnouncement = async (
-    dataAnnouncement: IAnnouncementsForm
+    dataAnnouncement
   ): Promise<void> => {
+    console.log(dataAnnouncement);
+    dataAnnouncement.photos = dataAnnouncement.photos.map(photo => photo.link);
+    dataAnnouncement.price = Number(dataAnnouncement.price)
+    dataAnnouncement.km = Number(dataAnnouncement.km)
     console.log(dataAnnouncement);
 
     // setLoading(true);
     const developmentToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkxNjI5NjQ2LCJleHAiOjE2OTE3MTYwNDYsInN1YiI6IjEifQ.CUqdOrGbveJTFxo6NM0JZ_JwixVG12-xqn9SVyJDSQU";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkyMjgxMDI0LCJleHAiOjE2OTIzNjc0MjQsInN1YiI6IjEifQ.6t4CYEIAimH9V7LqchgEDrvsizbvvWdE88wK7wyXSkY";
 
     try {
       const response = await api.post("/announcements", dataAnnouncement, {
