@@ -12,6 +12,7 @@ interface LoginContextType {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   handleLogout: () => void;
+  userInfo:any;
 }
 
 export const LoginContext = createContext({} as LoginContextType);
@@ -22,6 +23,8 @@ interface IDefaultProviderProps {
 
 export const LoginProvider = ({ children }: IDefaultProviderProps) => {
   const [loading, setLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState(null)
+  const [attNavbar, setAttNavbar] = useState(0)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,16 +50,29 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
       window.localStorage.setItem("@TOKEN", token);
       window.localStorage.setItem("@USERID", userId);
       setLoading(false);
+      setAttNavbar(1)
       toast.success("Login efetuado com sucesso");
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate(`/myannouncements/${userId}`);
       }, 2000);
-      navigate('/')
-      window.location.reload()
     } catch (error) {
       toast.error("Email ou senha incorretos");
     }
   }
+  
+  useEffect(() => {
+    const getUserInfo = async (userId:string|undefined) => {
+      try {
+          const response = await api.get(`/users/${userId}/`)
+          setUserInfo(response.data)
+      } catch (error) {
+          console.log('ERRO AO OBTER INFORMAÇÕES DESSE USER')
+      }
+    };
+    const userId:any = localStorage.getItem('@USERID')
+    getUserInfo(userId)
+  }, [attNavbar]);
+
   
   const handleLogout = () => {
     localStorage.clear();
@@ -70,7 +86,8 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
         signIn,
         loading,
         setLoading,
-        handleLogout
+        handleLogout,
+        userInfo
       }}
     >
       {children}
