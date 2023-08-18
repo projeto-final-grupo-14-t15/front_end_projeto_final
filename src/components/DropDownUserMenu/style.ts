@@ -10,6 +10,7 @@ export const StyledDropDownMenu = styled.div`
     flex-direction: column;
     box-shadow: -1px 2px 35px -20px rgba(0,0,0,0.75);
     border-radius: 4px;
+    z-index: 10;
 
     a{
         color: var(--color-grey1);
