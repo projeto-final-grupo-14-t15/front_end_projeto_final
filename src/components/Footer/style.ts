@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
-
   background-color: var(--color-grey0);
   color: var(--color-grey10);
   width: 100%;
@@ -11,7 +10,6 @@ export const StyledFooter = styled.footer`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
 `;
 
 export const StyledFooterText = styled.p`

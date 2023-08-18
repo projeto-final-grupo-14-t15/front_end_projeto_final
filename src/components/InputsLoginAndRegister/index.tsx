@@ -1,11 +1,12 @@
 import { StyledFieldset } from "./styledInput";
 
 interface IInputProps {
-  labelText: string;
-  placeHolder: string;
+  labelText?: string;
+  placeHolder?: string;
   errors?: any;
-  type: undefined | "email" | "password";
+  type: undefined | "email" | "password" | "text" | "checkbox" | "radio";
   register?: any;
+  value?: any;
 }
 
 export function Input({
@@ -14,15 +15,20 @@ export function Input({
   register,
   errors,
   type,
+  value,
 }: IInputProps) {
   return (
     <StyledFieldset>
-      <label htmlFor={register.name}> {labelText} </label>
+      <label htmlFor={register.name} className={register.name}>
+        {" "}
+        {labelText}{" "}
+      </label>
       <input
         type={type}
         id={register.name}
         placeholder={placeHolder}
         {...register}
+        value={value}
       />
       {errors && <p className="error"> {errors.message} </p>}
     </StyledFieldset>
