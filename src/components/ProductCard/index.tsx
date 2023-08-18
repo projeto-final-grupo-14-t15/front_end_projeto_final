@@ -15,7 +15,6 @@ export const ProductCard = ({announcement}:cardsProps) => {
                {announcement.photos ? <img src={announcement.photos[0].link} alt=""/> : <p>carregando...</p>}
             </figure>
             {announcement.higher_than_fipe ? null : <p className="icon-fipe"> $ </p>}
-            {announcement.active ? <p className="icon-active"> Ativo </p> : <p className="icon-inactive"> Inativo</p>}
          </div>
 
          <div className="container__content-product">
