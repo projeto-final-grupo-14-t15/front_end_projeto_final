@@ -26,6 +26,7 @@ export const StyledDropDownMenu = styled.div`
         transition: 300ms;
         border: none;
         background-color: transparent;
+        
     }
     button:hover{
         background-color:var(--color-grey7);
