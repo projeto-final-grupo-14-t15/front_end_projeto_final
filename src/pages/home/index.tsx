@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ProductCard } from "../../components/ProductCard";
 import { Filter } from "../../components/Filter";
 import useAnnouncements from "../../hooks/useAnnouncements";
-import AnnouncementForm from "../../components/Forms/AnnouncementForm";
+import HomeHeader from "../../components/homeHeader/HomeHeader";
+import StyledHome from "./style";
 
 export const Home = () => {
   const { Announcements, getAnnouncements } = useAnnouncements();
@@ -23,24 +24,17 @@ export const Home = () => {
     getAnnouncements(dataTeste);
   }, []);
 
-  const { createAnnouncement } = useAnnouncements();
-  const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
-
   return (
-    <main>
-      <AnnouncementForm
-        isCreateForm={true}
-        open={openAnnouncementModal}
-        setOpen={setOpenAnnouncementModal}
-        submitFunction={createAnnouncement}
-      />
-      ;
-      <Filter />
-      <ul>
-        {Announcements.map((announcement) => (
-          <ProductCard key={announcement.id} announcement={announcement} />
-        ))}
-      </ul>
-    </main>
+    <StyledHome>
+      <HomeHeader />
+      <section>
+        <Filter />
+        <ul>
+          {Announcements.map((announcement) => (
+            <ProductCard key={announcement.id} announcement={announcement} />
+          ))}
+        </ul>
+      </section>
+    </StyledHome>
   );
 };

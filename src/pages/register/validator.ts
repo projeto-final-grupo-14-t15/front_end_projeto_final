@@ -1,0 +1,14 @@
+import { z } from "zod";
+
+export const registerSchema = z.object({
+  name: z.string().max(50).min(1, "Campo obrigatório"),
+  email: z.string().max(155).min(1, "Campo obrigatório"),
+  password: z.string().max(255).min(1, "Campo obrigatório"),
+  cpf: z.string().max(15).min(1, "Campo obrigatório"),
+  telephone: z.string().max(25).min(1, "Campo obrigatório"),
+  isAdmin: z.string().min(1, "Campo obrigatório"),
+  dateOfBirth: z.string().min(1, "Campo obrigatório"),
+  description: z.string().max(255).min(1, "Campo obrigatório"),
+});
+
+export type RegisterData = z.infer<typeof registerSchema>;

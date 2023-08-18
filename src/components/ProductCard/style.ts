@@ -1,27 +1,33 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div`
-
+export const StyledCard = styled.li`
+    display: flex;
+    flex-direction: column;
     width: 312px;
-    height: 350px;
+    margin-bottom: 28px;
 
-    margin: 50px;
     .container__img-product{
-        background-color: #E9ECEF;
         height: 152px;
         position: relative;
     }
     .container__content-product{
-        margin-top: 20px;
-
+        margin-top: 20px; 
         display: flex;
         flex-direction: column;
         gap: 20px;
         justify-content: space-around;
+       
     }
-    .container__img-product img{
-        width: 312px;
+    figure {
+        width: 100%;
         height: 152px;
+        overflow: hidden;
+        background-color: var(--color-grey7);
+    }
+    
+    .container__img-product img{
+        width: 100%;
+       
     }
     .card-description{
         color: var(--color-grey2);
@@ -55,7 +61,6 @@ export const StyledCard = styled.div`
     .price{
         font-weight: var(--color-grey1);
     }
-
 
     .icon-fipe{
         background-color: #349974;

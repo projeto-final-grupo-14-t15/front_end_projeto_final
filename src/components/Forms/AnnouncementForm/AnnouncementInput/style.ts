@@ -10,7 +10,10 @@ interface IStyledParagraphProps {
   $textAlign?: 'center' | 'left' | 'right';
 }
 
-export const CssTextField = styled(TextField)({
+export const CssTextField = styled(TextField)({  
+  '& .description': {
+    height: '50px',
+  },
   '& label.Mui-focused': {
     color: '#0C6B38',
   },

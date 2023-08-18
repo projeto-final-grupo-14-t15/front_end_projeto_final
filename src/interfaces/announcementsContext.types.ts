@@ -9,8 +9,8 @@ export interface IAnnouncementsContext {
   createAnnouncement: (dataAnnouncement: IAnnouncementsForm) => Promise<void>;
   Announcements: IFilterResponse[];
   getAnnouncements: (data: IFilterData) => Promise<void>;
-  getAllAnnouncementsForFilter:(data: IFilterData) => Promise<void>;
-  allAnnouncementsForFilter:IFilterResponse[];
+  allUserAnnouncements: IFilterResponse[];
+  getAnnouncementsByUserId:(userId: number) => Promise<void>;
 }
 
 export interface IAnnouncement {
@@ -22,11 +22,11 @@ export interface IAnnouncement {
     km: string;
     fuel: string;
     color: string;
-    higher_than_fipe: boolean;
+    higherThanFipe: boolean;
     price: string;
     createdAt: string;
     updated_at: string;
-    // photos: string[];
+    photos: string[] | { link: string; }[];
   }
 
   export type IAnnouncementsForm = Omit<IAnnouncement, 'id' | 'createdAt' | 'updated_at' >;

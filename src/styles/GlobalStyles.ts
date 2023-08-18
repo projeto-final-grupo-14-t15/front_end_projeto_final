@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+   
     :root {
         --color-brand1: #4529E6;
         --color-brand2: #5126EA;
@@ -101,11 +102,11 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
         body,html{
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
     }
     body {
-        background: var(--color-grey10);
+        background: var(--color-grey8);
         color: var(--color-grey0);
         -webkit-font-smoothing: antialiased;
     }
@@ -115,19 +116,7 @@ export default createGlobalStyle`
     button {
         cursor: pointer;
     }
-    button:hover {
-        border-color: #646cff;
-    }
-    button:focus,
-    button:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
-    }
     a {
-        font-weight: 500;
-        color: #646cff;
         text-decoration: inherit;
-    }
-    a:hover {
-        color: #535bf2;
     }
 `;

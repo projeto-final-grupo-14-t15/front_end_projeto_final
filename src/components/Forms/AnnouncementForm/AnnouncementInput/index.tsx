@@ -28,7 +28,6 @@ const AnnouncementInput = ({
   multiline,
   helperText,
   controlSx,
-  InputLabelProps,
 }: IInputProps) => {
   const loadValues = {
     houseDesc: "1",

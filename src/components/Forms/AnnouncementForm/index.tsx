@@ -1,4 +1,4 @@
-import { useForm, useWatch, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { StyledForm } from "./style";
 import { IAnnouncementFormProps, announcementsDataForm } from "./types";
 import AnnouncementInput from "./AnnouncementInput";
@@ -15,11 +15,11 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import { IAnnouncementsForm } from "../../../interfaces/announcementsContext.types";
 import useKenzieKars from "../../../hooks/useKenzieKars";
 import React, { useEffect, useState } from "react";
 import { ICar } from "../../../interfaces/KenzieKarsContext.types";
 import { FaMinus } from "react-icons/fa";
+import { StyledParagraph } from "./AnnouncementInput/style";
 
 const AnnouncementForm = ({
   submitFunction,
@@ -107,7 +107,9 @@ const AnnouncementForm = ({
   // });
 
   const onSubmit = (data: announcementsDataForm) => {
-    Number(data.price) > Number(selectedCar?.value) ? data.higherThanFipe = true : data.higherThanFipe = false
+    Number(data.price) > Number(selectedCar?.value)
+      ? (data.higherThanFipe = true)
+      : (data.higherThanFipe = false);
     console.log(data);
     submitFunction(data);
     // closeModal();
@@ -134,7 +136,11 @@ const AnnouncementForm = ({
               }}
               renderInput={(params) => <TextField {...params} label="Marca" />}
             />
-            <p>{errors.brand && errors.brand.message}</p>
+            {errors.brand && (
+              <StyledParagraph $fontColor="red">
+                {errors.brand.message}
+              </StyledParagraph>
+            )}
             <Autocomplete
               options={modelsList}
               filterSelectedOptions
@@ -164,7 +170,11 @@ const AnnouncementForm = ({
                 />
               )}
             />
-            <p>{errors.model && errors.model.message}</p>
+            {errors.model && (
+              <StyledParagraph $fontColor="red">
+                {errors.model.message}
+              </StyledParagraph>
+            )}
             <TextField
               {...register("year")}
               id="outlined-basic"
@@ -177,7 +187,11 @@ const AnnouncementForm = ({
                 setValue("year", event.target.value);
               }}
             />
-            <p>{errors.year && errors.year.message}</p>
+            {/* {errors.year && (
+              <StyledParagraph $fontColor="red">
+                {errors.year.message}
+              </StyledParagraph>
+            )} */}
             <TextField
               {...register("fuel")}
               id="outlined-basic"
@@ -197,7 +211,11 @@ const AnnouncementForm = ({
                 setValue("fuel", event.target.value);
               }}
             />
-            <p>{errors.fuel && errors.fuel.message}</p>
+            {/* {errors.fuel && (
+              <StyledParagraph $fontColor="red">
+                {errors.fuel.message}
+              </StyledParagraph>
+            )} */}
             <AnnouncementInput
               label="Quilometragem"
               type="text"
@@ -247,6 +265,11 @@ const AnnouncementForm = ({
                     variant="outlined"
                     {...register(`photos.${index}.link`)}
                   />
+                  {errors.photos && (
+                    <StyledParagraph $fontColor="red">
+                      {errors.photos[index]?.link?.message}
+                    </StyledParagraph>
+                  )}
                 </div>
               ) : index <= 2 ? (
                 <div key={field.id}>
@@ -256,6 +279,11 @@ const AnnouncementForm = ({
                     variant="outlined"
                     {...register(`photos.${index}.link`)}
                   />
+                  {errors.photos && (
+                    <StyledParagraph $fontColor="red">
+                      {errors.photos[index]?.link?.message}
+                    </StyledParagraph>
+                  )}
                 </div>
               ) : (
                 <div key={field.id}>
@@ -268,6 +296,11 @@ const AnnouncementForm = ({
                   <Button type="button" onClick={() => remove(index)}>
                     <FaMinus />
                   </Button>
+                  {errors.photos && (
+                    <StyledParagraph $fontColor="red">
+                      {errors.photos[index]?.link?.message}
+                    </StyledParagraph>
+                  )}  
                 </div>
               )
             )}
