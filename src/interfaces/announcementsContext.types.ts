@@ -22,17 +22,14 @@ export interface IAnnouncement {
     km: string;
     fuel: string;
     color: string;
-    higher_than_fipe: boolean;
+    higherThanFipe: boolean;
     price: string;
     createdAt: string;
     updated_at: string;
-    // photos: string[];
+    photos: string[] | { link: string; }[];
   }
 
   export type IAnnouncementsForm = Omit<IAnnouncement, 'id' | 'createdAt' | 'updated_at' >;
-
-// TODO: Adicionar cover Photo field, user_id field
-
 
 export interface IFilterResponse{
    id?: number,

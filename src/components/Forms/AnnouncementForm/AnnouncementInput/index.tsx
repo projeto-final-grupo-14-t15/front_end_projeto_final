@@ -1,12 +1,12 @@
-import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
-import { CssTextField, StyledParagraph } from './style';
-import { StyledFieldset } from './fieldSetStyled';
-import { CSSProperties } from 'react';
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import { CssTextField, StyledParagraph } from "./style";
+import { StyledFieldset } from "./fieldSetStyled";
+import { CSSProperties } from "react";
 
 interface IInputProps {
   label: React.ReactNode;
   register?: UseFormRegisterReturn<string>;
-  type: 'text' | 'number';
+  type: "text" | "number";
   error?: FieldError;
   fontColor?: string;
   value?: string;
@@ -15,6 +15,7 @@ interface IInputProps {
   multiline?: boolean;
   helperText?: boolean;
   controlSx?: CSSProperties;
+  InputLabelProps?: boolean;
 }
 
 const AnnouncementInput = ({
@@ -29,12 +30,13 @@ const AnnouncementInput = ({
   controlSx,
 }: IInputProps) => {
   const loadValues = {
-    houseDesc: '1'
-  }
+    houseDesc: "1",
+  };
 
   return (
     <StyledFieldset style={controlSx}>
       <CssTextField
+        InputLabelProps={{ shrink: true }}
         fullWidth
         maxRows={5}
         helperText={
@@ -51,7 +53,7 @@ const AnnouncementInput = ({
         type={type}
       />
       {error ? (
-        <StyledParagraph $fontColor='red'>{error.message}</StyledParagraph>
+        <StyledParagraph $fontColor="red">{error.message}</StyledParagraph>
       ) : null}
     </StyledFieldset>
   );
