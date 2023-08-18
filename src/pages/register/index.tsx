@@ -1,53 +1,110 @@
-import { StyledButton, StyledForm, StyledRadius, StyledRaiosName, StyledRegisterDiv, StyledRegisterMain } from "./style"
+import { Input } from "../../components/InputsLoginAndRegister";
 
-export const Register= () => {
-    return(
-        <StyledRegisterMain>
-            <StyledRegisterDiv>
-                <h2>Cadastro</h2>
-                <StyledForm>
-                    <p>Informações Pessoais</p>
-                    <label htmlFor="name">Nome</label>
-                    <input type="text" id="name" placeholder="Nome completo"/>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" placeholder="Ex: email@mail.com" />
-                    <label htmlFor="cpf">CPF</label>
-                    <input type="text" placeholder="000.000.000-00"/>
-                    <label htmlFor="celular">Celular</label>
-                    <input type="text" placeholder="(DDD)00000-0000" />
-                    <label htmlFor="birtdate">Data de nascimento</label>
-                    <input type="text" placeholder="dd-mm-aaaa"/>
-                    <label htmlFor="descryption">Descrição</label>
-                    <input type="text" placeholder="insira uma descrição"/>
-                    <p>Informações de endereço</p>
-                    <label htmlFor="cep">CEP</label>
-                    <input type="text" placeholder="00000-000"/>
-                    <label htmlFor="state">Estado</label>
-                    <input type="text" placeholder="Digite estado"/>
-                    <label htmlFor="city">Cidade</label>
-                    <input type="text" placeholder="Digite Cidade" />
-                    <label htmlFor="street">Rua</label>
-                    <input type="text" placeholder="Digitar Rua"/>
-                    <label htmlFor="name">Número</label>
-                    <input type="text" />
-                    <label htmlFor="name">Complemento</label>
-                    <input type="text" placeholder="Ex: apto:201"/>
-                    <label htmlFor="">Tipo de conta</label>
-                    <div>
-                        <StyledRaiosName htmlFor="Comprador" >Comprador</StyledRaiosName>
-                        <StyledRaiosName htmlFor="Vendedor" >Vendedor</StyledRaiosName>
-                        <StyledRadius type="radio" id="Comprador" value={'Comprador'} name="AccountType" required={true} />
-                        <StyledRadius type="radio" id="Vendedor" value={'Vendedor'} name="AccountType"/>
-                    </div>
-                    <label htmlFor="name">Senha</label>
-                    <input type="password" placeholder="Digite uma senha"/>
-                    <label htmlFor="passwordConfirm">Confirmacao de conta</label>
-                    <input type="password" placeholder="confirme a senha"/>
+import { DefaultButton } from "../../components/DefaultButton";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { RegisterContext } from "../../context/RegisterContext";
+import { registerSchema } from "./validator";
+import { StyledRegisterMain } from "./style";
+import { ThemeH5_500, ThemeP2_500 } from "../../styles/Typography";
 
-                    <StyledButton>Finalizar Cadastro</StyledButton>
+export const Register = () => {
+  const { register, handleSubmit } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
 
-                </StyledForm>
-            </StyledRegisterDiv>
-        </StyledRegisterMain>
-    )
-}
+  const { submitFunction } = useContext(RegisterContext);
+
+  return (
+    <StyledRegisterMain>
+      <div className="form_Container">
+        <ThemeH5_500>Cadastro</ThemeH5_500>
+        <ThemeP2_500 className="personalInfo" color="--color-grey0">
+          Informações pessoais
+        </ThemeP2_500>
+
+        <form action="" onSubmit={handleSubmit(submitFunction)}>
+          <Input
+            labelText="Nome"
+            placeHolder="Ex: Samuel Leão"
+            type="text"
+            register={register("name")}
+          />
+          <Input
+            labelText="Email"
+            placeHolder="Ex: samuel@kenzie.com.br"
+            type="email"
+            register={register("email")}
+          />
+          <Input
+            labelText="CPF"
+            placeHolder="Ex: samuel@kenzie.com.br"
+            type="text"
+            register={register("cpf")}
+          />
+          <Input
+            labelText="Celular"
+            placeHolder="(DDD) 90000-0000"
+            type="text"
+            register={register("telephone")}
+          />
+          <Input
+            labelText="Data de nascimento"
+            placeHolder="00/00/00"
+            type="text"
+            register={register("dateOfBirth")}
+          />
+          <Input
+            labelText="Descrição"
+            placeHolder="Digitar descrição"
+            type="text"
+            register={register("description")}
+          />
+
+          <ThemeP2_500 className="accountType" color="--color-grey0">
+            Tipo de conta
+          </ThemeP2_500>
+          <div className="radioContainer">
+            <div className="button">
+              <input
+                type="radio"
+                id="a25"
+                value="true"
+                {...register("isAdmin")}
+              />
+              <label className="btn btn-default" htmlFor="a25">
+                Vendedor
+              </label>
+            </div>
+            <div className="button">
+              <input
+                type="radio"
+                id="a25"
+                value="false "
+                {...register("isAdmin")}
+              />
+              <label className="btn btn-default" htmlFor="a25">
+                Comprador
+              </label>
+            </div>
+          </div>
+          <Input
+            labelText="Senha"
+            placeHolder="Digitar senha"
+            type="password"
+            register={register("password")}
+          />
+
+          <DefaultButton
+            text="Finalizar cadastro"
+            bordercolor="--color-brand1"
+            backgroundColor="--color-brand2"
+            textcolor="--color-whiteFixed"
+            type="submit"
+          />
+        </form>
+      </div>
+    </StyledRegisterMain>
+  );
+};

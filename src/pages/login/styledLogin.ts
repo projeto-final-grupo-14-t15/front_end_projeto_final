@@ -4,7 +4,7 @@ export const StyledLogin = styled.div`
   background-color: var(--color-grey8);
   overflow: hidden;
   margin-top: 5%;
-  
+
   .form_Container {
     height: 542px;
     background-color: var(--color-whiteFixed);
@@ -24,7 +24,7 @@ export const StyledLogin = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 19px;
+
     height: 48px;
     width: 80%;
 
@@ -32,7 +32,6 @@ export const StyledLogin = styled.div`
     border: 2px solid var(--color-grey7);
     border-radius: 4px;
     text-decoration: none;
-    margin-top: 20px;
   }
   p {
     display: flex;

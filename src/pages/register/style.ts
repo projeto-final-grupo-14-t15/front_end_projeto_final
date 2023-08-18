@@ -1,99 +1,129 @@
 import styled from "styled-components";
 
-export const StyledRegisterMain = styled.main`
-    width:100vw;
-    height: max-content;
-    background-color: var(--color-grey8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 46px;
-    padding-bottom: 46px;
-`
+export const StyledRegisterMain = styled.div`
+  background-color: var(--color-grey8);
+  overflow: hidden;
+  margin-top: 5%;
+  margin-bottom: 90px;
 
-export const StyledRegisterDiv = styled.div`
-    width:411px;
-    height: max-content;
-    padding: 45px;
-    border-radius:4px;
+  .radioContainer {
     display: flex;
-    flex-direction: column;
+
     justify-content: space-between;
-    background-color: var(--color-grey10);
-    >h2{
-        font-family: var(--font-family2);
-    }
-`
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 26px;
+  }
 
-export const StyledForm = styled.form`
-    width:315px;
-    height: 1480px;
-    font-family: var(--font-family1);
+  .button {
+    float: left;
+    margin: 0 5px 0 0;
+    width: 139px;
+    height: 40px;
+    position: relative;
+    border: 1.5px solid var(--color-grey4);
+  }
+
+  .button label,
+  .button input {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .button input[type="radio"] {
+    opacity: 0.011;
+    z-index: 100;
+  }
+
+  .button input[type="radio"]:checked + label {
+    background: var(--color-brand1);
+    color: var(--color-whiteFixed);
+
+    border-radius: 4px;
+  }
+
+  .button label {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    
-    >label{
-        font-family: var(--font-family1);
-        font-weight: 500;
-    }
-    >input{
-        width:100%;
-        height:48px; 
-        font-family: var(--font-family1);
-        padding:16px;
-        border-radius: 4px;
-        border: 2px solid var(--color-grey7);
-    }
+    justify-content: center;
+    align-items: center;
 
-    >div{
-        display: flex;
-        gap: 5px;
-    }
-
-`
-
-export const StyledButton = styled.button`
-    width:100%;
-    height:48px;
-    background-color: var(--color-brand1);
-    border: 2px solid var(--color-brand1);
-    border-radius:4px;
-    color: var(--color-whiteFixed);
-    font-size: 16px;
+    cursor: pointer;
+    z-index: 90;
+    line-height: 1.8em;
+    font-family: "Inter";
     font-weight: 600;
-`
-export const StyledButtonType = styled.button`
-    width:50%;
-    height:48px;
-    background-color: var(--color-brand1);
-    border: 2px solid var(--color-brand1);
-    border-radius:4px;
-    color: var(--color-whiteFixed);
     font-size: 16px;
-    font-weight: 600;
-    
-`
-export const StyledRadius = styled.input`   
-color: red;
+  }
 
-&:checked + label {
-        background-color: var(--color-brand-1);
-        color: var(--fixed-white);
-}
-`
+  p {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .personalInfo {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 32px;
+  }
+  .checkbox {
+    display: flex;
+    justify-content: center;
+  }
+  .form_Container {
+    padding-bottom: 44px;
+    background-color: var(--color-whiteFixed);
+    width: 95%;
+    margin: 0 auto;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 19px;
+    width: 80%;
+    height: 48px;
+  }
+  input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid var(--color-grey7);
+    border-radius: 4px;
+    text-decoration: none;
+  }
 
-export const StyledRaiosName = styled.label`
-    width:50%;
-    height:48px;
-    background-color: var(--color-grey5);
-    border: 2px solid var(--color-grey4);
-    border-radius:4px;
-    color: var(--color-whiteFixed);
-    font-size: 16px;
-    font-weight: 600;
-    cursor:pointer;
-    color: var(--color-grey0);
-    text-align: center;
-    padding:12px;
-`
+  .forgot_Password {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: end;
+    margin-top: 9px;
+  }
+  h3 {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 44px;
+  }
+  .accountType {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 28px;
+  }
+
+  @media (min-width: 768px) {
+    .form_Container {
+      width: 400px;
+    }
+  }
+`;
