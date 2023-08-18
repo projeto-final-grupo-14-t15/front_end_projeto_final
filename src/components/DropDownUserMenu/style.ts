@@ -20,6 +20,16 @@ export const StyledDropDownMenu = styled.div`
     a:hover{
         background-color:var(--color-grey7);
     }
+    button{
+        color: var(--color-grey1);
+        padding: 10px 20px;
+        transition: 300ms;
+        border: none;
+        background-color: transparent;
+    }
+    button:hover{
+        background-color:var(--color-grey7);
+    }
     
 }
 `

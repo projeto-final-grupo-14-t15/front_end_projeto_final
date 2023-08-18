@@ -53,7 +53,7 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
       setAttNavbar(1)
       toast.success("Login efetuado com sucesso");
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate(`/myannouncements/${userId}`);
       }, 2000);
     } catch (error) {
       toast.error("Email ou senha incorretos");
