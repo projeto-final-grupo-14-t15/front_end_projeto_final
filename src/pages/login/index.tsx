@@ -7,14 +7,14 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
 import { schema } from "./validator";
-import {
-  ThemeH5_500,
-  ThemeP2,
-  ThemeP2_500
-} from "../../styles/Typography";
+import { ThemeH5_500, ThemeP2, ThemeP2_500 } from "../../styles/Typography";
 
 export const Login = () => {
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(schema),
   });
 
@@ -31,12 +31,14 @@ export const Login = () => {
             placeHolder="Digitar email"
             type="email"
             register={register("email")}
+            errors={errors.email}
           />
           <Input
             labelText="Senha"
             placeHolder="Digitar senha"
             type="password"
             register={register("password")}
+            errors={errors.password}
           />
           <ThemeP2_500 color="--color-grey2" className="forgot_Password">
             Esqueci minha senha
