@@ -38,7 +38,6 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
   async function signIn(data: LoginData) {
     try {
       const response = await api.post("/login", data);
-      console.log(response)
       const { token } = response.data;
       const userDecodedInfo:IUser = jwt_decode(token)
       const userId = userDecodedInfo!.id.toString()
