@@ -14,7 +14,7 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const createAnnouncement = async (
     dataAnnouncement: IAnnouncementsForm
   ): Promise<void> => {
-    console.log(dataAnnouncement);
+
 
     // setLoading(true);
     const developmentToken =
