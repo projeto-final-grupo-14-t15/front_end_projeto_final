@@ -51,6 +51,11 @@ export const StyledLogin = styled.div`
     margin: 0 auto;
     padding-top: 44px;
   }
+  .error {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
   .button {
     display: flex;
     justify-content: center;

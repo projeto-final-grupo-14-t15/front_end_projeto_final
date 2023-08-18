@@ -1,3 +1,4 @@
+import { ThemeP2_500 } from "../../styles/Typography";
 import { StyledFieldset } from "./styledInput";
 
 interface IInputProps {
@@ -30,7 +31,9 @@ export function Input({
         {...register}
         value={value}
       />
-      {errors && <p className="error"> {errors.message} </p>}
+      {errors ? (
+        <ThemeP2_500 className="error"> {errors.message} </ThemeP2_500>
+      ) : null}
     </StyledFieldset>
   );
 }

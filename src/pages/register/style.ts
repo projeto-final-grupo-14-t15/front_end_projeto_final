@@ -8,11 +8,11 @@ export const StyledRegisterMain = styled.div`
 
   .radioContainer {
     display: flex;
-
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
     margin-top: 26px;
+    cursor: pointer;
   }
 
   .button {
@@ -21,6 +21,7 @@ export const StyledRegisterMain = styled.div`
     width: 139px;
     height: 40px;
     position: relative;
+    cursor: pointer;
     border: 1.5px solid var(--color-grey4);
   }
 
@@ -50,8 +51,6 @@ export const StyledRegisterMain = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    cursor: pointer;
     z-index: 90;
     line-height: 1.8em;
     font-family: "Inter";
@@ -119,6 +118,11 @@ export const StyledRegisterMain = styled.div`
     width: 80%;
     margin: 0 auto;
     margin-top: 28px;
+  }
+  .error {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
   }
 
   @media (min-width: 768px) {
