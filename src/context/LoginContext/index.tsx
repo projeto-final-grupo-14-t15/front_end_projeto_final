@@ -66,7 +66,6 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
           const response = await api.get(`/users/${userId}/`)
           setUserInfo(response.data)
       } catch (error) {
-          console.log('ERRO AO OBTER INFORMAÇÕES DESSE USER')
       }
     };
     const userId:any = localStorage.getItem('@USERID')
