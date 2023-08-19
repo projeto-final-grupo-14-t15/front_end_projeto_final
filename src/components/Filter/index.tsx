@@ -25,6 +25,12 @@ export const Filter = () => {
       [fieldName]: value,
     }));
   };
+  const handleFilterSliderCommit = (fieldName: keyof IFilterData, value: any) => {
+    setDataFilter((prevFilter) => ({
+      ...prevFilter,
+      [fieldName]: value,
+    }));
+  };
 
   useEffect(() => {
     getAnnouncements(dataFilter);
@@ -139,9 +145,21 @@ export const Filter = () => {
   const handleChangeKm = (_event: Event, newValue: number | number[]) => {
     setValueKm(newValue as number[]);
   };
+  
+  const handleChangeCommitedKm = (_event: React.SyntheticEvent<Element, Event>, value: number[]) => {
+    handleFilterSliderCommit('minKm', value[0])
+    handleFilterSliderCommit('maxKm', value[1])
+    setValueKm(value as number[]);
+  };
 
   const handleChangePrice = (_event: Event, newValue: number | number[]) => {
     setValuePrice(newValue as number[]);
+  };
+
+  const handleChangeCommitedPrice = (_event: React.SyntheticEvent<Element, Event>, value: number[]) => {
+    handleFilterSliderCommit('minPrice', value[0])
+    handleFilterSliderCommit('maxPrice', value[1])
+    setValuePrice(value as number[]);
   };
 
   const clearFilter = () => {
@@ -162,6 +180,7 @@ export const Filter = () => {
     <StyledFilter>
       <header className="filter-header">
         <div>
+
           <h2> Marcas </h2>
           {brandsRegistered.map((brand: any) => (
             <button
@@ -173,6 +192,7 @@ export const Filter = () => {
             </button>
           ))}
         </div>
+
         <div>
           <h2> Modelos </h2>
           {modelsRegistered.map((model: any) => (
@@ -185,6 +205,7 @@ export const Filter = () => {
             </button>
           ))}
         </div>
+
         <div>
           <h2> Cor </h2>
           {colorsRegistered.map((color: any) => (
@@ -197,6 +218,7 @@ export const Filter = () => {
             </button>
           ))}
         </div>
+
         <div>
           <h2> Ano </h2>
           {yearRegistered.map((year: any) => (
@@ -209,6 +231,7 @@ export const Filter = () => {
             </button>
           ))}
         </div>
+
         <h2> Combustivel </h2>
         {fuelRegistered.map((fuel: any) => (
           <button
@@ -220,6 +243,7 @@ export const Filter = () => {
           </button>
         ))}
       </header>
+
       <h2> KM </h2>
       <div className="filter-input">
         <Slider
@@ -227,6 +251,7 @@ export const Filter = () => {
           getAriaLabel={() => "Km range"}
           value={valueKm}
           onChange={handleChangeKm}
+          onChangeCommitted={(event, value) => handleChangeCommitedKm(event as React.SyntheticEvent<Element, Event>, value)}
           valueLabelDisplay="auto"
           max={1000000}
           min={50000}
@@ -241,6 +266,7 @@ export const Filter = () => {
           getAriaLabel={() => "Price range"}
           value={valuePrice}
           onChange={handleChangePrice}
+          onChangeCommitted={(event, value) => handleChangeCommitedPrice(event as React.SyntheticEvent<Element, Event>, value)}
           valueLabelDisplay="auto"
           max={1000000}
           min={50000}

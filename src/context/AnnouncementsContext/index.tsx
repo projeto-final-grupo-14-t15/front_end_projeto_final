@@ -22,7 +22,7 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
 
     // setLoading(true);
     const developmentToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkyMjgxMDI0LCJleHAiOjE2OTIzNjc0MjQsInN1YiI6IjEifQ.6t4CYEIAimH9V7LqchgEDrvsizbvvWdE88wK7wyXSkY";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjkyMzY5NTk3LCJleHAiOjE2OTI0NTU5OTcsInN1YiI6IjIifQ.gls9jquzbiA4QX3Lp12hXYubyCk_S-jB8rjNdUP0UOo";
 
     try {
       const response = await api.post("/announcements", dataAnnouncement, {
