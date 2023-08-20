@@ -3,13 +3,15 @@ import { StyledUserIcon } from "./style"
 
 interface IUserNameProps {
     user:any;
+    clickable:string|null;
 }
 
-export const UserIcon = ({user}:IUserNameProps) => {
+export const UserIcon = ({user, clickable}:IUserNameProps) => {
     const navigate = useNavigate();
 
     const onClickNavigate = (userId:number) =>{
-        navigate(`/announcer/${userId}`);
+        if (clickable === 'yes')
+            navigate(`/announcer/${userId}`);
     }
 
     function getInitials(name:string) {
@@ -26,7 +28,7 @@ export const UserIcon = ({user}:IUserNameProps) => {
     }
     
     return(
-        <StyledUserIcon onClick={() => onClickNavigate(Number(user.id))}>
+        <StyledUserIcon clickable={clickable} onClick={() => onClickNavigate(Number(user.id))}>
                 <span> {getInitials(user.name)} </span>
                 <p> {user.name} </p>
         </StyledUserIcon>

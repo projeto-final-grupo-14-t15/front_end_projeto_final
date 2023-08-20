@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { StyledAnnouncementPage } from "./style";
 import { api } from "../../services/api";
 import { LoadingPage } from "../loadingPage";
@@ -15,6 +15,8 @@ export const AnnouncementPage = () => {
   const { userInfo } = useContext(LoginContext);
   const [autoComment, setAutoComment] = useState<string|null>(null);
 
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const currentAnnouncement = async () => {
       try {
@@ -30,8 +32,9 @@ export const AnnouncementPage = () => {
   }, []);
 
   const btnFunction = () =>{
-    console.log('hehehe thank u!')
+    console.log('função de comprar carro')
   }
+
   function capitalizeFirstLetter(inputString:string) {
     return inputString.charAt(0).toUpperCase() + inputString.slice(1);
   }
@@ -43,9 +46,13 @@ export const AnnouncementPage = () => {
     const formattedNumber = `${formattedIntegerPart},${formattedDecimalPart}`;
     return formattedNumber;
   }
-  const handleSpanClick = (comment) => {
+  const handleSpanClick = (comment:string) => {
     setAutoComment(comment);
   };
+
+  const onClickNavigate = (userId:number) =>{
+    navigate(`/announcer/${userId}`);
+  } 
 
   return (
     <>
@@ -62,10 +69,10 @@ export const AnnouncementPage = () => {
               <div className="container-div container__car-info">
                 <h2> {capitalizeFirstLetter(announcement.model)} </h2>
 
-                <div>
-                  <div>
-                    <p>{announcement.year}</p>
-                    <p>{announcement.km}Km</p>
+                <div className="car-info">
+                  <div className="car-info-info">
+                    <p className="detailed-info">{announcement.year}</p>
+                    <p className="detailed-info">{announcement.km}Km</p>
                   </div>
                   <p>R${formatNumber(announcement.price)}</p>
                 </div>
@@ -79,6 +86,23 @@ export const AnnouncementPage = () => {
                 <p> {announcement.description} </p>
               </div>
 
+              <aside className="container__aside-mobile">
+              <div className="container-div container__photos">
+                <h2> Fotos </h2>
+                <div className="photos-list">
+                  {announcement.photos.map((photo, index) => (
+                    <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                  ))}
+                </div>
+              </div>
+              <div className="container-div contaienr__user-info">
+                <span> SL </span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
+
+              </div>
+            </aside>
+
               <div className="container-div container__comments">
                 <h2> Comentários </h2>
                 <p> Aqui será feito um MAP com o campo announcement.comments que ainda não existe </p>
@@ -88,7 +112,7 @@ export const AnnouncementPage = () => {
                 userInfo
                 ?
                 <div className="container-div container__new-comment">
-                  <UserIcon user={userInfo}/>
+                  <UserIcon user={userInfo} clickable={'no'}/>
                   <TextField
                     id="outlined-multiline-static"
                     multiline
@@ -120,7 +144,7 @@ export const AnnouncementPage = () => {
               <div className="container-div contaienr__user-info">
                 <span> SL </span>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={btnFunction} />
+                <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
 
               </div>
             </aside>

@@ -27,6 +27,7 @@ export interface IAnnouncement {
     createdAt: string;
     updated_at: string;
     photos: string[] | { link: string; }[];
+    user:IUser
   }
 
   export type IAnnouncementsForm = Omit<IAnnouncement, 'id' | 'createdAt' | 'updated_at' >;

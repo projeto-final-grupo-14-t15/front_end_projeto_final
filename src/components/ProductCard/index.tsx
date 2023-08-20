@@ -30,7 +30,7 @@ export const ProductCard = ({announcement}:cardsProps) => {
                {announcement.description}
             </p>
 
-            <UserIcon user={announcement.user}/>
+            <UserIcon user={announcement.user} clickable={'yes'}/>
 
             <div className="container__car-info">
                <div className="info">
