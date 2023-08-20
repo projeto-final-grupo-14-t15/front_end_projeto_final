@@ -69,7 +69,9 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
       }
     };
     const userId:any = localStorage.getItem('@USERID')
-    getUserInfo(userId)
+    if (userId) {
+      getUserInfo(userId)
+    }
   }, [attNavbar]);
 
   
