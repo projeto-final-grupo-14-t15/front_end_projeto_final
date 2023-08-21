@@ -98,7 +98,9 @@ export const StyledAnnouncementPage = styled.main`
         font-size: 36px;
         color: var(--color-grey10);
     }
-    
+    li{
+        list-style: none;
+    }
     main{
         display: grid;
         grid-template-columns: 61% 1fr; /* 61% para a primeira div e o restante para a segunda */
