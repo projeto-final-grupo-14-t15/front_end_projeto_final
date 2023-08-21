@@ -11,25 +11,42 @@ interface IStyledParagraphProps {
 }
 
 export const CssTextField = styled(TextField)({  
+    width: "100%",
+    padding: "0 10px",
+
+
+  '& .MuiInputLabel-root': {
+    fontSize: '16px',
+    padding: '0 7px',
+    margin: '0 7px',
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    fontSize: '19px',
+    padding: '0 7px'
+  },
+  '& .MuiInputBase-input, & .MuiOutlinedInput-input': {
+    fontSize: '16px',
+    width: "100%",
+  },
   '& .description': {
     height: '50px',
   },
   '& label.Mui-focused': {
-    color: '#0C6B38',
+    color: '#var(--color-brand1)',
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: '#0C6B38',
+    borderBottomColor: 'var(--color-brand1)',
   },
   '& .MuiOutlinedInput-root': {
-    borderRadius: '15px',
+    borderRadius: '4px',
     '& fieldset': {
       borderColor: '#343B41',
     },
     '&:hover fieldset': {
-      borderColor: '#04C35C',
+      borderColor: 'var(--color-brand2)',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#0C6B38',
+      borderColor: 'var(--color-brand1)',
     },
   },
 });

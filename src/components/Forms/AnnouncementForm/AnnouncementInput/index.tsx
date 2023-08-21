@@ -2,6 +2,7 @@ import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { CssTextField, StyledParagraph } from "./style";
 import { StyledFieldset } from "./fieldSetStyled";
 import { CSSProperties } from "react";
+import { InputAdornment } from "@mui/material";
 
 interface IInputProps {
   label: React.ReactNode;
@@ -51,6 +52,11 @@ const AnnouncementInput = ({
         // onChange={(event: any) => onChange(event)}
         label={label}
         type={type}
+        InputProps={label == "Preço" &&{
+          startAdornment: (
+            <InputAdornment position="start">R$</InputAdornment>
+          ),
+        }}
       />
       {error ? (
         <StyledParagraph $fontColor="red">{error.message}</StyledParagraph>
