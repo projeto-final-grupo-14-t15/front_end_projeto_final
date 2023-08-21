@@ -7,9 +7,14 @@ export const StyledAnnouncementPage = styled.main`
 
     .container-div{
         background-color: var(--color-grey10);
-        padding: 15px;
+        padding: 45px;
         border-radius: 4px;
         font-family: var(--font-family-2);
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        
     }
     .container-div h2{
         font-size: var(--font-heading-6-lh);
@@ -27,6 +32,7 @@ export const StyledAnnouncementPage = styled.main`
         flex-direction: column;
         gap: 20px;
     }
+
     .photos-list{
         display: flex;
         flex-wrap: wrap;
@@ -34,7 +40,8 @@ export const StyledAnnouncementPage = styled.main`
         justify-content: center;
     }
     .container__photos img{
-        width: 100px;
+        width: 108px;
+        height: 108px;
         border-radius: 4px;
     }
     .container__cover-photo img{
@@ -44,11 +51,7 @@ export const StyledAnnouncementPage = styled.main`
         border-radius: 4.1px;
         max-height: 355px;
     }
-    .container__new-comment{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+
     .container__new-comment p span{
         background-color: var(--color-grey7);
         color: var(--color-grey3);
@@ -56,11 +59,7 @@ export const StyledAnnouncementPage = styled.main`
         padding: 7px;
         cursor: pointer;
     }
-    .container__car-info{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+
     .car-info{
         display: flex;
         align-items: center;
@@ -75,6 +74,29 @@ export const StyledAnnouncementPage = styled.main`
         background-color: var(--color-brand4);
         border-radius: 4px;
         padding: 5px;
+    }
+    .contaienr__user-info{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .contaienr__user-info p{
+        font-size: var(--font-body-1-size);
+        font-weight: 400;
+        color: var(--color-grey2);
+        text-align: center;
+    }
+
+    .icon-initials{
+        background-color: var(--color-brand1);
+        width: 104px;
+        height: 104px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 180px;
+        font-size: 36px;
+        color: var(--color-grey10);
     }
     
     main{

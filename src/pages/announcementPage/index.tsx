@@ -87,20 +87,23 @@ export const AnnouncementPage = () => {
               </div>
 
               <aside className="container__aside-mobile">
-              <div className="container-div container__photos">
-                <h2> Fotos </h2>
-                <div className="photos-list">
-                  {announcement.photos.map((photo, index) => (
-                    <img key={index} src={photo.link} alt={`Photo ${index}`} />
-                  ))}
-                </div>
-              </div>
-              <div className="container-div contaienr__user-info">
-                <span> SL </span>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
+                <div className="container-div container__photos">
+                  <h2> Fotos </h2>
 
-              </div>
+                  <div className="photos-list">
+                    {announcement.photos.map((photo, index) => (
+                      <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="container-div contaienr__user-info">
+                  <span className="icon-initials"> SL </span>
+                  <h2> Samuel Leão </h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                  <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
+                </div>
+
             </aside>
 
               <div className="container-div container__comments">
@@ -142,7 +145,8 @@ export const AnnouncementPage = () => {
                 </div>
               </div>
               <div className="container-div contaienr__user-info">
-                <span> SL </span>
+                <span className="icon-initials"> SL </span>
+                <h2> Samuel Leão </h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
                 <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
 
