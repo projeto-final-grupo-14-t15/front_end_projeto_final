@@ -24,9 +24,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
     );
     dataAnnouncement.price = Number(dataAnnouncement.price);
     dataAnnouncement.km = Number(dataAnnouncement.km);
-    console.log(dataAnnouncement);
-
-    // setLoading(true);
     const token = localStorage.getItem("@TOKEN");
     if (token) {
       try {
