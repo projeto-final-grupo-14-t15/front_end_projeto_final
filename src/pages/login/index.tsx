@@ -46,7 +46,7 @@ export const Login = () => {
           <DefaultButton
             text="Entrar"
             bordercolor="--color-brand1"
-            backgroundColor="--color-brand2"
+            backgroundcolor="--color-brand2"
             textcolor="--color-whiteFixed"
             type="submit"
           />

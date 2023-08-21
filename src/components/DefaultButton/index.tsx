@@ -2,7 +2,7 @@ import { StyledButton } from "./style";
 
 interface IButtonProps {
   text: string;
-  backgroundColor: string;
+  backgroundcolor: string;
   textcolor: string;
   bordercolor: string;
   type: "button" | "submit" | "reset" | undefined;
@@ -11,7 +11,7 @@ interface IButtonProps {
 
 export const DefaultButton = ({
   text,
-  backgroundColor,
+  backgroundcolor,
   textcolor,
   bordercolor,
   type,
@@ -19,7 +19,7 @@ export const DefaultButton = ({
 }: IButtonProps) => {
   return (
     <StyledButton
-      backgroundColor={backgroundColor}
+      backgroundcolor={backgroundcolor}
       textcolor={textcolor}
       bordercolor={bordercolor}
       type={type}

@@ -6,6 +6,7 @@ import { Product } from "../pages/product";
 import { UserDash } from "../pages/userDash";
 import { AnnoucerPage } from "../pages/annoucerPage";
 import { MyAnnouncementsPage } from "../pages/myAnnouncements";
+import { AnnouncementPage } from "../pages/announcementPage";
 
 export const RoutesMain = () => {
   return (
@@ -17,6 +18,7 @@ export const RoutesMain = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/product" element={<Product />} />
       <Route path="/userDash" element={<UserDash />} />
+      <Route path='/announcement-page/announcement/:announcementId' element={ <AnnouncementPage/>} />
     </Routes>
   );
 };

@@ -9,6 +9,7 @@ export const StyledCard = styled.li`
     .container__img-product{
         height: 152px;
         position: relative;
+        cursor: pointer;
     }
     .container__content-product{
         margin-top: 20px; 
@@ -16,7 +17,9 @@ export const StyledCard = styled.li`
         flex-direction: column;
         gap: 20px;
         justify-content: space-around;
-       
+    }
+    .container__content-product h2{
+        cursor: pointer;
     }
     figure {
         width: 100%;

@@ -110,7 +110,7 @@ export const Register = () => {
           <DefaultButton
             text="Finalizar cadastro"
             bordercolor="--color-brand1"
-            backgroundColor="--color-brand2"
+            backgroundcolor="--color-brand2"
             textcolor="--color-whiteFixed"
             type="submit"
           />

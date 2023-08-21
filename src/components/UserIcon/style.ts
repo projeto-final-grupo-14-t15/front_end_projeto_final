@@ -1,12 +1,21 @@
 import styled from "styled-components";
 
-export const StyledUserIcon = styled.button`
+export const StyledUserIcon = styled.button<{ clickable: string | null }>`
     display: flex;
     align-items: center;
     gap:5px;
-    cursor: pointer;
     background-color: transparent;
     border: none;
+
+    ${props =>
+        props.clickable === 'yes'
+            ?`
+                cursor: pointer;
+            `
+            :`
+                cursor: default;
+            `
+    }
     
     span{
         width: 32px;
