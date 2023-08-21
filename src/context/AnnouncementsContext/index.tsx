@@ -1,6 +1,12 @@
 import { createContext, useState } from "react";
 import { api } from "../../services/api";
-import { IAnnouncementsContext, IAnnouncementsForm, IAnnouncementsProviderProps, IFilterData, IFilterResponse } from "../../interfaces/announcementsContext.types";
+import {
+  IAnnouncementsContext,
+  IAnnouncementsForm,
+  IAnnouncementsProviderProps,
+  IFilterData,
+  IFilterResponse,
+} from "../../interfaces/announcementsContext.types";
 import { AxiosResponse } from "axios";
 
 export const AnnouncementsContext = createContext<IAnnouncementsContext>(
@@ -9,34 +15,34 @@ export const AnnouncementsContext = createContext<IAnnouncementsContext>(
 
 const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const [Announcements, SetAnnouncements] = useState<IFilterResponse[]>([]);
-  const [allUserAnnouncements, setAllUserAnnouncements] = useState<any>([])
+  const [allUserAnnouncements, setAllUserAnnouncements] = useState<any>([]);
 
-  const createAnnouncement = async (
-    dataAnnouncement
-  ): Promise<void> => {
+  const createAnnouncement = async (dataAnnouncement): Promise<void> => {
     console.log(dataAnnouncement);
-    dataAnnouncement.photos = dataAnnouncement.photos.map(photo => photo.link);
-    dataAnnouncement.price = Number(dataAnnouncement.price)
-    dataAnnouncement.km = Number(dataAnnouncement.km)
+    dataAnnouncement.photos = dataAnnouncement.photos.map(
+      (photo) => photo.link
+    );
+    dataAnnouncement.price = Number(dataAnnouncement.price);
+    dataAnnouncement.km = Number(dataAnnouncement.km);
     console.log(dataAnnouncement);
 
     // setLoading(true);
-    const developmentToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjkyMjgxMDI0LCJleHAiOjE2OTIzNjc0MjQsInN1YiI6IjEifQ.6t4CYEIAimH9V7LqchgEDrvsizbvvWdE88wK7wyXSkY";
-
-    try {
-      const response = await api.post("/announcements", dataAnnouncement, {
-        headers: {
-          Authorization: `Bearer ${developmentToken}`,
-        },
-      });
-      // toast.success('Veículo anunciado com sucesso!');
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-      // toast.error('Falha ao cadastrar casa');
-    } finally {
-      // setLoading(false);
+    const token = localStorage.getItem("@TOKEN");
+    if (token) {
+      try {
+        const response = await api.post("/announcements", dataAnnouncement, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // toast.success('Veículo anunciado com sucesso!');
+        console.log(response.data, 'anuncio postado');
+      } catch (error) {
+        console.error(error);
+        // toast.error('Falha ao cadastrar casa');
+      } finally {
+        // setLoading(false);
+      }
     }
   };
 
@@ -66,11 +72,12 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
     }
   };
 
-
   const getAnnouncementsByUserId = async (userId: number) => {
     try {
-      const response: AxiosResponse<any> = await api.get(`/announcements/byannouncer/${userId}`);
-      console.log(response)
+      const response: AxiosResponse<any> = await api.get(
+        `/announcements/byannouncer/${userId}`
+      );
+      console.log(response);
       setAllUserAnnouncements(response.data);
     } catch (error) {
       console.error(error);
