@@ -63,14 +63,6 @@ export const BigCardUserLogged = ({ userId }: ICardUserProps) => {
             setOpen={setOpenAnnouncementModal}
             submitFunction={createAnnouncement}
           />
-          {/* <DefaultButton
-            text="Criar Anuncio"
-            textcolor="--color-brand1"
-            type="button"
-            backgroundcolor="--color-grey10"
-            bordercolor="--color-brand1"
-            buttonFunction={btnFunction}
-          /> */}
         </>
       ) : (
         <p> carregando... </p>
