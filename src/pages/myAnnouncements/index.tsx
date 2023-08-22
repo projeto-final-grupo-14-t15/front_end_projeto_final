@@ -6,13 +6,17 @@ import { ProductCardAnnoucer } from "../../components/ProductCardOwner";
 import { BigCardUserLogged } from "../../components/BigCardUserPageLogged";
 
 export const MyAnnouncementsPage = () => {
-  const { allUserAnnouncements, getAnnouncementsByUserId } = useAnnouncements();
+  const { allUserAnnouncements, getAnnouncementsByUserId, annoncementsChanged } = useAnnouncements();
 
   const { userId } = useParams();
 
   useEffect(() => {
     getAnnouncementsByUserId(Number(userId));
   }, []); 
+
+  useEffect(() => {
+    getAnnouncementsByUserId(Number(userId));
+  }, [annoncementsChanged]); 
   
   return (
     

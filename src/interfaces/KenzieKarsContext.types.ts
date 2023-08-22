@@ -22,7 +22,7 @@ export interface ICar {
   name: string
   brand: string
   year: string
-  fuel: number
+  fuel: number | string
   value: number
 }
 

@@ -15,5 +15,7 @@ export const announcementSchema = z.object({
   color: z.string().max(55).min(1, "Campo obrigatório"),
   higherThanFipe: z.boolean().default(false),
   price: z.string().max(55).min(1, "Campo obrigatório"),
+  fipePrice: z.string().max(55).min(1, "Campo obrigatório"),
+  isActive: z.boolean().default(true),
   photos: photosSchema,
 });
