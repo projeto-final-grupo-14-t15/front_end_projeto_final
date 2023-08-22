@@ -21,9 +21,7 @@ const StyledHome = styled.main`
         display: flex;
         flex-wrap: wrap;
         width: 74%;
-        gap: 45px;
-       
-               
+        gap: 45px;        
     }
 
 `

@@ -8,6 +8,8 @@ import { DefaultButton } from "../../components/DefaultButton";
 import { UserIcon } from "../../components/UserIcon";
 import { LoginContext } from "../../context/LoginContext";
 import { TextField } from "@mui/material";
+import { commentsData } from "./mockComments";
+import { CommentCard } from "../../components/CommentCard";
 
 export const AnnouncementPage = () => {
   const [announcement, setAnnouncement] = useState<IAnnouncement | undefined>(undefined);
@@ -54,6 +56,19 @@ export const AnnouncementPage = () => {
     navigate(`/announcer/${userId}`);
   } 
 
+  const getInitials = (name:string) =>{
+    const words = name.split(' ');
+    let initials = '';
+
+    for (const word of words) {
+        if (word.length > 0) {
+            initials += word[0].toUpperCase();
+        }
+    }
+
+    return initials.slice(0, 2);
+  }
+
   return (
     <>
       {
@@ -87,25 +102,34 @@ export const AnnouncementPage = () => {
               </div>
 
               <aside className="container__aside-mobile">
-              <div className="container-div container__photos">
-                <h2> Fotos </h2>
-                <div className="photos-list">
-                  {announcement.photos.map((photo, index) => (
-                    <img key={index} src={photo.link} alt={`Photo ${index}`} />
-                  ))}
-                </div>
-              </div>
-              <div className="container-div contaienr__user-info">
-                <span> SL </span>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
+                <div className="container-div container__photos">
+                  <h2> Fotos </h2>
 
-              </div>
+                  <div className="photos-list">
+                    {announcement.photos.map((photo, index) => (
+                      <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="container-div contaienr__user-info">
+                  <span className="icon-initials">{getInitials(announcement.user.name)} </span>
+                  <h2> {announcement.user.name} </h2>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                  <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
+                </div>
+
             </aside>
 
               <div className="container-div container__comments">
                 <h2> Comentários </h2>
-                <p> Aqui será feito um MAP com o campo announcement.comments que ainda não existe </p>
+                <ul className="comments-list">
+                  {
+                    commentsData.map(comment => 
+                      <CommentCard key={comment.userName} comment={comment}/>
+                      )
+                  }
+                </ul>
               </div>
 
               {
@@ -135,14 +159,17 @@ export const AnnouncementPage = () => {
             <aside className="container__aside">
               <div className="container-div container__photos">
                 <h2> Fotos </h2>
-                <div className="photos-list">
+                <ul className="photos-list">
                   {announcement.photos.map((photo, index) => (
-                    <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                    <li>
+                       <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
               <div className="container-div contaienr__user-info">
-                <span> SL </span>
+                <span className="icon-initials"> {getInitials(announcement.user.name)} </span>
+                <h2> {announcement.user.name}</h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
                 <DefaultButton type="button" text="Ver todos anuncios" backgroundcolor="--color-grey0" textcolor="--color-grey10" bordercolor="--color-grey0" buttonFunction={()=>onClickNavigate(announcement.user.id)} />
 

@@ -14,7 +14,7 @@ export const UserIcon = ({user, clickable}:IUserNameProps) => {
             navigate(`/announcer/${userId}`);
     }
 
-    function getInitials(name:string) {
+    const getInitials = (name:string) =>{
         const words = name.split(' ');
         let initials = '';
     
