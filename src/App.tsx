@@ -5,22 +5,24 @@ import { Header } from "./components/Header";
 import { LoginProvider } from "./context/LoginContext";
 import { Footer } from "./components/Footer";
 import { RegisterProvider } from "./context/RegisterContext";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
-  return (
-    <>
-      <GlobalStyles />
-      <RegisterProvider>
-        <LoginProvider>
-          <Header />
-          <RoutesMain />
-        </LoginProvider>
-      </RegisterProvider>
-      <ToastContainer />
-
-      <Footer />
-    </>
-  );
+   return (
+      <>
+         <GlobalStyles />
+         <RegisterProvider>
+            <LoginProvider>
+            <UserProvider>
+               <Header />
+               <RoutesMain />
+            </UserProvider>
+            </LoginProvider>
+         </RegisterProvider>
+         <ToastContainer />
+         <Footer />
+      </>
+   );
 }
 
 export default App;
