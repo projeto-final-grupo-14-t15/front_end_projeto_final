@@ -126,7 +126,7 @@ export const Register = () => {
                 type="radio"
                 id="a25"
                 value="true"
-                {...register("isAdmin")}
+                {...register("isSeller")}
               />
               <label className="btn btn-default" htmlFor="a25">
                 Vendedor
@@ -137,7 +137,7 @@ export const Register = () => {
                 type="radio"
                 id="a25"
                 value="false "
-                {...register("isAdmin")}
+                {...register("isSeller")}
               />
               <label className="btn btn-default" htmlFor="a25">
                 Comprador
