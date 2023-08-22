@@ -1,25 +1,81 @@
-import { createContext, useEffect, useState } from "react";
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { createContext,useContext,useState } from "react";
+
 import "react-toastify/dist/ReactToastify.css";
-import { IUserContext } from "../../interfaces/IUserContext";
+import {
+   IUserContext,
+   IUserResponse,
+   IUserUpdate,
+} from "../../interfaces/IUserContext";
 import { IChildrenProps } from "../../types/@types";
+import { api } from "../../services/api";
+import { AxiosResponse } from "axios";
+import { LoginContext } from "../LoginContext";
 
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IChildrenProps) => {
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+   const token: string | null = localStorage.getItem("@TOKEN");
 
+   const [user, setUser] = useState<IUserResponse | null>(null);
 
-  return (
-    <UserContext.Provider
-      value={{
-       
-      }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+   const { handleLogout } = useContext(LoginContext);
+   
+   const getUser = async (id: string | null) => {
+      try {
+         const response: AxiosResponse<IUserResponse> = await api.patch(
+            `/users/${id}`
+         );
+
+         setUser(response.data);
+      } catch (error) {
+         console.error(error);
+      }
+   };
+
+   const updateUser = async (data: IUserUpdate, id: string | null) => {
+      try {
+         const response: AxiosResponse<IUserResponse> = await api.patch(
+            `/users/${id}`,
+            data,
+            {
+               headers: {
+                  Authorization: `Bearer ${token}`,
+               },
+            }
+         );
+         response.data;
+      } catch (error) {
+         console.error(error);
+      }
+   };
+
+   const deleteUser = async (id: string | null) => {
+      try {
+         const response: AxiosResponse<void> = await api.delete(
+            `/users/${id}`,
+            {
+               headers: {
+                  Authorization: `Bearer ${token}`,
+               },
+            }
+         );
+         response.data;
+         handleLogout()
+      } catch (error) {
+         console.error(error);
+      }
+   };
+
+   return (
+      <UserContext.Provider
+         value={{
+            updateUser,
+            deleteUser,
+            user,
+            getUser
+         }}
+      >
+         {children}
+      </UserContext.Provider>
+   );
 };
