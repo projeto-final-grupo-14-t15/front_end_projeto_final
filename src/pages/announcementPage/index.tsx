@@ -8,6 +8,8 @@ import { DefaultButton } from "../../components/DefaultButton";
 import { UserIcon } from "../../components/UserIcon";
 import { LoginContext } from "../../context/LoginContext";
 import { TextField } from "@mui/material";
+import { commentsData } from "./mockComments";
+import { CommentCard } from "../../components/CommentCard";
 
 export const AnnouncementPage = () => {
   const [announcement, setAnnouncement] = useState<IAnnouncement | undefined>(undefined);
@@ -121,7 +123,13 @@ export const AnnouncementPage = () => {
 
               <div className="container-div container__comments">
                 <h2> Comentários </h2>
-                <p> Aqui será feito um MAP com o campo announcement.comments que ainda não existe </p>
+                <ul className="comments-list">
+                  {
+                    commentsData.map(comment => 
+                      <CommentCard key={comment.userName} comment={comment}/>
+                      )
+                  }
+                </ul>
               </div>
 
               {

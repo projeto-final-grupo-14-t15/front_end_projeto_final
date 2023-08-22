@@ -86,6 +86,11 @@ export const StyledAnnouncementPage = styled.main`
         color: var(--color-grey2);
         text-align: center;
     }
+    .comments-list{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
     .icon-initials{
         background-color: var(--color-brand1);
