@@ -73,6 +73,51 @@ export const Register = () => {
           />
 
           <ThemeP2_500 className="accountType" color="--color-grey0">
+            Informações de endereço
+          </ThemeP2_500>
+          <Input
+            labelText="CEP"
+            placeHolder="00000.000"
+            type="text"
+            register={register("cep")}
+          />
+          <div className="addressInfoContainer">
+            <Input
+              labelText="Estado"
+              placeHolder="Digitar Estado"
+              type="text"
+              register={register("state")}
+            />
+            <Input
+              labelText="Cidade"
+              placeHolder="Digitar Cidade"
+              type="text"
+              register={register("city")}
+            />
+          </div>
+          <Input
+            labelText="Rua"
+            placeHolder="Digitar rua"
+            type="text"
+            register={register("street")}
+          />
+
+          <div className="addressInfoContainer">
+            <Input
+              labelText="Número"
+              placeHolder="Digitar número"
+              type="text"
+              register={register("number")}
+            />
+            <Input
+              labelText="Complemento"
+              placeHolder="Ex: apart 307"
+              type="text"
+              register={register("complement")}
+            />
+          </div>
+
+          <ThemeP2_500 className="accountType" color="--color-grey0">
             Tipo de conta
           </ThemeP2_500>
           <div className="radioContainer">

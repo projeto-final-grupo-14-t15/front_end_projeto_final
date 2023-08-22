@@ -19,9 +19,22 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
 
   async function submitFunction(data: RegisterData) {
     console.log(data);
+
+    const newData = {
+      cep: data.cep,
+      state: data.state,
+      city: data.city,
+      street: data.street,
+      complement: data.complement,
+      number: data.number,
+    };
+
+    console.log(newData);
     try {
       console.log("cheguei aqui");
-      await api.post("/users", data);
+      const response = await api.post("/users", data);
+      await api.post(`/users/${response.data.id}/address`, newData);
+
       toast.success("Cliente cadastrado com sucesso!");
       setTimeout(() => {
         navigate("/");

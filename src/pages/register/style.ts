@@ -124,6 +124,16 @@ export const StyledRegisterMain = styled.div`
     width: 80%;
     margin: 0 auto;
   }
+  .addressInfoContainer {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: space-around;
+  }
+
+  .addressInfoContainer fieldset input {
+    width: 152px;
+  }
 
   @media (min-width: 768px) {
     .form_Container {
