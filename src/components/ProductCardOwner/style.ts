@@ -26,9 +26,14 @@ export const StyledCard = styled.li`
         overflow: hidden;
         background-color: var(--color-grey7);
     }
+    .container__content-product h2{
+        cursor: pointer;
+    }
+    .container__img-product{
+        cursor: pointer;
+    }
     .container__img-product img{
         width: 100%;
-       
     }
     .card-description{
         color: var(--color-grey2);

@@ -253,8 +253,8 @@ export const Filter = () => {
           onChange={handleChangeKm}
           onChangeCommitted={(event, value) => handleChangeCommitedKm(event as React.SyntheticEvent<Element, Event>, value)}
           valueLabelDisplay="auto"
-          max={1000000}
-          min={50000}
+          max={100000}
+          min={0}
           step={1000}
         />
       </div>
