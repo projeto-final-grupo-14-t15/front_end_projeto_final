@@ -12,6 +12,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
   InputAdornment,
 } from "@mui/material";
@@ -21,9 +22,11 @@ import { ICar } from "../../../interfaces/KenzieKarsContext.types";
 import { CssTextField, StyledParagraph } from "./AnnouncementInput/style";
 import { StyledFieldset } from "./AnnouncementInput/fieldSetStyled";
 import { DefaultButton } from "../../DefaultButton";
+import useAnnouncements from "../../../hooks/useAnnouncements";
 
 const AnnouncementForm = ({
   submitFunction,
+  announcement,
   isCreateForm,
   open,
   setOpen,
@@ -31,10 +34,16 @@ const AnnouncementForm = ({
   const { allBrands, loadingForm, modelsList, getCarsPerBrands, carsList } =
     useKenzieKars();
 
+  const { deleteAnnouncement } = useAnnouncements();
+
   const [selectedCar, setSelectedCar] = useState<ICar>();
+  const [isActive, setIsActive] = useState<any>(true);
 
   const handleClickOpen = () => {
     setOpen(true);
+    if (announcement) {
+      console.log(announcement);
+    }
   };
 
   const handleClose = () => {
@@ -49,6 +58,19 @@ const AnnouncementForm = ({
     formState: { errors },
   } = useForm<announcementsDataForm>({
     resolver: zodResolver(announcementSchema),
+    defaultValues: {
+      brand: announcement?.brand,
+      description: announcement?.description,
+      model: announcement?.model,
+      year: announcement?.year,
+      km: announcement?.km?.toString(),
+      fuel: announcement?.fuel,
+      color: announcement?.color,
+      higherThanFipe: announcement?.higherThanFipe,
+      price: announcement?.price?.toString(),
+      fipePrice: announcement?.fipePrice?.toString(),
+      isActive: announcement?.isActive,
+    },
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -58,98 +80,198 @@ const AnnouncementForm = ({
 
   useEffect(() => {
     console.log(fields);
-    if (fields.length < 1) {
-      append({
-        link: "",
+    console.log(announcement, "ANUNCIO");
+    if (announcement) {
+      announcement.photos?.map((photo) => {
+        append({
+          link: photo.link,
+        });
       });
-      console.log(fields.length);
+    } else {
+      if (fields.length < 1) {
+        append({
+          link: "",
+        });
+        console.log(fields.length);
+      }
+    }
+    if (
+      !isCreateForm &&
+      announcement &&
+      announcement.id &&
+      announcement.model &&
+      announcement.brand &&
+      announcement.year &&
+      announcement.fuel &&
+      announcement.fipePrice
+    ) {
+      setIsActive(announcement.isActive);
+      setSelectedCar({
+        id: announcement.id.toString(),
+        name: announcement?.model,
+        brand: announcement?.brand,
+        year: announcement?.year,
+        fuel: announcement?.fuel,
+        value: announcement?.fipePrice,
+      });
     }
   }, []);
 
   useEffect(() => {
     selectedCar && setValue("year", selectedCar?.year);
-    selectedCar &&
-      setValue(
-        "fuel",
-        selectedCar?.fuel == 1
-          ? "flex"
-          : selectedCar?.fuel == 2
-          ? "hibrido"
-          : "elétrico"
-      );
+    selectedCar && !announcement;
+    setValue(
+      "fuel",
+      selectedCar?.fuel == 1
+        ? "flex"
+        : selectedCar?.fuel == 2
+        ? "hibrido"
+        : "elétrico"
+    );
   }, [selectedCar]);
 
-  const onSubmit = (data: announcementsDataForm) => {
-    Number(data.price) > Number(selectedCar?.value)
-      ? (data.higherThanFipe = true)
-      : (data.higherThanFipe = false);
-    submitFunction(data);    
-    toast.success("Anúncio cadastrado com sucesso!");
-    setOpen(false);    
+  const onSubmit = (data) => {
+    if (isCreateForm) {
+      Number(data.price) > Number(selectedCar?.value)
+        ? (data.higherThanFipe = true)
+        : (data.higherThanFipe = false);
+    } else {
+      Number(data.price) > Number(data.fipePrice)
+        ? (data.higherThanFipe = true)
+        : (data.higherThanFipe = false);
+    }
+    if (selectedCar?.value) {
+      data.fipePrice = selectedCar?.value.toString();
+    }
+    if (isCreateForm) {
+      submitFunction(data);
+      toast.success("Anúncio cadastrado com sucesso!");
+    } else {
+      submitFunction(data, announcement?.id);
+      toast.success("Anúncio atualizado com sucesso!");
+    }
+    setOpen(false);
+  };
+  
+  const onDelete = (id) => {
+    deleteAnnouncement(id);
+    toast.success("Anúncio excluído com sucesso!");
+    setOpen(false);
   };
 
   return (
     <div>
-      <DefaultButton
-        text="Criar Anuncio"
-        textcolor="--color-brand1"
-        type="button"
-        backgroundColor="--color-grey10"
-        bordercolor="--color-brand1"
-        buttonFunction={handleClickOpen}
-      />
+      {isCreateForm ? (
+        <DefaultButton
+          text="Criar Anuncio"
+          textcolor="--color-brand1"
+          type="button"
+          backgroundcolor="--color-grey10"
+          bordercolor="--color-brand1"
+          buttonFunction={handleClickOpen}
+        />
+      ) : (
+        <DefaultButton
+          text="Editar"
+          textcolor="--color-grey1"
+          type="button"
+          backgroundcolor="--color-grey8"
+          bordercolor="--color-grey1"
+          buttonFunction={handleClickOpen}
+        />
+      )}
       <Dialog open={open} onClose={handleClose} scroll="body">
-        <DialogTitle>Cadastre seu veículo</DialogTitle>
+        {isCreateForm ? (
+          <DialogTitle>Cadastre seu veículo</DialogTitle>
+        ) : (
+          <DialogTitle>Editar anuncio</DialogTitle>
+        )}
         <DialogContent>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            <Autocomplete
-              options={allBrands}
-              filterSelectedOptions
-              {...register("brand")}
-              onChange={(event, value) => {
-                value !== null && setValue("brand", value);
-                console.log(value);
-                // setSelectedBrand(value);
-                getCarsPerBrands(value);
-              }}
-              renderInput={(params) => (
-                <CssTextField {...params} label="Marca" />
-              )}
-            />
+            {isCreateForm ? (
+              <Autocomplete
+                options={allBrands}
+                filterSelectedOptions
+                {...register("brand")}
+                onChange={(event, value) => {
+                  value !== null && setValue("brand", value);
+                  console.log(value);
+                  // setSelectedBrand(value);
+                  getCarsPerBrands(value);
+                }}
+                renderInput={(params) => (
+                  <CssTextField {...params} label="Marca" />
+                )}
+              />
+            ) : (
+              <CssTextField
+                {...register("brand")}
+                id="outlined-basic"
+                label="Marca"
+                variant="outlined"
+                value={selectedCar?.brand}
+                disabled={true}
+                InputLabelProps={{ shrink: true }}
+                onChange={(event) => {
+                  setValue("brand", event.target.value);
+                }}
+              />
+            )}
             {errors.brand && (
               <StyledParagraph $fontColor="red">
                 {errors.brand.message}
               </StyledParagraph>
             )}
-            <Autocomplete
-              options={modelsList}
-              filterSelectedOptions
-              {...register("model")}
-              disabled={modelsList.length === 0}
-              loading={loadingForm}
-              onChange={(event, value) => {
-                value !== null && setValue("model", value);
-                console.log(value);
-                setSelectedCar(carsList.find((car) => car.name === value));
-              }}
-              renderInput={(params) => (
-                <CssTextField
-                  {...params}
-                  label="Modelo"
-                  InputProps={{
-                    ...params.InputProps,
-                    endAdornment: (
-                      <React.Fragment>
-                        {loadingForm ? (
-                          <CircularProgress color="inherit" size={20} />
-                        ) : null}
-                        {params.InputProps.endAdornment}
-                      </React.Fragment>
-                    ),
-                  }}
-                />
-              )}
-            />
+            {isCreateForm ? (
+              <Autocomplete
+                options={modelsList}
+                filterSelectedOptions
+                {...register("model")}
+                disabled={modelsList.length === 0}
+                loading={loadingForm}
+                onChange={(event, value) => {
+                  value !== null && setValue("model", value);
+                  console.log(value);
+                  setSelectedCar(carsList.find((car) => car.name === value));
+                  const fipePrice = carsList.find(
+                    (car) => car.name === value
+                  )?.value;
+                  if (fipePrice) {
+                    setValue("fipePrice", fipePrice.toString());
+                  }
+                }}
+                renderInput={(params) => (
+                  <CssTextField
+                    {...params}
+                    label="Modelo"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <React.Fragment>
+                          {loadingForm ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </React.Fragment>
+                      ),
+                    }}
+                  />
+                )}
+              />
+            ) : (
+              <CssTextField
+                {...register("model")}
+                id="outlined-basic"
+                label="Modelo"
+                variant="outlined"
+                value={announcement?.model}
+                disabled={true}
+                InputLabelProps={{ shrink: true }}
+                onChange={(event) => {
+                  setValue("model", event.target.value);
+                }}
+              />
+            )}
             {errors.model && (
               <StyledParagraph $fontColor="red">
                 {errors.model.message}
@@ -208,8 +330,13 @@ const AnnouncementForm = ({
                   id="outlined-basic"
                   label="Preço tabela FIPE"
                   variant="outlined"
+                  {...register(`fipePrice`)}
                   value={selectedCar?.value}
+                  defaultValue={announcement?.fipePrice}
                   disabled={true}
+                  onChange={(event) => {
+                    setValue("fipePrice", event.target.value);
+                  }}
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
                     startAdornment: (
@@ -217,13 +344,17 @@ const AnnouncementForm = ({
                     ),
                   }}
                 />
+                {errors.fipePrice && (
+                  <StyledParagraph $fontColor="red">
+                    {errors.fipePrice?.message}
+                  </StyledParagraph>
+                )}
               </StyledFieldset>
               <AnnouncementInput
                 label="Preço"
                 type="text"
                 register={register("price")}
                 error={errors.price}
-                
               />
             </span>
 
@@ -233,6 +364,44 @@ const AnnouncementForm = ({
               register={register("description")}
               error={errors.description}
             />
+            {!isCreateForm && <DialogTitle>Publicado</DialogTitle>}
+            {!isCreateForm && (
+              <div className="radioContainer">
+                <span style={{ display: "flex", gap: "10px" }}>
+                  <DefaultButton
+                    buttonFunction={() => {
+                      setIsActive(true);
+                      setValue("isActive", true);
+                    }}
+                    backgroundcolor={
+                      isActive ? "--color-brand1" : "--color-grey6"
+                    }
+                    bordercolor={isActive ? "--color-brand1" : "--color-grey6"}
+                    textcolor={
+                      isActive ? "--color-whiteFixed" : "--color-grey2"
+                    }
+                    text="Sim"
+                    type="button"
+                  />
+                  <DefaultButton
+                    buttonFunction={() => {
+                      setIsActive(false);
+                      setValue("isActive", false);
+                    }}
+                    backgroundcolor={
+                      isActive ? "--color-grey6" : "--color-brand1"
+                    }
+                    bordercolor={isActive ? "--color-grey6" : "--color-brand1"}
+                    textcolor={
+                      isActive ? "--color-grey2" : "--color-whiteFixed"
+                    }
+                    text="Não"
+                    type="button"
+                  />
+                </span>
+              </div>
+            )}
+
             {fields.map((field, index) =>
               index == 0 ? (
                 <div key={field.id}>
@@ -277,7 +446,7 @@ const AnnouncementForm = ({
                   link: "",
                 })
               }
-              backgroundColor="--color-brand4"
+              backgroundcolor="--color-brand4"
               bordercolor="--color-brand4"
               textcolor="--color-brand1"
               text="Adicionar campo para imagem da galeria"
@@ -290,15 +459,15 @@ const AnnouncementForm = ({
             <span style={{ display: "flex", gap: "10px" }}>
               <DefaultButton
                 buttonFunction={handleClose}
-                backgroundColor="--color-grey6"
+                backgroundcolor="--color-grey6"
                 bordercolor="--color-grey6"
                 textcolor="--color-grey2"
                 text="Cancelar"
-                type="submit"
+                type="button"
               />
               <DefaultButton
                 buttonFunction={handleSubmit(onSubmit)}
-                backgroundColor="--color-brand1"
+                backgroundcolor="--color-brand1"
                 bordercolor="--color-brand1"
                 textcolor="--color-whiteFixed"
                 text="Criar anúncio"
@@ -306,11 +475,31 @@ const AnnouncementForm = ({
               />
             </span>
           ) : (
-            <span>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleSubmit(submitFunction)}>
-                Salvar alterações
-              </Button>
+            <span style={{ display: "flex", gap: "10px" }}>
+              <DefaultButton
+                buttonFunction={handleClose}
+                backgroundcolor="--color-grey6"
+                bordercolor="--color-grey6"
+                textcolor="--color-grey2"
+                text="Cancelar"
+                type="button"
+              />
+              <DefaultButton
+                buttonFunction={() => onDelete(announcement?.id)}
+                backgroundcolor="--color-alert1"
+                bordercolor="--color-alert1"
+                textcolor="--color-alert3"
+                text="Excluir"
+                type="button"
+              />
+              <DefaultButton
+                buttonFunction={handleSubmit(onSubmit)}
+                backgroundcolor="--color-brand1"
+                bordercolor="--color-brand1"
+                textcolor="--color-whiteFixed"
+                text="Salvar alterações"
+                type="submit"
+              />
             </span>
           )}
         </DialogActions>

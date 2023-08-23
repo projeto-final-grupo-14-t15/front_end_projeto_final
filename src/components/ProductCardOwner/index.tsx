@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { IFilterResponse } from "../../interfaces/announcementsContext.types";
 import { DefaultButton } from "../DefaultButton";
+import AnnouncementForm from "../Forms/AnnouncementForm";
 import { StyledCard } from "./style";
+import useAnnouncements from "../../hooks/useAnnouncements";
    
 interface cardsProps {
    announcement:IFilterResponse;
@@ -11,6 +14,10 @@ export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
    const btnFunction = () => {
       return console.log('abrir modal referente ao botao clicado!')
   }
+
+  
+  const { editAnnouncement } = useAnnouncements();
+  const [openEditAnnouncementModal, setOpenEditAnnouncementModal] = useState(false);
    
    return (
       <StyledCard>
@@ -38,7 +45,13 @@ export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
             </div>
          </div>
         <div className="container__btns-edif-info">
-         <DefaultButton text="Editar" textcolor="--color-grey1" type="button" backgroundcolor="--color-grey8" bordercolor="--color-grey1" buttonFunction={btnFunction}/>
+        <AnnouncementForm
+            isCreateForm={false}
+            open={openEditAnnouncementModal}
+            setOpen={setOpenEditAnnouncementModal}
+            submitFunction={editAnnouncement}
+            announcement={announcement}
+          />
          <DefaultButton text="Ver detalhes" textcolor="--color-grey1" type="button" backgroundcolor="--color-grey8" bordercolor="--color-grey1" buttonFunction={btnFunction}/>
         </div>
       </StyledCard>

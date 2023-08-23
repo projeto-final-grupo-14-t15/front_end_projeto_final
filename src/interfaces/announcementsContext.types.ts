@@ -7,10 +7,13 @@ export interface IAnnouncementsProviderProps {
 
 export interface IAnnouncementsContext {
   createAnnouncement: (dataAnnouncement: IAnnouncementsForm) => Promise<void>;
+  editAnnouncement: (dataAnnouncement: any, announcementId:any) => Promise<void>;
+  deleteAnnouncement: (dataAnnouncement: any) => Promise<void>;
   Announcements: IFilterResponse[];
   getAnnouncements: (data: IFilterData) => Promise<void>;
   allUserAnnouncements: IFilterResponse[];
   getAnnouncementsByUserId:(userId: number) => Promise<void>;
+  annoncementsChanged: number;
 }
 
 export interface IAnnouncement {
@@ -24,6 +27,7 @@ export interface IAnnouncement {
     color: string;
     higherThanFipe: boolean;
     price: string;
+    fipePrice?: number,
     createdAt: string;
     updated_at: string;
     photos: string[] | { link: string; }[];
@@ -43,9 +47,10 @@ export interface IFilterResponse{
    color?: string,
    higher_than_fipe?: boolean,
    price?: number,
+   fipePrice?: number,
    createdAt?: Date,
    updated_at?: Date,
-   active?:boolean,
+   isActive?:boolean,
    higherThanFipe?:boolean,
    photos?:any[]
    user:any,
