@@ -12,7 +12,7 @@ interface LoginContextType {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   handleLogout: () => void;
-  userInfo:any;
+  userInfo: any;
 }
 
 export const LoginContext = createContext({} as LoginContextType);
@@ -23,8 +23,8 @@ interface IDefaultProviderProps {
 
 export const LoginProvider = ({ children }: IDefaultProviderProps) => {
   const [loading, setLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState(null)
-  const [attNavbar, setAttNavbar] = useState(0)
+  const [userInfo, setUserInfo] = useState(null);
+  const [attNavbar, setAttNavbar] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,15 +42,15 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
     try {
       const response = await api.post("/login", data);
       const { token } = response.data;
-      const userDecodedInfo:IUser = jwt_decode(token)
-      const userId = userDecodedInfo!.id.toString()
+      const userDecodedInfo: IUser = jwt_decode(token);
+      const userId = userDecodedInfo!.id.toString();
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
       window.localStorage.clear();
       window.localStorage.setItem("@TOKEN", token);
       window.localStorage.setItem("@USERID", userId);
       setLoading(false);
-      setAttNavbar(1)
+      setAttNavbar(1);
       toast.success("Login efetuado com sucesso");
       setTimeout(() => {
         navigate(`/myannouncements/${userId}`);
@@ -59,26 +59,24 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
       toast.error("Email ou senha incorretos");
     }
   }
-  
+
   useEffect(() => {
-    const getUserInfo = async (userId:string|undefined) => {
+    const getUserInfo = async (userId: string | undefined) => {
       try {
-          const response = await api.get(`/users/${userId}/`)
-          setUserInfo(response.data)
-      } catch (error) {
-      }
+        const response = await api.get(`/users/${userId}/`);
+        setUserInfo(response.data);
+      } catch (error) {}
     };
-    const userId:any = localStorage.getItem('@USERID')
+    const userId: any = localStorage.getItem("@USERID");
     if (userId) {
-      getUserInfo(userId)
+      getUserInfo(userId);
     }
   }, [attNavbar]);
 
-  
   const handleLogout = () => {
     localStorage.clear();
     navigate("/");
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
@@ -88,7 +86,7 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
         loading,
         setLoading,
         handleLogout,
-        userInfo
+        userInfo,
       }}
     >
       {children}
