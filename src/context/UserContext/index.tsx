@@ -44,6 +44,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
             }
          );
          response.data;
+         window.location.reload()
       } catch (error) {
          console.error(error);
       }
