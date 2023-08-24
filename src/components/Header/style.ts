@@ -63,6 +63,20 @@ export const StyledHeader = styled.header`
         display: flex;
         align-items: center;
         justify-content: center;
+        color: var(--color-grey0);
+      }
+      button {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      button{
+        border: none;
+        background-color: transparent;
+        text-align: center;
+        width: 100%;
+        color: var(--color-grey0);
       }
     }
 
