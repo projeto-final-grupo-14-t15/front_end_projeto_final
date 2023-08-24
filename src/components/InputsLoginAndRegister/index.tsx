@@ -8,6 +8,7 @@ interface IInputProps {
   type: undefined | "email" | "password" | "text" | "checkbox" | "radio";
   register?: any;
   value?: any;
+  defaultValue?: any;
 }
 
 export function Input({
@@ -17,6 +18,7 @@ export function Input({
   errors,
   type,
   value,
+  defaultValue,
 }: IInputProps) {
   return (
     <StyledFieldset>
@@ -30,6 +32,7 @@ export function Input({
         placeholder={placeHolder}
         {...register}
         value={value}
+        defaultValue={defaultValue}
       />
       {errors ? (
         <ThemeP2_500 className="error"> {errors.message} </ThemeP2_500>
