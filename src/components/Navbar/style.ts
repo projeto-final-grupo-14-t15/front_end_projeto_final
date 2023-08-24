@@ -39,6 +39,4 @@ export const StyledNavbar = styled.nav`
         }
         
     }
-    @media (min-width: 1024px) {
-    }
 `

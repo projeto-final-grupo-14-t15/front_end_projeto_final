@@ -54,7 +54,11 @@ export const ModalUserEdit = ({ opemEdit, setOpemEdit }: IProps) => {
 
       setOpemEdit(!opemEdit);
    };
-
+    function formatDate(inputDate:string | undefined) {
+      const dateParts = inputDate!.split('-');
+      const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+      return formattedDate;
+   }
    return (
       <>
          <Dialog open={opemEdit} scroll="body">
@@ -168,7 +172,7 @@ export const ModalUserEdit = ({ opemEdit, setOpemEdit }: IProps) => {
                      variant="outlined"
                      id={"dateOfBirth"}
                      label={"Data de nascimento"}
-                     defaultValue={user?.dateOfBirth}
+                     defaultValue={user ? formatDate(user.dateOfBirth) : ""}
                      type={"text"}
                      {...register("dateOfBirth")}
                   />
