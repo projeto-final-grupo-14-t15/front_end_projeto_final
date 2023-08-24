@@ -52,23 +52,6 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
   const submit = (data: IUserUpdate) => {
     updateUser(data, userId);
 
-<<<<<<< Updated upstream
-      setOpemEdit(!opemEdit);
-   };
-    function formatDate(inputDate:string | undefined) {
-      const dateParts = inputDate!.split('-');
-      const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-      return formattedDate;
-   }
-   return (
-      <>
-         <Dialog open={opemEdit} scroll="body">
-            <Box
-               sx={{
-                  width: mdUp ? 400 : 290,
-                  margin: mdUp ? "1rem" : "0.5rem",
-               }}
-=======
     setOpenEdit(!openEdit);
   };
 
@@ -87,7 +70,6 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
                 fontSize: mdUp ? "2rem" : "1.2rem",
                 padding: "0rem",
               }}
->>>>>>> Stashed changes
             >
               Editar Perfil
             </DialogTitle>
@@ -144,105 +126,6 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
               )}
             />
 
-<<<<<<< Updated upstream
-                  <CssTextField
-                     variant="outlined"
-                     id={"cpf"}
-                     label={"CPF"}
-                     type={"text"}
-                     defaultValue={user?.cpf}
-                     {...register("cpf")}
-                  />
-                  <ErrorMessage
-                     errors={errors}
-                     name="cpf"
-                     render={({ message }) => (
-                        <StyledParagraph $fontColor="red">
-                           {message}
-                        </StyledParagraph>
-                     )}
-                  />
-                  <CssTextField
-                     variant="outlined"
-                     id={"telephone"}
-                     label={"Celular"}
-                     defaultValue={user?.telephone}
-                     type={"text"}
-                     {...register("telephone")}
-                  />
-                  <ErrorMessage
-                     errors={errors}
-                     name="telephone"
-                     render={({ message }) => (
-                        <StyledParagraph $fontColor="red">
-                           {message}
-                        </StyledParagraph>
-                     )}
-                  />
-                  <CssTextField
-                     variant="outlined"
-                     id={"dateOfBirth"}
-                     label={"Data de nascimento"}
-                     defaultValue={user ? formatDate(user.dateOfBirth) : ""}
-                     type={"text"}
-                     {...register("dateOfBirth")}
-                  />
-                  <ErrorMessage
-                     errors={errors}
-                     name="dateOfBirth"
-                     render={({ message }) => (
-                        <StyledParagraph $fontColor="red">
-                           {message}
-                        </StyledParagraph>
-                     )}
-                  />
-                  <CssTextField
-                     variant="outlined"
-                     id={"description"}
-                     label={"Descrição"}
-                     defaultValue={user?.description}
-                     type={"text"}
-                     multiline
-                     {...register("description")}
-                  />
-                  <ErrorMessage
-                     errors={errors}
-                     name="description"
-                     render={({ message }) => (
-                        <StyledParagraph $fontColor="red">
-                           {message}
-                        </StyledParagraph>
-                     )}
-                  />
-                  <ErrorMessage
-                     errors={errors}
-                     name="description"
-                     render={({ message }) => (
-                        <StyledParagraph $fontColor="red">
-                           {message}
-                        </StyledParagraph>
-                     )}
-                  />
-                  <DialogActions
-                     sx={{
-                        flexWrap: mdUp ? "nowrap" : "wrap",
-                        justifyContent: "center",
-                        gap: "0.5rem",
-                     }}
-                  >
-                     <Button
-                        variant="outlined"
-                        onClick={() => setOpemEdit(!opemEdit)}
-                        sx={{
-                           bgcolor: "#DEE2E6",
-                           color: "#495057",
-                           fontSize: mdUp ? "1.2rem" : "0.9rem",
-                           width: mdUp ? "10rem" : "6rem",
-                        }}
-                     >
-                        Cancelar
-                     </Button>
-=======
             <CssTextField
               variant="outlined"
               id={"cpf"}
@@ -330,7 +213,6 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
               >
                 Cancelar
               </Button>
->>>>>>> Stashed changes
 
               <Button
                 variant="outlined"
