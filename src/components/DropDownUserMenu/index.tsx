@@ -9,12 +9,14 @@ export const DropDownUserMenu = () => {
 
    const [opemEdit,setOpemEdit] = useState(false)
 
+   const { userInfo } = useContext(LoginContext);
+
    return (
       <>
          <StyledDropDownMenu>
             <button onClick={()=> setOpemEdit(!opemEdit)}> Editar Perfil </button>
             <Link to="/login"> Editar endereço </Link>
-            <Link to="/login"> Meus anúncios </Link>
+            <Link to={`/myannouncements/${userInfo.id}`}> Meus anúncios </Link>
             <button onClick={() => handleLogout()}> Sair </button>
          </StyledDropDownMenu>
          <ModalUserEdit opemEdit={opemEdit} setOpemEdit={setOpemEdit}/>

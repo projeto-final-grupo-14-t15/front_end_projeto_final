@@ -4,33 +4,39 @@ import { DefaultButton } from "../DefaultButton";
 import AnnouncementForm from "../Forms/AnnouncementForm";
 import { StyledCard } from "./style";
 import useAnnouncements from "../../hooks/useAnnouncements";
-   
+import { useNavigate } from "react-router-dom";
+
 interface cardsProps {
    announcement:IFilterResponse;
 }
 
 export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
 
+   const navigate = useNavigate();
+
    const btnFunction = () => {
       return console.log('abrir modal referente ao botao clicado!')
   }
 
+   const handleClick = () => {
+      navigate(`/announcement-page/announcement/${announcement.id}`);
+   };
   
   const { editAnnouncement } = useAnnouncements();
   const [openEditAnnouncementModal, setOpenEditAnnouncementModal] = useState(false);
    
    return (
       <StyledCard>
-         <div className="container__img-product">
+         <div className="container__img-product"  onClick={()=>handleClick()}>
             <figure>
                {announcement.photos ? <img src={announcement.photos[0].link} alt=""/> : <p>carregando...</p>}
             </figure>
             {announcement.higher_than_fipe ? null : <p className="icon-fipe"> $ </p>}
-            {announcement.active ? <p className="icon-active"> Ativo </p> : <p className="icon-inactive"> Inativo</p>}
+            {announcement.isActive ? <p className="icon-active"> Ativo </p> : <p className="icon-inactive"> Inativo</p>}
          </div>
 
          <div className="container__content-product">
-            <h2> {announcement.brand} - {announcement.model} </h2>
+            <h2 onClick={()=>handleClick()}> {announcement.brand} - {announcement.model} </h2>
             <p className="card-description">
                {announcement.description}
             </p>
