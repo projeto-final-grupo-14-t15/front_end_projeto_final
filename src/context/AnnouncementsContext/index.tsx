@@ -63,7 +63,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
           },
         });
         // toast.success('Veículo anunciado com sucesso!');
-        console.log(response.data, "anuncio atualizado!");
       } catch (error) {
         console.error(error);
         // toast.error('Falha ao cadastrar casa');
@@ -84,7 +83,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
           },
         });
         // toast.success('Veículo anunciado com sucesso!');
-        console.log(response.data, "Anuncio excluído!");
       } catch (error) {
         console.error(error);
         // toast.error('Falha ao cadastrar casa');
