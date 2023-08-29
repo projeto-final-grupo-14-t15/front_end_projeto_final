@@ -16,15 +16,17 @@ export const AnnouncementsContext = createContext<IAnnouncementsContext>(
 const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const [Announcements, SetAnnouncements] = useState<IFilterResponse[]>([]);
   const [allUserAnnouncements, setAllUserAnnouncements] = useState<any>([]);
+  const [annoncementsChanged, setAnnoncementsChanged] = useState<any>(0);
 
   const createAnnouncement = async (dataAnnouncement): Promise<void> => {
     console.log(dataAnnouncement);
     dataAnnouncement.photos = dataAnnouncement.photos.map(
       (photo) => photo.link
-    );
-    dataAnnouncement.price = Number(dataAnnouncement.price);
-    dataAnnouncement.km = Number(dataAnnouncement.km);
-    dataAnnouncement.higherThanFipe = true
+      );
+      dataAnnouncement.price = Number(dataAnnouncement.price);
+      // dataAnnouncement.fipePrice = Number(dataAnnouncement.fipePrice);
+      dataAnnouncement.km = Number(dataAnnouncement.km);
+      console.log(dataAnnouncement, 'EDITADO');
     const token = localStorage.getItem("@TOKEN");
     if (token) {
       try {
@@ -34,12 +36,59 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
           },
         });
         // toast.success('Veículo anunciado com sucesso!');
-        console.log(response.data, 'anuncio postado');
+        console.log(response.data, "anuncio postado");
       } catch (error) {
         console.error(error);
         // toast.error('Falha ao cadastrar casa');
       } finally {
         // setLoading(false);
+        setAnnoncementsChanged(annoncementsChanged + 1)
+      }
+    }
+  };
+
+  const editAnnouncement = async (dataAnnouncement, announcementId): Promise<void> => {
+    dataAnnouncement.photos = dataAnnouncement.photos.map(
+      (photo) => photo.link
+    );
+    dataAnnouncement.price = Number(dataAnnouncement.price);
+    dataAnnouncement.fipePrice = dataAnnouncement.fipePrice.toString();
+    dataAnnouncement.km = Number(dataAnnouncement.km);
+    const token = localStorage.getItem("@TOKEN");
+    if (token) {
+      try {
+        const response = await api.patch(`/announcements/${announcementId}`, dataAnnouncement, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // toast.success('Veículo anunciado com sucesso!');
+      } catch (error) {
+        console.error(error);
+        // toast.error('Falha ao cadastrar casa');
+      } finally {
+        // setLoading(false);
+        setAnnoncementsChanged(annoncementsChanged + 1)
+      }
+    }
+  };
+
+  const deleteAnnouncement = async (announcementId): Promise<void> => {
+    const token = localStorage.getItem("@TOKEN");
+    if (token) {
+      try {
+        const response = await api.delete(`/announcements/${announcementId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // toast.success('Veículo anunciado com sucesso!');
+      } catch (error) {
+        console.error(error);
+        // toast.error('Falha ao cadastrar casa');
+      } finally {
+        // setLoading(false);
+        setAnnoncementsChanged(annoncementsChanged + 1)
       }
     }
   };
@@ -90,6 +139,9 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
         Announcements,
         allUserAnnouncements,
         getAnnouncementsByUserId,
+        editAnnouncement,
+        deleteAnnouncement,
+        annoncementsChanged
       }}
     >
       {children}
