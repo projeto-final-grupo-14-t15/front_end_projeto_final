@@ -10,12 +10,14 @@ import { LoginContext } from "../../context/LoginContext";
 import { TextField } from "@mui/material";
 import { commentsData } from "./mockComments";
 import { CommentCard } from "../../components/CommentCard";
+import PhotoModal from "../../components/PhotoModal";
 
 export const AnnouncementPage = () => {
   const [announcement, setAnnouncement] = useState<IAnnouncement | undefined>(undefined);
   const { announcementId } = useParams();
   const { userInfo } = useContext(LoginContext);
-  const [autoComment, setAutoComment] = useState<string|null>(null);
+  const [autoComment, setAutoComment] = useState<string|null>(null);  
+  const [openPhotoModal, setOpenPhotoModal] = useState(false);
 
   const navigate = useNavigate();
   
@@ -107,7 +109,14 @@ export const AnnouncementPage = () => {
 
                   <div className="photos-list">
                     {announcement.photos.map((photo, index) => (
-                      <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                      // <PhotoModal
+                      //   index={index}
+                      //   photo={photo}
+                      //   open={openPhotoModal}
+                      //   setOpen={setOpenPhotoModal}
+                      //   announcement={announcement}
+                      // />
+                      <div>OI</div>
                     ))}
                   </div>
                 </div>
@@ -162,7 +171,14 @@ export const AnnouncementPage = () => {
                 <ul className="photos-list">
                   {announcement.photos.map((photo, index) => (
                     <li>
-                       <img key={index} src={photo.link} alt={`Photo ${index}`} />
+                       {/* <img key={index} src={photo.link} alt={`Photo ${index}`} /> */}
+                       <PhotoModal
+                        index={index}
+                        photo={photo}
+                        open={openPhotoModal}
+                        setOpen={setOpenPhotoModal}
+                        announcement={announcement}
+                      />
                     </li>
                   ))}
                 </ul>
