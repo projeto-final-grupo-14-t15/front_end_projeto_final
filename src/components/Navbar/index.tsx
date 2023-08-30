@@ -19,7 +19,7 @@ export const Navbar = () => {
                 <>
                     <button className="btn-dropdown-profile" onClick={userSetDropDownVisibility}> <UserIconForNavBar user={userInfo}/> </button>
                     <div className={dropDownVisibility}>
-                        <DropDownUserMenu/>
+                        <DropDownUserMenu setVisibility={userSetDropDownVisibility}/>
                     </div>
                 </>
                 :

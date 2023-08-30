@@ -70,6 +70,12 @@ export const AnnouncementPage = () => {
 
     return initials.slice(0, 2);
   }
+  const handleClickWhatsApp = () => {
+    const phoneNumber = '+553399205945';
+    const message = encodeURIComponent(`Olá! Gostaria de mais informações sobre o ${announcement?.model}, ano ${announcement?.year}!`);
+    const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
+    window.open(url, '_blank');
+  };
 
   return (
     <>
@@ -94,7 +100,7 @@ export const AnnouncementPage = () => {
                   <p>R${formatNumber(announcement.price)}</p>
                 </div>
 
-                <DefaultButton type="button" text="Comprar" backgroundcolor="--color-brand1" textcolor="--color-grey10" bordercolor="--color-brand1" buttonFunction={btnFunction} />
+                <DefaultButton type="button" text="Comprar" backgroundcolor="--color-brand1" textcolor="--color-grey10" bordercolor="--color-brand1" buttonFunction={handleClickWhatsApp} />
             
               </div>
 
