@@ -4,15 +4,13 @@ import { StyledAnnoucerPage } from "./style";
 import { useParams } from "react-router-dom";
 import { ProductCardForUserPage } from "../../components/ProductCardForAnnouncerPage";
 import { BigCardUser } from "../../components/BigCardUserPage";
+import { ThemeH2 } from "../../styles/Typography";
 
 export const AnnoucerPage = () => {
   const { allUserAnnouncements, getAnnouncementsByUserId } = useAnnouncements();
 
   const { userId } = useParams();
 
-  console.log(userId)
-
-  
   useEffect(() => {
     getAnnouncementsByUserId(Number(userId));
   }, []); 
@@ -30,14 +28,14 @@ export const AnnoucerPage = () => {
           </div>
         </section>
         
-         
+        
         <section className="container_announces">        
           <h2 className="title-announces"> Anúncios </h2>
-          <ul>
+          {allUserAnnouncements.length===0?(<div className="alert"><ThemeH2>Nenhum anuncio para este vendedor!</ThemeH2></div>):(<ul>
             {allUserAnnouncements.map((announcement) => (
               <ProductCardForUserPage key={announcement.id} announcement={announcement} />
             ))}
-          </ul>
+          </ul>)}
         </section>
     </StyledAnnoucerPage>
   );

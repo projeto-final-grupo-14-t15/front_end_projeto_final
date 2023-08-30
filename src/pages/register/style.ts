@@ -5,6 +5,7 @@ export const StyledRegisterMain = styled.div`
   overflow: hidden;
   margin-top: 5%;
   margin-bottom: 90px;
+  font-family: var(--font-family-1);
 
   .radioContainer {
     display: flex;
@@ -13,6 +14,7 @@ export const StyledRegisterMain = styled.div`
     margin: 0 auto;
     margin-top: 26px;
     cursor: pointer;
+    font-family: var(--font-family-1);
   }
 
   .button {
@@ -33,17 +35,19 @@ export const StyledRegisterMain = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
+    font-family: var(--font-family-1);
   }
 
   .button input[type="radio"] {
     opacity: 0.011;
     z-index: 100;
+    
   }
 
   .button input[type="radio"]:checked + label {
     background: var(--color-brand1);
     color: var(--color-whiteFixed);
-
+    
     border-radius: 4px;
   }
 
@@ -56,12 +60,14 @@ export const StyledRegisterMain = styled.div`
     font-family: "Inter";
     font-weight: 600;
     font-size: 16px;
+    font-family: var(--font-family-1);
   }
 
   p {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    font-family: var(--font-family-1);
   }
   .personalInfo {
     display: block;
