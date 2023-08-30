@@ -5,17 +5,22 @@ import {
   IUserContext,
   IUserResponse,
   IUserUpdate,
+  RecoveryPass,
+  iMail,
 } from "../../interfaces/IUserContext";
 import { IChildrenProps } from "../../types/@types";
 import { api } from "../../services/api";
 import { AxiosResponse } from "axios";
 import { LoginContext } from "../LoginContext";
 import { AddressData } from "../../components/ModalAddressEdit/validate";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IChildrenProps) => {
   const token: string | null = localStorage.getItem("@TOKEN");
+  const navigate = useNavigate();
 
   const [user, setUser] = useState<IUserResponse | null>(null);
 
@@ -78,6 +83,35 @@ export const UserProvider = ({ children }: IChildrenProps) => {
     }
   };
 
+  const submitMail = async (data: iMail) => {
+    try {
+        await api.post("/users/resetPassword", data);
+        toast.success("Email de recuperação enviado");
+        setTimeout(() => {
+          navigate(`/`);
+        }, 2000);
+    } catch (error) {
+        toast.error("Credenciais invalidas! Tente novamente")
+        console.log(error);
+    }
+};
+
+  const submitPassword = async (data: RecoveryPass) => {
+    const token = window.location.pathname.split("/")[2];
+    try {
+        await api.patch(`/users/resetPassword/${token}`, {
+            password: data.password,
+        });
+        setTimeout(() => {
+          navigate(`/login`);
+        }, 2000);
+        toast.success("senha redefinida")
+    } catch (error) {
+      toast.error("Credenciais invalidas! Tente novamente")
+      console.log(error);
+    }
+};
+
   return (
     <UserContext.Provider
       value={{
@@ -86,6 +120,8 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         user,
         getUser,
         updateAddress,
+        submitPassword,
+        submitMail,
       }}
     >
       {children}

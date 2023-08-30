@@ -40,8 +40,8 @@ export const Login = () => {
             register={register("password")}
             errors={errors.password}
           />
-          <ThemeP2_500 color="--color-grey2" className="forgot_Password">
-            Esqueci minha senha
+          <ThemeP2_500>
+            <Link to="/sendmail">Esqueci minha senha</Link>
           </ThemeP2_500>
           <DefaultButton
             text="Entrar"

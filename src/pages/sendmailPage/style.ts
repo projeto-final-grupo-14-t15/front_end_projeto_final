@@ -1,17 +1,20 @@
 import styled from "styled-components";
 
-export const StyledLogin = styled.div`
+export const StyledSendMail = styled.div`
   background-color: var(--color-grey8);
-  overflow: hidden;
-  margin-top: 5%;
+  height: 80vh;
   font-family: var(--font-family-1);
+  padding-top: 200px;
   padding-bottom: 100px;
 
   .form_Container {
-    height: 542px;
+    height: min-content;
     background-color: var(--color-whiteFixed);
     width: 95%;
     margin: 0 auto;
+    font-family: var(--font-family-1);
+    padding-bottom:50px;
+    
   }
   button {
     display: flex;
