@@ -6,6 +6,8 @@ export interface IUserContext {
   deleteUser: (id: string | null) => Promise<void>;
   getUser: (id: string | null) => Promise<void>;
   user: IUserResponse | null;
+  submitPassword: (data: RecoveryPass) => void;
+  submitMail: (data: iMail) => void;
 }
 
 export interface IUserUpdate {
@@ -37,4 +39,13 @@ export interface IUserResponse {
     complement: string;
     number: string;
   };
+}
+
+export interface RecoveryPass {
+  password: string;
+  confirmPassword: string;
+}
+
+export interface iMail {
+  email: string;
 }

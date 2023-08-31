@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { RegisterContext } from "../../context/RegisterContext";
-import { RegisterData, registerSchema } from "./validator";
+import { registerSchema } from "./validator";
 import { StyledRegisterMain } from "./style";
 import { ThemeH5_500, ThemeP2_500 } from "../../styles/Typography";
 

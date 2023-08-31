@@ -5,7 +5,6 @@ export const StyledFooter = styled.footer`
   color: var(--color-grey10);
   width: 100%;
   padding: 30px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;

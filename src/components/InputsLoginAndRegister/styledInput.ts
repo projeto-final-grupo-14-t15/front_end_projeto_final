@@ -4,6 +4,7 @@ export const StyledFieldset = styled.fieldset`
   border: none;
   display: flex;
   flex-direction: column;
+  font-family: var(--font-family-1);
 
   label {
     color: var(--Grey-05);
@@ -15,6 +16,7 @@ export const StyledFieldset = styled.fieldset`
     margin: 0 auto;
     margin-bottom: 8px;
     margin-top: 22px;
+    font-family: var(--font-family-1);
   }
 
   input {
@@ -32,6 +34,7 @@ export const StyledFieldset = styled.fieldset`
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    font-family: var(--font-family-1);
   }
   .error {
     color: var(--Color-primary-02);

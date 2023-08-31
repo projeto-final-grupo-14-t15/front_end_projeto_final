@@ -47,4 +47,11 @@ export const StyledAnnoucerPage = styled.main`
         }
     }
 
+    .alert {
+        width:100%;
+        height:18vh;
+        display:flex;
+        justify-content:center;
+    }
+
 `
