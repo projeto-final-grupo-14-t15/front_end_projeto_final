@@ -19,14 +19,12 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const [annoncementsChanged, setAnnoncementsChanged] = useState<any>(0);
 
   const createAnnouncement = async (dataAnnouncement): Promise<void> => {
-    console.log(dataAnnouncement);
     dataAnnouncement.photos = dataAnnouncement.photos.map(
       (photo) => photo.link
       );
       dataAnnouncement.price = Number(dataAnnouncement.price);
       // dataAnnouncement.fipePrice = Number(dataAnnouncement.fipePrice);
       dataAnnouncement.km = Number(dataAnnouncement.km);
-      console.log(dataAnnouncement, 'EDITADO');
     const token = localStorage.getItem("@TOKEN");
     if (token) {
       try {
@@ -36,7 +34,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
           },
         });
         // toast.success('Veículo anunciado com sucesso!');
-        console.log(response.data, "anuncio postado");
       } catch (error) {
         console.error(error);
         // toast.error('Falha ao cadastrar casa');
@@ -111,7 +108,6 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
         `announcements?brand=${brand}&model=${model}&color=${color}&year=${year}&minKm=${minKm}&max
             Km=${maxKm}&minPrice=${minPrice}&maxPrice=${maxPrice}&fuel=${fuel}`
       );
-      console.log(response.data);
 
       SetAnnouncements(response.data);
     } catch (error) {

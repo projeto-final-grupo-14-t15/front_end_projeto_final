@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { AxiosResponse } from "axios";
 import { ICar, IKenzieKarsContext, IKenzieKarsProviderProps } from "../../interfaces/KenzieKarsContext.types";
 import { karsApi } from "../../services/karsApi";
 
@@ -21,7 +20,7 @@ const KenzieKarsProvider = ({ children }: IKenzieKarsProviderProps) => {
   const getCarsBrands = async () => {   
     try {
       const response = await karsApi.get('/cars');
-      console.log(response.data);
+   
 
       setBrandsList(response.data);
     } catch (error) {
@@ -35,7 +34,7 @@ const KenzieKarsProvider = ({ children }: IKenzieKarsProviderProps) => {
 
       try {
         const response = await karsApi.get(`/cars?brand=${brand}`);
-        console.log(response.data);
+
         const modelsArray = response.data.map(car => car.name);
         setModelsList(modelsArray);            
         setCarsList(response.data);

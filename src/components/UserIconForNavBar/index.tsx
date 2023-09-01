@@ -1,7 +1,7 @@
 import { StyledUserIcon } from "./style"
 
 interface IUserNameProps {
-    user:any;
+    user:IUser;
 }
 
 export const UserIconForNavBar = ({user}:IUserNameProps) => {

@@ -26,6 +26,21 @@ export interface ICar {
   value: number
 }
 
+export interface IComment{
+	id: number;
+	text: string;
+	publication_date: string;
+	update_date: string;
+	author: IUser;
+}
+
+export interface ICommentsContext {
+  comments: IComment[];
+  getAllCommentsOfAnnoucement: (announcementId: string | null | undefined) => Promise<void>;
+}
+
+
+
 
 // export interface IAnnouncement {
 //     id: number;
@@ -46,4 +61,41 @@ export interface ICar {
 //   export type IAnnouncementsForm = Omit<IAnnouncement, 'id' | 'createdAt' | 'updated_at' >;
 
 // TODO: Adicionar cover Photo field, user_id field
+
+
+
+
+
+
+
+
+//
+
+/* 
+import { ReactNode } from 'react';
+
+export interface IKenzieKarsProviderProps {
+  children: ReactNode;
+}
+
+export interface IKenzieKarsContext {
+  getCarsBrands: () => Promise<void>;
+  loadingForm: boolean;
+  modelsList: readonly string[];
+  carsList: ICar[];
+  getCarsPerBrands: (data: string | null) => Promise<void>;
+  brandsList: string[];
+  setSelectedBrand:React.Dispatch<React.SetStateAction<string | null>>;
+  selectedBrand: string | null;
+}
+
+export interface ICar {
+  id: string
+  name: string
+  brand: string
+  year: string
+  fuel: number | string
+  value: number
+} */
+
 

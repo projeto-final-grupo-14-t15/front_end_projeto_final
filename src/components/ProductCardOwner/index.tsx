@@ -15,7 +15,7 @@ export const ProductCardAnnoucer = ({announcement}:cardsProps) => {
    const navigate = useNavigate();
 
    const btnFunction = () => {
-      return console.log('abrir modal referente ao botao clicado!')
+      return console.log('SUBSTITUIR PELA FUNÇÃO ADEQUADA')
   }
 
    const handleClick = () => {

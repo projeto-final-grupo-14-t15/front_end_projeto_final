@@ -12,7 +12,7 @@ interface LoginContextType {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   handleLogout: () => void;
-  userInfo: any;
+  userInfo: IUser | null;
 }
 
 export const LoginContext = createContext({} as LoginContextType);
@@ -67,7 +67,7 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
         setUserInfo(response.data);
       } catch (error) {}
     };
-    const userId: any = localStorage.getItem("@USERID");
+    const userId: string | number | undefined | null = localStorage.getItem("@USERID");
     if (userId) {
       getUserInfo(userId);
     }

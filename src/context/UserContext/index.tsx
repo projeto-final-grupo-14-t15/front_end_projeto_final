@@ -51,7 +51,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
     }
   };
   const updateUser = async (data: IUserUpdate, id: string | null) => {
-    console.log(data);
+  
     try {
       const response: AxiosResponse<IUserResponse> = await api.patch(
         `/users/${id}`,
@@ -92,7 +92,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         }, 2000);
     } catch (error) {
         toast.error("Credenciais invalidas! Tente novamente")
-        console.log(error);
+
     }
 };
 
@@ -108,7 +108,6 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         toast.success("senha redefinida")
     } catch (error) {
       toast.error("Credenciais invalidas! Tente novamente")
-      console.log(error);
     }
 };
 
