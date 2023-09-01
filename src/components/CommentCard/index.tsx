@@ -1,6 +1,6 @@
 import { IComment } from "../../interfaces/KenzieKarsContext.types";
 import { StyledCommentCard } from "./style";
-
+import { FaPen, FaTrashAlt } from "react-icons/fa";
 
 interface ICommentCardProps {
     comment:IComment;
@@ -21,12 +21,18 @@ export const CommentCard = ({comment}:ICommentCardProps) => {
         return initials.slice(0, 2);
     }
 
+    const loggedUserId = Number(localStorage.getItem("@USERID"))
+
     return (
         <StyledCommentCard>
-            <div>
-                <span className="user-icon">{getInitials(comment.author.name)}</span>
-                <p className="comment-name"> {comment.author.name} <span className="span-date"> · {comment.publication_date}</span> </p>
-                <button> Edit </button> <button> Delete </button>
+            <div className="container__header-comment">
+                <div>
+                    <span className="user-icon">{getInitials(comment.author.name)}</span>
+                    <p className="comment-name"> {comment.author.name} <span className="span-date"> · {comment.publication_date}</span> </p>
+                </div>
+                {
+                    comment.author.id === loggedUserId ? <div className="container__btns"> <button> <FaPen/> </button> <button> <FaTrashAlt/> </button></div> : null
+                }
             </div>
             <p className="comment-text"> {comment.text} </p>
         </StyledCommentCard>

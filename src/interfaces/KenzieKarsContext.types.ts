@@ -37,6 +37,7 @@ export interface IComment{
 export interface ICommentsContext {
   comments: IComment[];
   getAllCommentsOfAnnoucement: (announcementId: string | null | undefined) => Promise<void>;
+  registerNewComment:(dataComment:string,announcementId: string | null | undefined)=> Promise<void>;
 }
 
 

@@ -117,6 +117,14 @@ export const StyledAnnouncementPage = styled.main`
     .container__aside-mobile{
         display: none;
     }
+    .container__form-comment{
+        position: relative;
+    }
+    .container__form-comment button{
+        position: absolute;
+        right: 4px;
+        bottom: 4px;
+    }
 
     @media (max-width:1024px) {
         main{

@@ -30,9 +30,23 @@ font-family: var(--font-family-1);
         line-height: 200%;
         margin-top: 8px;
     }
-    div{
+    .container__header-comment{
         display: flex;
         align-items: center;
         gap: 7px;
+        justify-content: space-between;
+    }
+    .container__header-comment > div{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .container__btns{
+        display: flex;
+        gap: 10px;
+    }
+    button{
+        border: none;
+        background-color: transparent;
     }
 `;

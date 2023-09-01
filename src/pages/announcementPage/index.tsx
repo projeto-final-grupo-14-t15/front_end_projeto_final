@@ -20,7 +20,7 @@ export const AnnouncementPage = () => {
   const [autoComment, setAutoComment] = useState<string | null>(null);
   const [openPhotoModal, setOpenPhotoModal] = useState(false);
 
-  const { comments, getAllCommentsOfAnnoucement } = useContext(CommentsContext);
+  const { comments, getAllCommentsOfAnnoucement, registerNewComment } = useContext(CommentsContext);
 
   const navigate = useNavigate();
 
@@ -49,6 +49,16 @@ export const AnnouncementPage = () => {
   const onClickNavigate = (userId: number) => {
     navigate(`/announcer/${userId}`);
   };
+  
+
+  const [textComment, setTextComment] = useState('');
+
+  const handleSubmitNewComment = (event:any) =>{
+    event.preventDefault();
+    if(textComment.trim().length !== 0){
+      registerNewComment(textComment, announcementId)
+    } 
+  }
   
   return (
     <>
@@ -128,22 +138,31 @@ export const AnnouncementPage = () => {
                 <h2> Comentários </h2>
                 <ul className="comments-list">
                   {comments.map((comment) => (
-                    <CommentCard key={comment.author.id} comment={comment} />
+                    <CommentCard key={(Math.floor(Math.random() * 1000000))} comment={comment} />
                   ))}
                 </ul>
               </div>
 
-              {userInfo ? (
+              {
+              userInfo 
+              ? 
+              (
                 <div className="container-div container__new-comment">
                   <UserIcon user={userInfo} clickable={"no"} />
-                  <TextField
-                    id="outlined-multiline-static"
-                    multiline
-                    rows={4}
-                    placeholder="Comente aqui"
-                    defaultValue={autoComment}
-                    style={{ width: "100%" }}
-                  />
+                  <div className ="container__form-comment">
+                    <form action="" onSubmit={(event) => handleSubmitNewComment(event)}>
+                      <TextField
+                        id="outlined-multiline-static"
+                        multiline
+                        rows={4}
+                        placeholder="Comente aqui"
+                        defaultValue={autoComment}
+                        onChange={(e) => setTextComment(e.target.value)}
+                        style={{ width: "100%" }}
+                      />
+                      <DefaultButton text="Comentar" backgroundcolor="--color-brand1" bordercolor="--color-brand1" type="submit" textcolor="--color-grey10" buttonFunction={null}/>
+                    </form>
+                  </div>
                   <p>
                     {" "}
                     <span onClick={() => handleSpanClick("Gostei muito!")}>
