@@ -8,6 +8,25 @@ export const CommentsContext = createContext({} as ICommentsContext);
 export default function CommentsProvider({ children }: IChildrenProps) {
   const [comments, setComments] = useState([]);
 
+  const registerNewComment = async (dataComment:string,announcementeId:any): Promise<void> => {
+    const token = localStorage.getItem("@TOKEN");
+    if (token) {
+      try {
+        const response = await api.post(`/announcements/${announcementeId}/comment`,{ text: dataComment}, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response)
+        const newComment = response.data;
+        setComments([...comments, newComment]);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+
   const getAllCommentsOfAnnoucement = async (announcementId: string | null | undefined) => {
     try {
       const response = await api.get(
@@ -24,6 +43,7 @@ export default function CommentsProvider({ children }: IChildrenProps) {
       value={{
         comments,
         getAllCommentsOfAnnoucement,
+        registerNewComment
         
       }}
     >
