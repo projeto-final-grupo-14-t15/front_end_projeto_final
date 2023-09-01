@@ -7,7 +7,7 @@ export interface IAnnouncementsProviderProps {
 
 export interface IAnnouncementsContext {
   createAnnouncement: (dataAnnouncement: IAnnouncementsForm) => Promise<void>;
-  editAnnouncement: (dataAnnouncement: any, announcementId:any) => Promise<void>;
+  editAnnouncement: (dataAnnouncement: any, announcementId:string | number) => Promise<void>;
   deleteAnnouncement: (dataAnnouncement: any) => Promise<void>;
   Announcements: IFilterResponse[];
   getAnnouncements: (data: IFilterData) => Promise<void>;
@@ -52,8 +52,8 @@ export interface IFilterResponse{
    updated_at?: Date,
    isActive?:boolean,
    higherThanFipe?:boolean,
-   photos?:any[]
-   user:any,
+   photos?:string[]
+   user:IUser,
 }
 export interface IFilterData{
    brand?: string,

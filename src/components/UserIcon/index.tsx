@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { StyledUserIcon } from "./style"
 
 interface IUserNameProps {
-    user:any;
+    user:IUser;
     clickable:string|null;
 }
 

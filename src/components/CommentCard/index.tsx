@@ -1,8 +1,9 @@
-import { ICommentDataType } from "../../pages/announcementPage/mockComments";
+import { IComment } from "../../interfaces/KenzieKarsContext.types";
 import { StyledCommentCard } from "./style";
 
+
 interface ICommentCardProps {
-    comment:ICommentDataType;
+    comment:IComment;
 }
 
 export const CommentCard = ({comment}:ICommentCardProps) => {
@@ -23,10 +24,11 @@ export const CommentCard = ({comment}:ICommentCardProps) => {
     return (
         <StyledCommentCard>
             <div>
-                <span className="user-icon">{getInitials(comment.userName)}</span>
-                <p className="comment-name"> {comment.userName} <span className="span-date"> · {comment.createdAt}</span> </p>
+                <span className="user-icon">{getInitials(comment.author.name)}</span>
+                <p className="comment-name"> {comment.author.name} <span className="span-date"> · {comment.publication_date}</span> </p>
+                <button> Edit </button> <button> Delete </button>
             </div>
-            <p className="comment-text"> {comment.commentText} </p>
+            <p className="comment-text"> {comment.text} </p>
         </StyledCommentCard>
     )
 }

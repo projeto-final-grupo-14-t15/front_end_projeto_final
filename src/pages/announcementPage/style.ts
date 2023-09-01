@@ -117,6 +117,7 @@ export const StyledAnnouncementPage = styled.main`
     .container__aside-mobile{
         display: none;
     }
+
     @media (max-width:1024px) {
         main{
             display: flex;
@@ -130,6 +131,16 @@ export const StyledAnnouncementPage = styled.main`
         display: flex;
         flex-direction: column;
         gap: 20px;
+        } 
     }
+    @media (max-width:700px) {
+        .container__new-comment p{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }   
+        .container__new-comment p span{
+            width: fit-content;
+        } 
     }
 `

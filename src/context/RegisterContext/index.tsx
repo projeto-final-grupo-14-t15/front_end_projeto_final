@@ -18,7 +18,7 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
   const navigate = useNavigate();
 
   async function submitFunction(data: RegisterData) {
-    console.log(data);
+
 
     const newData = {
       cep: data.cep,
@@ -29,9 +29,9 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
       number: data.number,
     };
 
-    console.log(newData);
+
     try {
-      console.log("cheguei aqui");
+
       const response = await api.post("/users", data);
       await api.post(`/users/${response.data.id}/address`, newData);
 
@@ -40,7 +40,6 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
         navigate("/");
       }, 2000);
     } catch (error) {
-      console.log(error);
       toast.error("Erro ao cadastrar cliente");
     }
   }
