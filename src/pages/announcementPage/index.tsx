@@ -10,17 +10,29 @@ import { LoginContext } from "../../context/LoginContext";
 import { TextField } from "@mui/material";
 import { CommentCard } from "../../components/CommentCard";
 import PhotoModal from "../../components/PhotoModal";
-import { capitalizeFirstLetter, formatNumber, getInitials, handleClickWhatsApp } from "./utils";
+import {
+  capitalizeFirstLetter,
+  formatNumber,
+  getInitials,
+  handleClickWhatsApp,
+} from "./utils";
 import { CommentsContext } from "../../context/CommentsContext/CommentsContext";
+import { ModalCommentEdit } from "../../components/ModalEditComment";
+import { ModalCommentDelete } from "../../components/ModalDeleteComment";
 
 export const AnnouncementPage = () => {
-  const [announcement, setAnnouncement] = useState<IAnnouncement | undefined>(undefined);
+  const [announcement, setAnnouncement] = useState<IAnnouncement | undefined>(
+    undefined
+  );
   const { announcementId } = useParams();
   const { userInfo } = useContext(LoginContext);
   const [autoComment, setAutoComment] = useState<string | null>(null);
   const [openPhotoModal, setOpenPhotoModal] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
 
-  const { comments, getAllCommentsOfAnnoucement, registerNewComment } = useContext(CommentsContext);
+  const { comments, getAllCommentsOfAnnoucement, registerNewComment } =
+    useContext(CommentsContext);
 
   const navigate = useNavigate();
 
@@ -40,6 +52,7 @@ export const AnnouncementPage = () => {
 
   useEffect(() => {
     getAllCommentsOfAnnoucement(announcementId);
+    console.log(comments);
   }, []);
 
   const handleSpanClick = (comment: string) => {
@@ -49,17 +62,24 @@ export const AnnouncementPage = () => {
   const onClickNavigate = (userId: number) => {
     navigate(`/announcer/${userId}`);
   };
-  
 
-  const [textComment, setTextComment] = useState('');
+  const [textComment, setTextComment] = useState("");
 
-  const handleSubmitNewComment = (event:any) =>{
+  const handleSubmitNewComment = (event: any) => {
     event.preventDefault();
-    if(textComment.trim().length !== 0){
-      registerNewComment(textComment, announcementId)
-    } 
-  }
-  
+    if (textComment.trim().length !== 0) {
+      registerNewComment(textComment, announcementId);
+    }
+  };
+
+  const handleOpenEdit = () => {
+    setModal(!modal);
+  };
+
+  const handleOpenDelete = () => {
+    setModalDelete(!modalDelete);
+  };
+
   return (
     <>
       {announcement ? (
@@ -87,7 +107,9 @@ export const AnnouncementPage = () => {
                   backgroundcolor="--color-brand1"
                   textcolor="--color-grey10"
                   bordercolor="--color-brand1"
-                  buttonFunction={()=> handleClickWhatsApp(announcement?.model,announcement?.year)}
+                  buttonFunction={() =>
+                    handleClickWhatsApp(announcement?.model, announcement?.year)
+                  }
                 />
               </div>
 
@@ -138,19 +160,24 @@ export const AnnouncementPage = () => {
                 <h2> Comentários </h2>
                 <ul className="comments-list">
                   {comments.map((comment) => (
-                    <CommentCard key={(Math.floor(Math.random() * 1000000))} comment={comment} />
+                    <CommentCard
+                      key={Math.floor(Math.random() * 1000000)}
+                      comment={comment}
+                      handleOpenEdit={handleOpenEdit}
+                      handleOpenDelete={handleOpenDelete}
+                    />
                   ))}
                 </ul>
               </div>
 
-              {
-              userInfo 
-              ? 
-              (
+              {userInfo ? (
                 <div className="container-div container__new-comment">
                   <UserIcon user={userInfo} clickable={"no"} />
-                  <div className ="container__form-comment">
-                    <form action="" onSubmit={(event) => handleSubmitNewComment(event)}>
+                  <div className="container__form-comment">
+                    <form
+                      action=""
+                      onSubmit={(event) => handleSubmitNewComment(event)}
+                    >
                       <TextField
                         id="outlined-multiline-static"
                         multiline
@@ -160,7 +187,14 @@ export const AnnouncementPage = () => {
                         onChange={(e) => setTextComment(e.target.value)}
                         style={{ width: "100%" }}
                       />
-                      <DefaultButton text="Comentar" backgroundcolor="--color-brand1" bordercolor="--color-brand1" type="submit" textcolor="--color-grey10" buttonFunction={null}/>
+                      <DefaultButton
+                        text="Comentar"
+                        backgroundcolor="--color-brand1"
+                        bordercolor="--color-brand1"
+                        type="submit"
+                        textcolor="--color-grey10"
+                        buttonFunction={null}
+                      />
                     </form>
                   </div>
                   <p>
@@ -184,6 +218,11 @@ export const AnnouncementPage = () => {
               ) : (
                 <h2>Conecte-se para comentar</h2>
               )}
+              <ModalCommentEdit modal={modal} setModal={setModal} />
+              <ModalCommentDelete
+                modalDelete={modalDelete}
+                setModalDelete={setModalDelete}
+              />
             </section>
 
             <aside className="container__aside">
