@@ -23,12 +23,28 @@ export const CommentCard = ({comment}:ICommentCardProps) => {
 
     const loggedUserId = Number(localStorage.getItem("@USERID"))
 
+    const calcPublicationDate = (date:string) => {
+        const currentDate = Number(new Date());
+        const inicialDate = Number(new Date(date));
+        
+        const milisecDif = currentDate - inicialDate;
+        
+        const passedDays = Math.floor(milisecDif / (1000 * 60 * 60 * 24));
+        
+        if (passedDays < 1) {
+          const passedHours = Math.floor(milisecDif / (1000 * 60 * 60));
+          return `há ${passedHours} horas`;
+        } else {
+          return `há ${passedDays} dias`;
+        }
+    }
+
     return (
         <StyledCommentCard>
             <div className="container__header-comment">
                 <div>
                     <span className="user-icon">{getInitials(comment.author.name)}</span>
-                    <p className="comment-name"> {comment.author.name} <span className="span-date"> · {comment.publication_date}</span> </p>
+                    <p className="comment-name"> {comment.author.name} <span className="span-date"> · {calcPublicationDate(comment.publication_date)}</span> </p>
                 </div>
                 {
                     comment.author.id === loggedUserId ? <div className="container__btns"> <button> <FaPen/> </button> <button> <FaTrashAlt/> </button></div> : null
