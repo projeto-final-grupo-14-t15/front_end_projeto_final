@@ -39,9 +39,9 @@ export const Home = () => {
   return (
     <StyledHome>
       <HomeHeader />
-      <section>
+      <section id="announcements-list">
         <Filter setCurrentPage={setCurrentPage} />
-        <ul>
+        <ul >
           {currentAnnouncements.map((announcement) => (
             <ProductCard key={announcement.id} announcement={announcement} />
           ))}

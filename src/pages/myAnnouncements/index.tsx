@@ -27,7 +27,7 @@ export const MyAnnouncementsPage = () => {
     setCurrentPage(1)
   }, [annoncementsChanged]);
 
-  const announcementsPerPage = 9;
+  const announcementsPerPage = 8;
   const indexOfLastUser = currentPage * announcementsPerPage;
   const indexOfFirstUser = indexOfLastUser - announcementsPerPage;
   const currentAnnouncements = allUserAnnouncements.slice(
@@ -46,7 +46,7 @@ export const MyAnnouncementsPage = () => {
         </div>
       </section>
 
-      <section className="container_announces">
+      <section className="container_announces" id="announcements-list">
         <h2 className="title-announces"> Anúncios </h2>
         {allUserAnnouncements.length === 0 ? (
           <div className="alert">

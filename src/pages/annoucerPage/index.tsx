@@ -19,7 +19,7 @@ export const AnnoucerPage = () => {
   }, []); 
 
   
-  const announcementsPerPage = 9;
+  const announcementsPerPage = 8;
   const indexOfLastUser = currentPage * announcementsPerPage;
   const indexOfFirstUser = indexOfLastUser - announcementsPerPage;
   const currentAnnouncements = allUserAnnouncements.slice(
@@ -43,7 +43,7 @@ export const AnnoucerPage = () => {
         </section>
         
         
-        <section className="container_announces">        
+        <section className="container_announces" id="announcements-list">      
           <h2 className="title-announces"> Anúncios </h2>
           {allUserAnnouncements.length===0?(<div className="alert"><ThemeH2>Nenhum anuncio para este vendedor!</ThemeH2></div>):(<ul>
             {currentAnnouncements.map((announcement) => (

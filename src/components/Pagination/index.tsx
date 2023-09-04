@@ -6,6 +6,33 @@ import {
 import { StyledPagination } from "./style";
 
 const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
+ 
+  const handleClickScroll = () => {
+    const element = document.getElementById('announcements-list');
+  
+    if (element) {
+      const elementTop = element.getBoundingClientRect().top - 70; 
+      const startingY = window.pageYOffset;
+      const diff = elementTop;
+      const duration = 370; 
+      let start;
+  
+      const scrollAnimation = (timestamp) => {
+        if (!start) start = timestamp;
+        const timeElapsed = timestamp - start;
+        const percentage = Math.min(timeElapsed / duration, 1);
+  
+        window.scrollTo(0, startingY + diff * percentage);
+  
+        if (timeElapsed < duration) {
+          requestAnimationFrame(scrollAnimation);
+        }
+      };
+  
+      requestAnimationFrame(scrollAnimation);
+    }
+  };  
+
   return (
     <StyledPagination className="pagination-btn-box">
       <button
@@ -32,6 +59,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage - 6);
+            handleClickScroll();
           }}
         >
           {currentPage - 6}
@@ -42,17 +70,19 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage - 5);
+            handleClickScroll();
           }}
         >
           {currentPage - 5}
         </p>
       )}
-      
+
       {currentPage - 4 > 0 && maxPages - currentPage < 3 && currentPage > 3 && (
         <p
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage - 4);
+            handleClickScroll();
           }}
         >
           {currentPage - 4}
@@ -63,6 +93,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage - 3);
+            handleClickScroll();
           }}
         >
           {currentPage - 3}
@@ -73,6 +104,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage - 2);
+            handleClickScroll();
           }}
         >
           {currentPage - 2}
@@ -83,6 +115,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage - 1);
+            handleClickScroll();
           }}
         >
           {currentPage - 1}
@@ -94,6 +127,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage + 1);
+            handleClickScroll();
           }}
         >
           {currentPage + 1}
@@ -104,6 +138,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage + 2);
+            handleClickScroll();
           }}
         >
           {currentPage + 2}
@@ -114,6 +149,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage + 3);
+            handleClickScroll();
           }}
         >
           {currentPage + 3}
@@ -124,6 +160,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage + 4);
+            handleClickScroll();
           }}
         >
           {currentPage + 4}
@@ -155,6 +192,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
           className="page-nav"
           onClick={() => {
             setCurrentPage(currentPage + 6);
+            handleClickScroll();
           }}
         >
           {currentPage + 6}
@@ -176,7 +214,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
       <button
         disabled={currentPage >= maxPages}
         onClick={() => {
-          setCurrentPage(currentPage + 1)
+          setCurrentPage(currentPage + 1);
         }}
       >
         <MdOutlineKeyboardDoubleArrowRight />
