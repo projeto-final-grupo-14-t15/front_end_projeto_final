@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledUserIcon = styled.button`
+export const StyledUserIcon = styled.div`
     display: flex;
     align-items: center;
     gap:5px;
