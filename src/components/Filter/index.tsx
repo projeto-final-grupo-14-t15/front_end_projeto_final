@@ -4,7 +4,7 @@ import { Slider } from "@mui/material";
 import { IFilterData } from "../../interfaces/announcementsContext.types";
 import { AnnouncementsContext } from "../../context/AnnouncementsContext";
 
-export const Filter = () => {
+export const Filter = ({ setCurrentPage }) => {
   const { Announcements, getAnnouncements } = useContext(AnnouncementsContext);
 
   const [dataFilter, setDataFilter] = useState<IFilterData>({
@@ -25,7 +25,10 @@ export const Filter = () => {
       [fieldName]: value,
     }));
   };
-  const handleFilterSliderCommit = (fieldName: keyof IFilterData, value: any) => {
+  const handleFilterSliderCommit = (
+    fieldName: keyof IFilterData,
+    value: any
+  ) => {
     setDataFilter((prevFilter) => ({
       ...prevFilter,
       [fieldName]: value,
@@ -34,6 +37,7 @@ export const Filter = () => {
 
   useEffect(() => {
     getAnnouncements(dataFilter);
+    setCurrentPage(1)
   }, [dataFilter]);
 
   function getUniqueBrands(carList: any) {
@@ -145,10 +149,13 @@ export const Filter = () => {
   const handleChangeKm = (_event: Event, newValue: number | number[]) => {
     setValueKm(newValue as number[]);
   };
-  
-  const handleChangeCommitedKm = (_event: React.SyntheticEvent<Element, Event>, value: number[]) => {
-    handleFilterSliderCommit('minKm', value[0])
-    handleFilterSliderCommit('maxKm', value[1])
+
+  const handleChangeCommitedKm = (
+    _event: React.SyntheticEvent<Element, Event>,
+    value: number[]
+  ) => {
+    handleFilterSliderCommit("minKm", value[0]);
+    handleFilterSliderCommit("maxKm", value[1]);
     setValueKm(value as number[]);
   };
 
@@ -156,9 +163,12 @@ export const Filter = () => {
     setValuePrice(newValue as number[]);
   };
 
-  const handleChangeCommitedPrice = (_event: React.SyntheticEvent<Element, Event>, value: number[]) => {
-    handleFilterSliderCommit('minPrice', value[0])
-    handleFilterSliderCommit('maxPrice', value[1])
+  const handleChangeCommitedPrice = (
+    _event: React.SyntheticEvent<Element, Event>,
+    value: number[]
+  ) => {
+    handleFilterSliderCommit("minPrice", value[0]);
+    handleFilterSliderCommit("maxPrice", value[1]);
     setValuePrice(value as number[]);
   };
 
@@ -180,7 +190,6 @@ export const Filter = () => {
     <StyledFilter>
       <header className="filter-header">
         <div>
-
           <h2> Marcas </h2>
           {brandsRegistered.map((brand: any) => (
             <button
@@ -251,7 +260,12 @@ export const Filter = () => {
           getAriaLabel={() => "Km range"}
           value={valueKm}
           onChange={handleChangeKm}
-          onChangeCommitted={(event, value) => handleChangeCommitedKm(event as React.SyntheticEvent<Element, Event>, value)}
+          onChangeCommitted={(event, value) =>
+            handleChangeCommitedKm(
+              event as React.SyntheticEvent<Element, Event>,
+              value
+            )
+          }
           valueLabelDisplay="auto"
           max={100000}
           min={0}
@@ -266,7 +280,12 @@ export const Filter = () => {
           getAriaLabel={() => "Price range"}
           value={valuePrice}
           onChange={handleChangePrice}
-          onChangeCommitted={(event, value) => handleChangeCommitedPrice(event as React.SyntheticEvent<Element, Event>, value)}
+          onChangeCommitted={(event, value) =>
+            handleChangeCommitedPrice(
+              event as React.SyntheticEvent<Element, Event>,
+              value
+            )
+          }
           valueLabelDisplay="auto"
           max={1000000}
           min={50000}
