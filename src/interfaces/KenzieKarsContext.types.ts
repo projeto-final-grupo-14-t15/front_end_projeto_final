@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 // import { PropsValue } from 'react-select';
 
 export interface IKenzieKarsProviderProps {
@@ -6,7 +6,7 @@ export interface IKenzieKarsProviderProps {
 }
 
 export interface IKenzieKarsContext {
-  allBrands:string[];
+  allBrands: string[];
   // createAnnouncement: (dataAnnouncement: IAnnouncementsForm) => Promise<void>;
   setLoadingForm: React.Dispatch<React.SetStateAction<boolean>>;
   loadingForm: boolean;
@@ -18,30 +18,38 @@ export interface IKenzieKarsContext {
 }
 
 export interface ICar {
-  id: string
-  name: string
-  brand: string
-  year: string
-  fuel: number | string
-  value: number
+  id: string;
+  name: string;
+  brand: string;
+  year: string;
+  fuel: number | string;
+  value: number;
 }
 
-export interface IComment{
-	id: number;
-	text: string;
-	publication_date: string;
-	update_date: string;
-	author: IUser;
+export interface IComment {
+  id: number;
+  text: string;
+  publication_date: string;
+  update_date: string;
+  author: IUser;
 }
 
 export interface ICommentsContext {
   comments: IComment[];
-  getAllCommentsOfAnnoucement: (announcementId: string | null | undefined) => Promise<void>;
-  registerNewComment:(dataComment:string,announcementId: string | null | undefined)=> Promise<void>;
+  getAllCommentsOfAnnoucement: (
+    announcementId: string | null | undefined
+  ) => Promise<void>;
+  registerNewComment: (
+    dataComment: string,
+    announcementId: string | null | undefined
+  ) => Promise<void>;
+  getCommentToEdit: (commentId: number) => Promise<void>;
+  comment: never[];
+  updateComment: (dataComment: string) => Promise<void>;
+  commentId: number | null;
+  setCommentId: React.Dispatch<React.SetStateAction<number | null>>;
+  deleteComment: () => Promise<void>;
 }
-
-
-
 
 // export interface IAnnouncement {
 //     id: number;
@@ -62,13 +70,6 @@ export interface ICommentsContext {
 //   export type IAnnouncementsForm = Omit<IAnnouncement, 'id' | 'createdAt' | 'updated_at' >;
 
 // TODO: Adicionar cover Photo field, user_id field
-
-
-
-
-
-
-
 
 //
 
@@ -98,5 +99,3 @@ export interface ICar {
   fuel: number | string
   value: number
 } */
-
-
