@@ -8,10 +8,8 @@ import StyledHome from "./style";
 
 export const Home = () => {
   const { Announcements, getAnnouncements } = useAnnouncements();
-
   
   const [currentPage, setCurrentPage] = useState(1);
-  // const [maxPages, setMaxPages] = useState(1);
   const announcementsPerPage = 9;
 
   const dataTeste = {
