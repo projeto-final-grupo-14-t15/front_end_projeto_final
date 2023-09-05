@@ -1,63 +1,52 @@
-# Front_end_projeto_final Documentaçao inicial
+## DOCUMENTAÇÃO ROADROVERS
 
-## Introducao
-* O projeto foi inicilizando usando o Vite + react + typescrypt
-* Pastas de organização e rotas para paginas ja criadas
+## INTRODUÇÃO
 
+Bem-vindo à documentação do site RoadRovers. Este documento fornece informações sobre a estrutura, componentes principais e fluxos do site desenvolvido em React com TypeScript.
+Acesse pelo link: ---------
 
-### Rotas criadas
+## PRÉ-REQUISITOS (para rodar localmente)
 
-* home
-* login
-* registro
-* produto
-* UserDash
+Certifique-se de ter as seguintes ferramentas instaladas antes de prosseguir:
+- Node.js;
+- Uma IDE (vscode);
 
+## INSTALAÇÃO
 
+- Clone o repositório em sua máquina;
+- Instale as dependências usando o comando ‘yarn’ ou ‘npm install’ no terminal gitbash do vscode;
+  
+## RODANDO A APLICAÇÃO
 
-## Instalação
+Para iniciar o servidor de desenvolvimento: ‘npm run dev’ ou ‘yarn dev’
+O site estará disponível em: http://localhost:3000
 
-Instale o projeto com npm
+## SOBRE A APLICAÇÃO
 
-```bash
-  cd roadRovers
-  npm install
-  npm run dev 
-```
+- No header podemos localizar botões de login e cadastro, e quando logado um botão para a navegação em todo o site;
+  
+## Home
 
-## Desenvolvimento
+- Uma página onde são renderizados todos os anúncios ativos, em páginas para suavizar as requisições;
+-Filtro onde podemos filtrar de acordo com as marcas, modelos, cores, combustíveis, ano, quilometragem ou preço que foram registrados no banco de dados;
+- A partir do card do anuncio é possível acessar tanto a página exclusiva referente ao anuncio como a página do anunciante daquele item;
+  
+## Pagina exclusiva do produto
+- Entrar em contato com o proprietário do mesmo;
+- Mais informações;
+- Comentários a respeito daquele produto;
+- Se logado pode comentar a respeito do produto;
+- Mais fotos;
+- Acesso a pagina do vendedor.
+  
+## Pagina do vendedor (publica)
 
-Lembre-se de mudar para sua branch de criacao e deixar a branch "develop" sempre atualizada.
+- Acesso a todos os produtos daquele vendedor;
+- Informações do mesmo;
+  
+## Pagina do vendedor / dashboard do vendedor (privada):
 
-#### Criando uma branch de Desenvolvimento
-```bash
-  git checkout -b sua-branch
-```
-
-#### Mudança de branch
-
-```bash
-  git checkout branch-desejada
-```
-
-#### Atualizando a branch "develop"
-
-```bash
-  git pull origin develop.
-```
-
-## libs instaladas
-* React-router-dom
-* React-hook-form
-* React-toastfy
-* React-icons
-* @hookform/resolvers
-* axius
-* zod
-
-## Ambientação do codigo
-
-* Uso de aspas duplas nas importacoes e srintgs.
-* Uso padrao do ingles para criaçao de variaves, commits e itens de estilizacao.
-* Uso do " ; " sempre ao final de cada ciclo de codigo.
-* evitar commits com codigos comentados.
+- Adicionar um novo anuncio;
+- Editar/excluir um anuncio;
+- Editar suas informações, ou excluir sua conta;
+- Deslogar. 
