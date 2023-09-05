@@ -20,10 +20,6 @@ export const MyAnnouncementsPage = () => {
 
   useEffect(() => {
     getAnnouncementsByUserId(Number(userId));
-  }, []);
-
-  useEffect(() => {
-    getAnnouncementsByUserId(Number(userId));
     setCurrentPage(1);
   }, [annoncementsChanged]);
 
@@ -47,12 +43,14 @@ export const MyAnnouncementsPage = () => {
       </section>
 
       <section className="container_announces" id="announcements-list">
-        <h2 className="title-announces"> Anúncios </h2>
+        
         {allUserAnnouncements.length === 0 ? (
           <div className="alert">
             <ThemeH2>Ainda não cadastrou nenhum anuncio!</ThemeH2>
           </div>
         ) : (
+          <>
+          <h2 className="title-announces"> Anúncios </h2>
           <ul>
             {currentAnnouncements.map((announcement) => (
               <ProductCardAnnoucer
@@ -61,6 +59,7 @@ export const MyAnnouncementsPage = () => {
               />
             ))}
           </ul>
+          </>
         )}
         <Pagination
           currentPage={currentPage}

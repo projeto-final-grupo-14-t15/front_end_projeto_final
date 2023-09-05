@@ -77,7 +77,7 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
               bordercolor="--color-brand1"
               type="submit"
               textcolor="--color-grey10"
-              buttonFunction={null}
+              buttonFunction={()=>null}
             />
           </form>
         </StyledCommentEdit>

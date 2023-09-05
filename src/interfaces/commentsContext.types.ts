@@ -2,7 +2,7 @@ import { IComment } from "./KenzieKarsContext.types";
 
 export interface ICommentsContext {
   comments: IComment[];
-  getAllCommentsOfAnnoucement: (announcementId: number) => Promise<void>;
+  getAllCommentsOfAnnoucement: (announcementId: string) => Promise<void>;
   registerNewComment: (
     dataComment: string,
     announcementeId: number
