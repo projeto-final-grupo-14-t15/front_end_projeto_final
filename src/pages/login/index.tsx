@@ -3,7 +3,7 @@ import { Input } from "../../components/InputsLoginAndRegister";
 import { StyledLogin } from "./styledLogin";
 import { DefaultButton } from "../../components/DefaultButton";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm, FieldError } from 'react-hook-form';
 import { useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
 import { schema } from "./validator";
@@ -35,14 +35,14 @@ export const Login = () => {
             placeHolder="Digitar email"
             type="email"
             register={register("email")}
-            errors={errors?.email}
+            errors={errors?.email as FieldError}
           />
           <Input
             labelText="Senha"
             placeHolder="Digitar senha"
             type="password"
             register={register("password")}
-            errors={errors.password}
+            errors={errors.password as FieldError}
           />
           <ThemeP2_500>
             <Link to="/sendmail">Esqueci minha senha</Link>
