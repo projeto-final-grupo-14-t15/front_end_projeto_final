@@ -1,30 +1,31 @@
 import styled from "styled-components";
 export const StyledAddressEdit = styled.div`
-  height: 674px;
+  height: 100%;
   width: 375px;
+  padding: 13px;
   .addressInfoContainer {
     display: flex;
     width: 100%;
     margin: 0 auto;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .addressInfoContainer fieldset input {
     width: 152px;
   }
   input {
-    width: 90%;
+    width: 100%;
   }
   label {
-    width: 90%;
+    width: 100%;
   }
   .buttonContainer {
     display: flex;
 
-    justify-content: space-around;
-    margin-top: 37px;
+    justify-content: space-between;
+    margin-top: 27px;
   }
   form {
-    margin-top: 50px;
+    margin-top: 7px;
   }
   p {
     width: 90%;

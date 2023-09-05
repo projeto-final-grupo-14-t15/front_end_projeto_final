@@ -54,7 +54,7 @@ export const StyledParagraph = styledsc.p<IStyledParagraphProps>`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.8;
-
+  padding-left: 13px;
   text-align: ${({ $textAlign }) => $textAlign};
 
   ${({ $fontWeight }) => {

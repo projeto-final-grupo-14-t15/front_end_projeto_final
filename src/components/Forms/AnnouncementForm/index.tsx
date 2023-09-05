@@ -179,18 +179,25 @@ const AnnouncementForm = ({
         <DialogContent>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             {isCreateForm ? (
-              <Autocomplete
-                options={allBrands}
-                filterSelectedOptions
-                {...register("brand")}
-                onChange={(event, value) => {
-                  value !== null && setValue("brand", value);
-                  getCarsPerBrands(value);
-                }}
-                renderInput={(params) => (
-                  <CssTextField {...params} label="Marca" />
+              <div>
+                <Autocomplete
+                  options={allBrands}
+                  filterSelectedOptions
+                  {...register("brand")}
+                  onChange={(event, value) => {
+                    value !== null && setValue("brand", value);
+                    getCarsPerBrands(value);
+                  }}
+                  renderInput={(params) => (
+                    <CssTextField {...params} label="Marca" />
+                  )}
+                />
+                {errors.brand && (
+                  <StyledParagraph $fontColor="red">
+                    {errors.brand.message}
+                  </StyledParagraph>
                 )}
-              />
+              </div>
             ) : (
               <CssTextField
                 {...register("brand")}
@@ -205,12 +212,9 @@ const AnnouncementForm = ({
                 }}
               />
             )}
-            {errors.brand && (
-              <StyledParagraph $fontColor="red">
-                {errors.brand.message}
-              </StyledParagraph>
-            )}
             {isCreateForm ? (
+              <div>
+                
               <Autocomplete
                 options={modelsList}
                 filterSelectedOptions
@@ -245,6 +249,12 @@ const AnnouncementForm = ({
                   />
                 )}
               />
+              {errors.model && (
+                <StyledParagraph $fontColor="red">
+                  {errors.model.message}
+                </StyledParagraph>
+              )}
+              </div>
             ) : (
               <CssTextField
                 {...register("model")}
@@ -258,11 +268,6 @@ const AnnouncementForm = ({
                   setValue("model", event.target.value);
                 }}
               />
-            )}
-            {errors.model && (
-              <StyledParagraph $fontColor="red">
-                {errors.model.message}
-              </StyledParagraph>
             )}
             <span className="pairInputBox">
               <CssTextField
@@ -354,7 +359,9 @@ const AnnouncementForm = ({
               {!isCreateForm && <DialogTitle>Anuncio ativo:</DialogTitle>}
               {!isCreateForm && (
                 <div className="radioContainer">
-                  <span style={{ display: "flex", gap: "10px", height: "35px" }}>
+                  <span
+                    style={{ display: "flex", gap: "10px", height: "35px" }}
+                  >
                     <DefaultButton
                       buttonFunction={() => {
                         setIsActive(true);

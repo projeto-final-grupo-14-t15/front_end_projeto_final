@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
-  Typography,
 } from "@mui/material";
 import { IUserUpdate } from "../../interfaces/IUserContext";
 import { userUpdateSchema } from "./validate";
@@ -41,6 +40,7 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
 
   useEffect(() => {
     getUser(userId);
+    console.log(user);
   }, []);
 
   const {
@@ -84,18 +84,6 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
             />
           </TitleContainer>
 
-          <Typography
-            variant="subtitle1"
-            sx={{
-              fontSize: mdUp ? "1.5rem" : "1rem",
-              paddingLeft: "1rem",
-              marginTop: "0.5rem",
-              marginBottom: "1rem",
-            }}
-          >
-            Infomações pessoais.
-          </Typography>
-
           <StyledForm onSubmit={handleSubmit(submit)}>
             <CssTextField
               variant="outlined"
@@ -105,13 +93,11 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
               defaultValue={user?.name}
               {...register("name")}
             />
-            <ErrorMessage
-              errors={errors}
-              name="name"
-              render={({ message }) => (
-                <StyledParagraph $fontColor="red">{message}</StyledParagraph>
-              )}
-            />
+            {errors.name ? (
+              <StyledParagraph $fontColor="red">
+                {errors.name.message}
+              </StyledParagraph>
+            ) : null}
             <CssTextField
               variant="outlined"
               id={"email"}
@@ -209,6 +195,7 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
                 sx={{
                   bgcolor: "#DEE2E6",
                   color: "#495057",
+                  border: "1px solid #495057",
                   fontSize: mdUp ? "1.2rem" : "0.9rem",
                   width: mdUp ? "10rem" : "6rem",
                 }}
@@ -220,7 +207,8 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
                 variant="outlined"
                 onClick={() => setOpenDelete(!openDelete)}
                 sx={{
-                  bgcolor: "#FDD8D8",
+                  bgcolor: "#fff",
+                  border: "1px solid #CD2B31",
                   color: "#CD2B31",
                   fontSize: mdUp ? "1.2rem" : "0.9rem",
                   width: mdUp ? "16.5rem" : "9rem",
@@ -238,7 +226,7 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
                   width: mdUp ? "20rem" : "11rem",
                 }}
               >
-                Salva Alterações
+                Salvar dados
               </Button>
             </DialogActions>
           </StyledForm>

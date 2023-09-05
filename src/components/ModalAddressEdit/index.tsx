@@ -6,7 +6,6 @@ import { UserContext } from "../../context/UserContext";
 import closerIcon from "../../assets/img/closerIcon.svg";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { ThemeP2_500 } from "../../styles/Typography";
 import { Input } from "../InputsLoginAndRegister";
 import { AddressData, addressUpdateSchema } from "./validate";
 import { TitleContainer } from "../ModalUserEdit/styled";
@@ -73,9 +72,6 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
         "
             onSubmit={handleSubmit(submit)}
           >
-            <ThemeP2_500 className="accountType" color="--color-grey0">
-              Informações de endereço
-            </ThemeP2_500>
             <Input
               labelText="CEP"
               placeHolder="00000.000"
@@ -130,6 +126,7 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
                 sx={{
                   bgcolor: "#DEE2E6",
                   color: "#495057",
+                  border: "1px solid #495057",
                   fontSize: mdUp ? "1.2rem" : "0.9rem",
                   width: mdUp ? "123px" : "6rem",
                   height: mdUp ? "48px" : "6rem",
