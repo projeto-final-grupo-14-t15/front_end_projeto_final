@@ -7,7 +7,6 @@ import { KenzieKarsProvider } from "./context/KenzieKarsContext/index.tsx";
 import CommentsProvider from "./context/CommentsContext/CommentsContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // <React.StrictMode>
   <BrowserRouter>
     <HeaderProvider>
       <AnnouncementsProvider>
@@ -19,5 +18,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       </AnnouncementsProvider>
     </HeaderProvider>
   </BrowserRouter>
-  // </React.StrictMode>
 );
