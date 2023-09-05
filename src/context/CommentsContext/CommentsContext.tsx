@@ -54,7 +54,7 @@ export default function CommentsProvider({ children }: IChildrenProps) {
     }
   };
 
-  const getAllCommentsOfAnnoucement = async (announcementId: number) => {
+  const getAllCommentsOfAnnoucement = async (announcementId: string) => {
     try {
       const response = await api.get(
         `/announcements/${announcementId}/comment`
@@ -76,8 +76,14 @@ export default function CommentsProvider({ children }: IChildrenProps) {
           },
         }
       );
+      const updatedComment = response.data;
 
-      setComment(response.data);
+      setComments((prevComments) =>
+      prevComments.map((c) =>
+        c.id === updatedComment.id ? updatedComment : c
+      )
+      );
+      setComment(updatedComment);
     } catch (error) {
       console.error(error);
     }
@@ -90,6 +96,9 @@ export default function CommentsProvider({ children }: IChildrenProps) {
           Authorization: `Bearer ${token}`,
         },
       });
+      setComments((prevComments) =>
+      prevComments.filter((c) => c.id !== commentId)
+      );
     } catch (error) {
       console.error(error);
     }
