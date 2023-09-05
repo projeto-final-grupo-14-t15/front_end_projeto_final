@@ -51,7 +51,7 @@ export const AnnouncementPage = () => {
   }, []);
 
   useEffect(() => {
-    getAllCommentsOfAnnoucement(announcementId);
+    getAllCommentsOfAnnoucement(Number(announcementId));
     console.log(comments);
   }, []);
 
@@ -65,10 +65,10 @@ export const AnnouncementPage = () => {
 
   const [textComment, setTextComment] = useState("");
 
-  const handleSubmitNewComment = (event: any) => {
+  const handleSubmitNewComment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textComment.trim().length !== 0) {
-      registerNewComment(textComment, announcementId);
+      registerNewComment(textComment, Number(announcementId));
     }
   };
 
@@ -87,7 +87,7 @@ export const AnnouncementPage = () => {
           <main>
             <section className="container__main-info">
               <div className="container-div container__cover-photo">
-                <img src={announcement.photos[0].link} alt="" />
+                <img src={announcement.photos[0].link.toString()} alt="" />
               </div>
 
               <div className="container-div container__car-info">

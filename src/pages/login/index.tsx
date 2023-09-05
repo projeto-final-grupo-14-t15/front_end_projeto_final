@@ -31,7 +31,7 @@ export const Login = () => {
             placeHolder="Digitar email"
             type="email"
             register={register("email")}
-            errors={errors.email}
+            errors={errors?.email}
           />
           <Input
             labelText="Senha"

@@ -71,7 +71,7 @@ export const StyledHeader = styled.header`
         align-items: center;
         justify-content: center;
       }
-      button{
+      button {
         border: none;
         background-color: transparent;
         text-align: center;

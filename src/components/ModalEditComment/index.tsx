@@ -9,17 +9,11 @@ import { TitleContainer } from "../ModalUserEdit/styled";
 import { StyledCommentEdit } from "./styled";
 import { CommentsContext } from "../../context/CommentsContext/CommentsContext";
 import { DefaultButton } from "../DefaultButton";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  ICommentUpdateData,
-  commentUpdateschema,
-} from "../../pages/announcementPage/validator";
 
 interface IProps {
   modal: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
-  commentId: number;
+  commentId?: number;
 }
 export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
   const theme = useTheme();
@@ -33,7 +27,9 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
     }
   }, [comment]);
 
-  const handleSubmitUpdateComment = (event: any) => {
+  const handleSubmitUpdateComment = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
     if (textComment.trim().length !== 0) {
       updateComment(textComment);

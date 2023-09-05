@@ -7,49 +7,57 @@ import { StyledPagination } from "./style";
 
 interface IPagination {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-   currentPage: number;
-   maxPages: number;
+  currentPage: number;
+  maxPages: number;
 }
 
 const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
- 
   const handleClickScroll = () => {
-    const element = document.getElementById('announcements-list');
-  
+    const element = document.getElementById("announcements-list");
+
     if (element) {
-      const elementTop = element.getBoundingClientRect().top - 70; 
+      const elementTop = element.getBoundingClientRect().top - 70;
       const startingY = window.pageYOffset;
       const diff = elementTop;
-      const duration = 370; 
-      let start: number | null = null; 
-        
+      const duration = 370;
+      let start: number | null = null;
+
       const scrollAnimation = (timestamp: number) => {
         if (!start) start = timestamp;
         const timeElapsed = timestamp - start;
         const percentage = Math.min(timeElapsed / duration, 1);
-  
+
         window.scrollTo(0, startingY + diff * percentage);
-  
+
         if (timeElapsed < duration) {
           requestAnimationFrame(scrollAnimation);
         }
       };
-  
+
       requestAnimationFrame(scrollAnimation);
     }
-  };  
+  };
 
   return (
     <StyledPagination className="pagination-btn-box">
       <button
         disabled={currentPage == 1}
-        onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+        onClick={() => {
+          currentPage > 1 && setCurrentPage(currentPage - 1);
+          handleClickScroll();
+        }}
       >
         <MdOutlineKeyboardDoubleArrowLeft />
       </button>
       {currentPage > 4 && (
         <>
-          <p className="page-nav" onClick={() => setCurrentPage(1)}>
+          <p
+            className="page-nav"
+            onClick={() => {
+              setCurrentPage(1);
+              handleClickScroll();
+            }}
+          >
             {1}
           </p>
           <p
@@ -212,7 +220,13 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
           >
             ...
           </p>
-          <p className="page-nav" onClick={() => setCurrentPage(maxPages)}>
+          <p
+            className="page-nav"
+            onClick={() => {
+              setCurrentPage(maxPages);
+              handleClickScroll();
+            }}
+          >
             {maxPages}
           </p>
         </>
@@ -221,6 +235,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
         disabled={currentPage >= maxPages}
         onClick={() => {
           setCurrentPage(currentPage + 1);
+          handleClickScroll();
         }}
       >
         <MdOutlineKeyboardDoubleArrowRight />

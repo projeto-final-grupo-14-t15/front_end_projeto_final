@@ -3,30 +3,26 @@ import { Dialog, DialogTitle } from "@mui/material";
 import closerIcon from "../../assets/img/closerIcon.svg";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 
 import { TitleContainer } from "../ModalUserEdit/styled";
 import { StyledCommentDelete } from "./styled";
 import { CommentsContext } from "../../context/CommentsContext/CommentsContext";
 import { DefaultButton } from "../DefaultButton";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  ICommentUpdateData,
-  commentUpdateschema,
-} from "../../pages/announcementPage/validator";
 
 interface IProps {
   modalDelete: boolean;
   setModalDelete: React.Dispatch<React.SetStateAction<boolean>>;
-  commentId: number;
+  commentId?: number;
 }
 export const ModalCommentDelete = ({ modalDelete, setModalDelete }: IProps) => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("sm"));
   const { deleteComment } = useContext(CommentsContext);
 
-  const handleSubmitDeleteComment = (event: any) => {
+  const handleSubmitDeleteComment = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
     deleteComment();

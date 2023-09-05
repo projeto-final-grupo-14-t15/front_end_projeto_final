@@ -3,6 +3,7 @@ import { StyledCardUser } from "./style";
 import { api } from "../../services/api";
 import AnnouncementForm from "../Forms/AnnouncementForm";
 import useAnnouncements from "../../hooks/useAnnouncements";
+import { IUser } from "../../interfaces/IUser";
 
 interface ICardUserProps {
   userId: undefined | string;
@@ -17,7 +18,7 @@ export const BigCardUserLogged = ({ userId }: ICardUserProps) => {
         const response = await api.get(`/users/${userId}/`);
         setUserAnnouncer(response.data);
       } catch (error) {
-        console.log("ERRO AO OBTER INFORMAÇÕES DESSE USER");
+        console.error(error, "ERRO AO OBTER INFORMAÇÕES DESSE USER");
       }
     };
     getUserInfo(userId);
@@ -36,8 +37,8 @@ export const BigCardUserLogged = ({ userId }: ICardUserProps) => {
     return initials.slice(0, 2);
   }
 
-    const { createAnnouncement } = useAnnouncements();
-    const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
+  const { createAnnouncement } = useAnnouncements();
+  const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
 
   return (
     <StyledCardUser>

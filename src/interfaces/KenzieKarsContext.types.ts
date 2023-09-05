@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { IUser } from "./IUser";
 // import { PropsValue } from 'react-select';
 
 export interface IKenzieKarsProviderProps {
@@ -7,14 +8,15 @@ export interface IKenzieKarsProviderProps {
 
 export interface IKenzieKarsContext {
   allBrands: string[];
-  // createAnnouncement: (dataAnnouncement: IAnnouncementsForm) => Promise<void>;
-  setLoadingForm: React.Dispatch<React.SetStateAction<boolean>>;
+  getCarsBrands: () => Promise<void>;
+  // setLoadingForm: React.Dispatch<React.SetStateAction<boolean>>;
   loadingForm: boolean;
   modelsList: readonly string[];
   carsList: ICar[];
   getCarsPerBrands: (data: string | null) => Promise<void>;
-  // getAllAnnouncementsForFilter:(data: IFilterData) => Promise<void>;
-  // allAnnouncementsForFilter:IFilterResponse[];
+  brandsList: string[];
+  setSelectedBrand: React.Dispatch<React.SetStateAction<string | null>>;
+  selectedBrand: string | null;
 }
 
 export interface ICar {

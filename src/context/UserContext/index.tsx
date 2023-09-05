@@ -46,12 +46,13 @@ export const UserProvider = ({ children }: IChildrenProps) => {
       });
       response.data;
       window.location.reload();
+      toast.success('Endereço atualizado com sucesso')
     } catch (error) {
       console.error(error);
+      toast.error('Falha ao atualizar endereço')
     }
   };
   const updateUser = async (data: IUserUpdate, id: string | null) => {
-  
     try {
       const response: AxiosResponse<IUserResponse> = await api.patch(
         `/users/${id}`,
@@ -64,8 +65,10 @@ export const UserProvider = ({ children }: IChildrenProps) => {
       );
       response.data;
       window.location.reload();
+      toast.success('Dados do usuário atualizados com sucesso')
     } catch (error) {
       console.error(error);
+      toast.error('Falha ao atualizar dados do usuário')
     }
   };
 
@@ -77,6 +80,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         },
       });
       response.data;
+      toast.info('Sua conta foi excluída.')
       handleLogout();
     } catch (error) {
       console.error(error);
@@ -85,31 +89,30 @@ export const UserProvider = ({ children }: IChildrenProps) => {
 
   const submitMail = async (data: iMail) => {
     try {
-        await api.post("/users/resetPassword", data);
-        toast.success("Email de recuperação enviado");
-        setTimeout(() => {
-          navigate(`/`);
-        }, 2000);
+      await api.post("/users/resetPassword", data);
+      toast.success("Email de recuperação enviado");
+      setTimeout(() => {
+        navigate(`/`);
+      }, 2000);
     } catch (error) {
-        toast.error("Credenciais invalidas! Tente novamente")
-
+      toast.error("Credenciais invalidas! Tente novamente");
     }
-};
+  };
 
   const submitPassword = async (data: RecoveryPass) => {
     const token = window.location.pathname.split("/")[2];
     try {
-        await api.patch(`/users/resetPassword/${token}`, {
-            password: data.password,
-        });
-        setTimeout(() => {
-          navigate(`/login`);
-        }, 2000);
-        toast.success("senha redefinida")
+      await api.patch(`/users/resetPassword/${token}`, {
+        password: data.password,
+      });
+      setTimeout(() => {
+        navigate(`/login`);
+      }, 2000);
+      toast.success("Senha redefinida");
     } catch (error) {
-      toast.error("Credenciais invalidas! Tente novamente")
+      toast.error("Credenciais invalidas! Tente novamente");
     }
-};
+  };
 
   return (
     <UserContext.Provider

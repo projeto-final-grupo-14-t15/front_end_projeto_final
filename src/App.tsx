@@ -8,21 +8,21 @@ import { RegisterProvider } from "./context/RegisterContext";
 import { UserProvider } from "./context/UserContext";
 
 function App() {
-   return (
-      <>
-         <GlobalStyles />
-         <RegisterProvider>
-            <LoginProvider>
-            <UserProvider>
-               <Header />
-               <RoutesMain />
-            </UserProvider>
-            </LoginProvider>
-         </RegisterProvider>
-         <ToastContainer />
-         <Footer />
-      </>
-   );
+  return (
+    <>
+      <GlobalStyles />
+      <RegisterProvider>
+        <LoginProvider>
+          <UserProvider>
+            <Header />
+            <RoutesMain />
+          </UserProvider>
+        </LoginProvider>
+      </RegisterProvider>
+      <ToastContainer />
+      <Footer />
+    </>
+  );
 }
 
 export default App;

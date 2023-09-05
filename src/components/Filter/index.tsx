@@ -4,7 +4,7 @@ import { Slider } from "@mui/material";
 import { IFilterData } from "../../interfaces/announcementsContext.types";
 import { AnnouncementsContext } from "../../context/AnnouncementsContext";
 
-export const Filter = ({ setCurrentPage }) => {
+export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<React.SetStateAction<number>> }) => {
   const { Announcements, getAnnouncements } = useContext(AnnouncementsContext);
 
   const [dataFilter, setDataFilter] = useState<IFilterData>({
@@ -37,7 +37,7 @@ export const Filter = ({ setCurrentPage }) => {
 
   useEffect(() => {
     getAnnouncements(dataFilter);
-    setCurrentPage(1)
+    setCurrentPage(1);
   }, [dataFilter]);
 
   function getUniqueBrands(carList: any) {

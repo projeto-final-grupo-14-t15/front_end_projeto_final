@@ -1,5 +1,9 @@
 import { createContext, useState } from "react";
-import { ICar, IKenzieKarsContext, IKenzieKarsProviderProps } from "../../interfaces/KenzieKarsContext.types";
+import {
+  ICar,
+  IKenzieKarsContext,
+  IKenzieKarsProviderProps,
+} from "../../interfaces/KenzieKarsContext.types";
 import { karsApi } from "../../services/karsApi";
 
 export const KenzieKarsContext = createContext<IKenzieKarsContext>(
@@ -7,20 +11,29 @@ export const KenzieKarsContext = createContext<IKenzieKarsContext>(
 );
 
 const KenzieKarsProvider = ({ children }: IKenzieKarsProviderProps) => {
-
-  const [brandsList, setBrandsList] = useState([]);
+  const [brandsList, setBrandsList] = useState<string[]>([]);
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [modelsList, setModelsList] = useState<readonly string[]>([]);
   const [carsList, setCarsList] = useState<ICar[]>([]);
   const [loadingForm, setLoadingForm] = useState<boolean>(false);
 
-  const allBrands = ['chevrolet', 'citroën', 'fiat', 'ford', 'honda', 'hyundai', 'nissan', 'peugeot', 'renault', 'toyota', 'volkswagen']
- 
+  const allBrands = [
+    "chevrolet",
+    "citroën",
+    "fiat",
+    "ford",
+    "honda",
+    "hyundai",
+    "nissan",
+    "peugeot",
+    "renault",
+    "toyota",
+    "volkswagen",
+  ];
 
-  const getCarsBrands = async () => {   
+  const getCarsBrands = async () => {
     try {
-      const response = await karsApi.get('/cars');
-   
+      const response = await karsApi.get("/cars");
 
       setBrandsList(response.data);
     } catch (error) {
@@ -28,15 +41,15 @@ const KenzieKarsProvider = ({ children }: IKenzieKarsProviderProps) => {
     }
   };
 
-  const getCarsPerBrands = async (brand) => {   
+  const getCarsPerBrands = async (brand: string | null) => {
     if (brand) {
-      setLoadingForm(true)
+      setLoadingForm(true);
 
       try {
         const response = await karsApi.get(`/cars?brand=${brand}`);
 
-        const modelsArray = response.data.map(car => car.name);
-        setModelsList(modelsArray);            
+        const modelsArray = response.data.map((car: ICar) => car.name);
+        setModelsList(modelsArray);
         setCarsList(response.data);
       } catch (error) {
         console.error(error);
@@ -44,10 +57,9 @@ const KenzieKarsProvider = ({ children }: IKenzieKarsProviderProps) => {
         setLoadingForm(false);
       }
     } else {
-      setModelsList([])
+      setModelsList([]);
     }
   };
-
 
   return (
     <KenzieKarsContext.Provider
@@ -60,7 +72,7 @@ const KenzieKarsProvider = ({ children }: IKenzieKarsProviderProps) => {
         getCarsPerBrands,
         modelsList,
         loadingForm,
-        carsList
+        carsList,
       }}
     >
       {children}
