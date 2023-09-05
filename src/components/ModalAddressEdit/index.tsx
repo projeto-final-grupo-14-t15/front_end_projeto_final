@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogTitle } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
@@ -46,6 +46,11 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
     setModal(!modal);
   };
 
+  
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    submit(data as AddressData);
+  };
+
   return (
     <>
       <Dialog open={modal} scroll="body">
@@ -70,7 +75,7 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
           <form
             action="
         "
-            onSubmit={handleSubmit(submit)}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <Input
               labelText="CEP"
