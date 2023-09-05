@@ -3,7 +3,7 @@ import { Input } from "../../components/InputsLoginAndRegister";
 import { StyledLogin } from "./styledLogin";
 import { DefaultButton } from "../../components/DefaultButton";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
 import { schema } from "./validator";
@@ -20,12 +20,16 @@ export const Login = () => {
 
   const { signIn } = useContext(LoginContext);
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    signIn(data as { email: string; password: string });
+  };
+
   return (
     <StyledLogin>
       <div className="form_Container">
         <ThemeH5_500>Login</ThemeH5_500>
 
-        <form action="" onSubmit={handleSubmit(signIn)}>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
           <Input
             labelText="Email"
             placeHolder="Digitar email"

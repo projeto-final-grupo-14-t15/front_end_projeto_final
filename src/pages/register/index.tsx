@@ -2,10 +2,10 @@ import { Input } from "../../components/InputsLoginAndRegister";
 
 import { DefaultButton } from "../../components/DefaultButton";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useContext } from "react";
 import { RegisterContext } from "../../context/RegisterContext";
-import { registerSchema } from "./validator";
+import { RegisterData, registerSchema } from "./validator";
 import { StyledRegisterMain } from "./style";
 import { ThemeH5_500, ThemeP2_500 } from "../../styles/Typography";
 
@@ -20,6 +20,11 @@ export const Register = () => {
 
   const { submitFunction } = useContext(RegisterContext);
 
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    submitFunction(data as RegisterData);
+  };
+
   return (
     <StyledRegisterMain>
       <div className="form_Container">
@@ -28,7 +33,7 @@ export const Register = () => {
           Informações pessoais
         </ThemeP2_500>
 
-        <form action="" onSubmit={handleSubmit(submitFunction)}>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
           <Input
             labelText="Nome"
             placeHolder="Ex: Samuel Leão"
