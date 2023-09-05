@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { LoginData } from "../../pages/login/validator";
 import jwt_decode from "jwt-decode";
+import { IUser } from "../../interfaces/IUser";
 
 interface LoginContextType {
   signIn: (data: LoginData) => Promise<void>;
@@ -65,9 +66,12 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
       try {
         const response = await api.get(`/users/${userId}/`);
         setUserInfo(response.data);
-      } catch (error) {}
+      } catch (error) {
+        console.error(error);
+      }
     };
-    const userId: string | number | undefined | null = localStorage.getItem("@USERID");
+    const userId: string | number | undefined | null =
+      localStorage.getItem("@USERID");
     if (userId) {
       getUserInfo(userId);
     }

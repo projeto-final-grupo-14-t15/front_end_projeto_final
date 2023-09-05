@@ -32,17 +32,21 @@ export const StyledHomeHeader = styled.header`
   background-size: cover;
   background-attachment: fixed;
 
-    &::before {
-      content: "";
-  
-      position: absolute;
-  
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-  
-      background: rgb(2,0,36);
-      background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(0,0,0,0.5969559698879552) 45%, rgba(0,0,0,0.13477109593837533) 100%)
-  } 
-  `;
+  &::before {
+    content: "";
 
+    position: absolute;
+
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      0deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 0, 0, 0.5969559698879552) 45%,
+      rgba(0, 0, 0, 0.13477109593837533) 100%
+    );
+  }
+`;

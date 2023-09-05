@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const StyledModal = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .modal {
     display: flex;

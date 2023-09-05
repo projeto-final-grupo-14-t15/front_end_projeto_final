@@ -14,11 +14,17 @@ export const RoutesMain = () => {
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/announcer/:userId" element={<AnnoucerPage />} />
-      <Route path="/myannouncements/:userId" element={<MyAnnouncementsPage />} />
+      <Route
+        path="/myannouncements/:userId"
+        element={<MyAnnouncementsPage />}
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/sendmail" element={<SendMail />} />
       <Route path="/recoverypassword/:token" element={<RecoveryPassword />} />
-      <Route path='/announcement-page/announcement/:announcementId' element={ <AnnouncementPage/>} />
+      <Route
+        path="/announcement-page/announcement/:announcementId"
+        element={<AnnouncementPage />}
+      />
     </Routes>
   );
 };

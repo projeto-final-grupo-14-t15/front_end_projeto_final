@@ -1,7 +1,6 @@
 import { useState } from "react";
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
 import { IAnnouncement } from "../../interfaces/announcementsContext.types";
 import { StyledModal } from "./style";
 import {
@@ -28,13 +27,13 @@ export default function PhotoModal({
   index,
   announcement,
 }: IPhotoModalProps) {
-  const [photoHere, setPhotoHere] = useState("");
+  // const [photoHere, setPhotoHere] = useState("");
   const [indexHere, setIndexHere] = useState(0);
 
   const handleClickOpen = () => {
     setOpen(true);
     // setIndexHere(index);
-    setPhotoHere(photo.link);
+    // setPhotoHere(photo.link);
   };
 
   const handleClose = () => {
@@ -47,7 +46,7 @@ export default function PhotoModal({
         style={{ cursor: "pointer" }}
         className="miniature"
         key={index}
-        src={photo.link}
+        src={photo?.link.toString()}
         alt={`Photo ${index}`}
         onClick={() => handleClickOpen()}
       />
@@ -67,7 +66,7 @@ export default function PhotoModal({
               <img
                 className="expanded-img"
                 key={indexHere}
-                src={announcement.photos[indexHere].link}
+                src={announcement.photos[indexHere].link.toString()}
                 alt={`Photo ${index}`}
               />
             </div>

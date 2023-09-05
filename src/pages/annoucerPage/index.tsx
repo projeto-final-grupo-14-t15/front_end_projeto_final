@@ -16,9 +16,8 @@ export const AnnoucerPage = () => {
 
   useEffect(() => {
     getAnnouncementsByUserId(Number(userId));
-  }, []); 
+  }, []);
 
-  
   const announcementsPerPage = 8;
   const indexOfLastUser = currentPage * announcementsPerPage;
   const indexOfFirstUser = indexOfLastUser - announcementsPerPage;
@@ -28,30 +27,38 @@ export const AnnoucerPage = () => {
   );
   const maxPages = Math.ceil(allUserAnnouncements.length / 9);
 
-  
   return (
-    
     <StyledAnnoucerPage>
-        <section>
-          <div className="container_header-user-info">
+      <section>
+        <div className="container_header-user-info"></div>
 
+        <div className="container_user-info">
+          <BigCardUser userId={userId} />
+        </div>
+      </section>
+
+      <section className="container_announces" id="announcements-list">
+        <h2 className="title-announces"> Anúncios </h2>
+        {allUserAnnouncements.length === 0 ? (
+          <div className="alert">
+            <ThemeH2>Nenhum anuncio para este vendedor!</ThemeH2>
           </div>
-          
-          <div className="container_user-info">
-              <BigCardUser userId={userId}/>
-          </div>
-        </section>
-        
-        
-        <section className="container_announces" id="announcements-list">      
-          <h2 className="title-announces"> Anúncios </h2>
-          {allUserAnnouncements.length===0?(<div className="alert"><ThemeH2>Nenhum anuncio para este vendedor!</ThemeH2></div>):(<ul>
+        ) : (
+          <ul>
             {currentAnnouncements.map((announcement) => (
-              <ProductCardForUserPage key={announcement.id} announcement={announcement} />
+              <ProductCardForUserPage
+                key={announcement.id}
+                announcement={announcement}
+              />
             ))}
-          </ul>)}
-          <Pagination currentPage={currentPage} maxPages={maxPages} setCurrentPage={setCurrentPage}/>
-        </section>
+          </ul>
+        )}
+        <Pagination
+          currentPage={currentPage}
+          maxPages={maxPages}
+          setCurrentPage={setCurrentPage}
+        />
+      </section>
     </StyledAnnoucerPage>
   );
 };

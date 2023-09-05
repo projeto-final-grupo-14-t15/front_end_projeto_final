@@ -1,3 +1,4 @@
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { ThemeP2_500 } from "../../styles/Typography";
 import { StyledFieldset } from "./styledInput";
 
@@ -5,10 +6,11 @@ interface IInputProps {
   labelText?: string;
   placeHolder?: string;
   errors?: any;
+  // errors?: FieldError;
   type: undefined | "email" | "password" | "text" | "checkbox" | "radio";
-  register?: any;
-  value?: any;
-  defaultValue?: any;
+  register?: UseFormRegisterReturn<string>;
+  value?: string;
+  defaultValue?: string;
 }
 
 export function Input({
@@ -22,13 +24,13 @@ export function Input({
 }: IInputProps) {
   return (
     <StyledFieldset>
-      <label htmlFor={register.name} className={register.name}>
+      <label htmlFor={register?.name} className={register?.name}>
         {" "}
         {labelText}{" "}
       </label>
       <input
         type={type}
-        id={register.name}
+        id={register?.name}
         placeholder={placeHolder}
         {...register}
         value={value}

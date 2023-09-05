@@ -6,8 +6,10 @@ export const HeaderContext = createContext({} as IHeaderContext);
 
 export default function HeaderProvider({ children }: IChildrenProps) {
   const [navBarVisibility, setNavBarVisibility] = useState("hidden");
-  const [dropDownVisibility, setDropDownVisibility] = useState("drop-down-visibility-hidden");
-  const [iconBurger, setIconBurger] = useState('FaBars')
+  const [dropDownVisibility, setDropDownVisibility] = useState(
+    "drop-down-visibility-hidden"
+  );
+  const [iconBurger, setIconBurger] = useState("FaBars");
 
   const menuVisibility = () => {
     navBarVisibility == "hidden"
@@ -15,12 +17,10 @@ export default function HeaderProvider({ children }: IChildrenProps) {
       : setNavBarVisibility("hidden");
   };
   const swapBurgerIcon = () => {
-    iconBurger == 'FaBars'
-    ? setIconBurger('GoX')
-    : setIconBurger('FaBars');
-    menuVisibility()
-    userSetDropDownVisibility()
-  }
+    iconBurger == "FaBars" ? setIconBurger("GoX") : setIconBurger("FaBars");
+    menuVisibility();
+    userSetDropDownVisibility();
+  };
   const userSetDropDownVisibility = () => {
     dropDownVisibility == "drop-down-visibility-hidden"
       ? setDropDownVisibility("drop-down-visibility-visible")
@@ -28,7 +28,16 @@ export default function HeaderProvider({ children }: IChildrenProps) {
   };
 
   return (
-    <HeaderContext.Provider value={{ menuVisibility, navBarVisibility, iconBurger,swapBurgerIcon,userSetDropDownVisibility,dropDownVisibility}}>
+    <HeaderContext.Provider
+      value={{
+        menuVisibility,
+        navBarVisibility,
+        iconBurger,
+        swapBurgerIcon,
+        userSetDropDownVisibility,
+        dropDownVisibility,
+      }}
+    >
       {children}
     </HeaderContext.Provider>
   );

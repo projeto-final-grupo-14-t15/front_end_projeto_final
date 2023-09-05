@@ -8,7 +8,7 @@ import StyledHome from "./style";
 
 export const Home = () => {
   const { Announcements, getAnnouncements } = useAnnouncements();
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const announcementsPerPage = 9;
 
@@ -41,14 +41,20 @@ export const Home = () => {
       <HomeHeader />
       <section id="announcements-list">
         <Filter setCurrentPage={setCurrentPage} />
-        <ul >
+        <ul>
           {currentAnnouncements.map((announcement) => (
             <ProductCard key={announcement.id} announcement={announcement} />
           ))}
-          {currentAnnouncements.length == 0 && <h2>Não encontramos nenhum anuncio com os filtros escolhidos</h2>}
+          {currentAnnouncements.length == 0 && (
+            <h2>Não encontramos nenhum anuncio com os filtros escolhidos</h2>
+          )}
         </ul>
       </section>
-      <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} maxPages={maxPages}></Pagination>
+      <Pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        maxPages={maxPages}
+      ></Pagination>
     </StyledHome>
   );
 };

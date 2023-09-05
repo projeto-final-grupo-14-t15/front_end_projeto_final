@@ -1,19 +1,23 @@
 import { createContext, useState } from "react";
 import { IChildrenProps } from "../../types/@types";
-import { ICommentsContext } from "../../interfaces/KenzieKarsContext.types";
+import { IComment } from "../../interfaces/KenzieKarsContext.types";
 import { api } from "../../services/api";
+import { ICommentsContext } from "../../interfaces/commentsContext.types";
 
-export const CommentsContext = createContext({} as ICommentsContext);
+export const CommentsContext = createContext<ICommentsContext>(
+  {} as ICommentsContext
+);
 
 export default function CommentsProvider({ children }: IChildrenProps) {
-  const [comments, setComments] = useState([]);
   const token: string | null = localStorage.getItem("@TOKEN");
-  const [comment, setComment] = useState([]);
+
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [comment, setComment] = useState<IComment>();
   const [commentId, setCommentId] = useState<number | null>(null);
 
   const registerNewComment = async (
     dataComment: string,
-    announcementeId: any
+    announcementeId: number
   ): Promise<void> => {
     const token = localStorage.getItem("@TOKEN");
     if (token) {
@@ -51,9 +55,7 @@ export default function CommentsProvider({ children }: IChildrenProps) {
     }
   };
 
-  const getAllCommentsOfAnnoucement = async (
-    announcementId: string | null | undefined
-  ) => {
+  const getAllCommentsOfAnnoucement = async (announcementId: number) => {
     try {
       const response = await api.get(
         `/announcements/${announcementId}/comment`

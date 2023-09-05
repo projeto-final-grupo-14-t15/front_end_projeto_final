@@ -24,7 +24,8 @@ export const StyledPagination = styled.div`
     color: #36007d;
     transform: scale(1.2);
   }
-  button:disabled, button:disabled svg {
+  button:disabled,
+  button:disabled svg {
     cursor: auto;
     color: #868e96;
     transform: scale(1);

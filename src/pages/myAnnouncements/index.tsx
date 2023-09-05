@@ -24,7 +24,7 @@ export const MyAnnouncementsPage = () => {
 
   useEffect(() => {
     getAnnouncementsByUserId(Number(userId));
-    setCurrentPage(1)
+    setCurrentPage(1);
   }, [annoncementsChanged]);
 
   const announcementsPerPage = 8;

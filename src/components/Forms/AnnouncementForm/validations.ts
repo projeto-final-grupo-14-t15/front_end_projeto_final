@@ -1,9 +1,10 @@
 import { z } from "zod";
 
-
-export const photosSchema = z.array(z.object({
-  link: z.string().min(1, "Campo obrigatório")
-}));
+export const photosSchema = z.array(
+  z.object({
+    link: z.string().min(1, "Campo obrigatório"),
+  })
+);
 
 export const announcementSchema = z.object({
   brand: z.string().max(55).min(1, "Campo obrigatório"),

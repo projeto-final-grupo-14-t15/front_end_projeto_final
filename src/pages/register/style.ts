@@ -41,13 +41,12 @@ export const StyledRegisterMain = styled.div`
   .button input[type="radio"] {
     opacity: 0.011;
     z-index: 100;
-    
   }
 
   .button input[type="radio"]:checked + label {
     background: var(--color-brand1);
     color: var(--color-whiteFixed);
-    
+
     border-radius: 4px;
   }
 

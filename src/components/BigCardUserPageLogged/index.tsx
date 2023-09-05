@@ -36,8 +36,8 @@ export const BigCardUserLogged = ({ userId }: ICardUserProps) => {
     return initials.slice(0, 2);
   }
 
-    const { createAnnouncement } = useAnnouncements();
-    const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
+  const { createAnnouncement } = useAnnouncements();
+  const [openAnnouncementModal, setOpenAnnouncementModal] = useState(false);
 
   return (
     <StyledCardUser>

@@ -6,6 +6,7 @@ interface IButtonProps {
   textcolor: string;
   bordercolor: string;
   type: "button" | "submit" | "reset" | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   buttonFunction?: any;
 }
 
@@ -23,7 +24,7 @@ export const DefaultButton = ({
       textcolor={textcolor}
       bordercolor={bordercolor}
       type={type}
-      onClick={()=>buttonFunction()}
+      onClick={() => buttonFunction()}
     >
       {text}
     </StyledButton>

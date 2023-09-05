@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { api } from "../../services/api";
 import {
+  IAnnouncementRequestData,
   IAnnouncementsContext,
   IAnnouncementsForm,
   IAnnouncementsProviderProps,
@@ -8,6 +9,7 @@ import {
   IFilterResponse,
 } from "../../interfaces/announcementsContext.types";
 import { AxiosResponse } from "axios";
+import { toast } from "react-toastify";
 
 export const AnnouncementsContext = createContext<IAnnouncementsContext>(
   {} as IAnnouncementsContext
@@ -15,77 +17,91 @@ export const AnnouncementsContext = createContext<IAnnouncementsContext>(
 
 const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
   const [Announcements, SetAnnouncements] = useState<IFilterResponse[]>([]);
-  const [allUserAnnouncements, setAllUserAnnouncements] = useState<any>([]);
-  const [annoncementsChanged, setAnnoncementsChanged] = useState<any>(0);
+  const [allUserAnnouncements, setAllUserAnnouncements] = useState<
+    IFilterResponse[]
+  >([]);
+  const [annoncementsChanged, setAnnoncementsChanged] = useState<number>(0);
 
-  const createAnnouncement = async (dataAnnouncement): Promise<void> => {
-    dataAnnouncement.photos = dataAnnouncement.photos.map(
-      (photo) => photo.link
-      );
-      dataAnnouncement.price = Number(dataAnnouncement.price);
-      // dataAnnouncement.fipePrice = Number(dataAnnouncement.fipePrice);
-      dataAnnouncement.km = Number(dataAnnouncement.km);
-    const token = localStorage.getItem("@TOKEN");
-    if (token) {
-      try {
-        const response = await api.post("/announcements", dataAnnouncement, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        // toast.success('Veículo anunciado com sucesso!');
-      } catch (error) {
-        console.error(error);
-        // toast.error('Falha ao cadastrar casa');
-      } finally {
-        // setLoading(false);
-        setAnnoncementsChanged(annoncementsChanged + 1)
+  const createAnnouncement = async (
+    dataAnnouncement: IAnnouncementsForm
+  ): Promise<void> => {
+    if (dataAnnouncement.fipePrice) {
+      const traitAnnouncementData: IAnnouncementRequestData = {
+        ...dataAnnouncement,
+        photos: dataAnnouncement.photos.map((photo) => photo.link),
+        fipePrice: dataAnnouncement.fipePrice?.toString(),
+        price: Number(dataAnnouncement.price),
+        km: Number(dataAnnouncement.km),
+      };
+      const token = localStorage.getItem("@TOKEN");
+      if (token) {
+        try {
+          await api.post("/announcements", traitAnnouncementData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          toast.success("Veículo anunciado com sucesso!");
+        } catch (error) {
+          console.error(error);
+          toast.error("Falha ao anunciar veículo");
+        } finally {
+          setAnnoncementsChanged(annoncementsChanged + 1);
+        }
       }
     }
   };
 
-  const editAnnouncement = async (dataAnnouncement, announcementId): Promise<void> => {
-    dataAnnouncement.photos = dataAnnouncement.photos.map(
-      (photo) => photo.link
-    );
-    dataAnnouncement.price = Number(dataAnnouncement.price);
-    dataAnnouncement.fipePrice = dataAnnouncement.fipePrice.toString();
-    dataAnnouncement.km = Number(dataAnnouncement.km);
-    const token = localStorage.getItem("@TOKEN");
-    if (token) {
-      try {
-        const response = await api.patch(`/announcements/${announcementId}`, dataAnnouncement, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        // toast.success('Veículo anunciado com sucesso!');
-      } catch (error) {
-        console.error(error);
-        // toast.error('Falha ao cadastrar casa');
-      } finally {
-        // setLoading(false);
-        setAnnoncementsChanged(annoncementsChanged + 1)
+  const editAnnouncement = async (
+    dataAnnouncement: IAnnouncementsForm,
+    announcementId?: number
+  ): Promise<void> => {
+    if (dataAnnouncement.fipePrice) {
+      const traitAnnouncementData: IAnnouncementRequestData = {
+        ...dataAnnouncement,
+        photos: dataAnnouncement.photos.map((photo) => photo.link),
+        fipePrice: dataAnnouncement.fipePrice?.toString(),
+        price: Number(dataAnnouncement.price),
+        km: Number(dataAnnouncement.km),
+      };
+      const token = localStorage.getItem("@TOKEN");
+      if (token) {
+        try {
+          await api.patch(
+            `/announcements/${announcementId}`,
+            traitAnnouncementData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          toast.success("Dados do veículo atualizados com sucesso!");
+        } catch (error) {
+          console.error(error);
+          toast.error("Falha ao atualizar dados do veículo");
+        } finally {
+          setAnnoncementsChanged(annoncementsChanged + 1);
+        }
       }
     }
   };
 
-  const deleteAnnouncement = async (announcementId): Promise<void> => {
+  const deleteAnnouncement = async (announcementId: number): Promise<void> => {
     const token = localStorage.getItem("@TOKEN");
     if (token) {
       try {
-        const response = await api.delete(`/announcements/${announcementId}`, {
+        await api.delete(`/announcements/${announcementId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        // toast.success('Veículo anunciado com sucesso!');
+        toast.warning("Anúncio excluído com sucesso!");
       } catch (error) {
         console.error(error);
-        // toast.error('Falha ao cadastrar casa');
+        toast.error("Falha ao excluir anúncio");
       } finally {
-        // setLoading(false);
-        setAnnoncementsChanged(annoncementsChanged + 1)
+        setAnnoncementsChanged(annoncementsChanged + 1);
       }
     }
   };
@@ -117,10 +133,9 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
 
   const getAnnouncementsByUserId = async (userId: number) => {
     try {
-      const response: AxiosResponse<any> = await api.get(
+      const response: AxiosResponse<IFilterResponse[]> = await api.get(
         `/announcements/byannouncer/${userId}`
       );
-      console.log(response);
       setAllUserAnnouncements(response.data);
     } catch (error) {
       console.error(error);
@@ -137,7 +152,7 @@ const AnnouncementsProvider = ({ children }: IAnnouncementsProviderProps) => {
         getAnnouncementsByUserId,
         editAnnouncement,
         deleteAnnouncement,
-        annoncementsChanged
+        annoncementsChanged,
       }}
     >
       {children}

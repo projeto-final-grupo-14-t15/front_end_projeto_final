@@ -1,7 +1,6 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { StyledForm } from "./style";
 import { IAnnouncementFormProps, announcementsDataForm } from "./types";
-import { toast } from "react-toastify";
 import AnnouncementInput from "./AnnouncementInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { announcementSchema } from "./validations";
@@ -12,7 +11,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   InputAdornment,
 } from "@mui/material";
@@ -23,6 +21,7 @@ import { CssTextField, StyledParagraph } from "./AnnouncementInput/style";
 import { StyledFieldset } from "./AnnouncementInput/fieldSetStyled";
 import { DefaultButton } from "../../DefaultButton";
 import useAnnouncements from "../../../hooks/useAnnouncements";
+import { IAnnouncementsForm } from "../../../interfaces/announcementsContext.types";
 
 const AnnouncementForm = ({
   submitFunction,
@@ -37,13 +36,10 @@ const AnnouncementForm = ({
   const { deleteAnnouncement } = useAnnouncements();
 
   const [selectedCar, setSelectedCar] = useState<ICar>();
-  const [isActive, setIsActive] = useState<any>(true);
+  const [isActive, setIsActive] = useState<boolean>(true);
 
   const handleClickOpen = () => {
     setOpen(true);
-    if (announcement) {
-      console.log(announcement);
-    }
   };
 
   const handleClose = () => {
@@ -79,12 +75,10 @@ const AnnouncementForm = ({
   });
 
   useEffect(() => {
-    console.log(fields);
-    console.log(announcement, "ANUNCIO");
     if (announcement) {
       announcement.photos?.map((photo) => {
         append({
-          link: photo.link,
+          link: photo.link.toString(),
         });
       });
     } else {
@@ -92,7 +86,6 @@ const AnnouncementForm = ({
         append({
           link: "",
         });
-        console.log(fields.length);
       }
     }
     if (
@@ -103,7 +96,8 @@ const AnnouncementForm = ({
       announcement.brand &&
       announcement.year &&
       announcement.fuel &&
-      announcement.fipePrice
+      announcement.fipePrice &&
+      announcement.isActive != undefined
     ) {
       setIsActive(announcement.isActive);
       setSelectedCar({
@@ -130,7 +124,7 @@ const AnnouncementForm = ({
     );
   }, [selectedCar]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: IAnnouncementsForm) => {
     if (isCreateForm) {
       Number(data.price) > Number(selectedCar?.value)
         ? (data.higherThanFipe = true)
@@ -145,17 +139,14 @@ const AnnouncementForm = ({
     }
     if (isCreateForm) {
       submitFunction(data);
-      toast.success("Anúncio cadastrado com sucesso!");
     } else {
-      submitFunction(data, announcement?.id);
-      toast.success("Anúncio atualizado com sucesso!");
+      announcement?.id && submitFunction(data, announcement?.id);
     }
     setOpen(false);
   };
-  
-  const onDelete = (id) => {
+
+  const onDelete = (id: number) => {
     deleteAnnouncement(id);
-    toast.success("Anúncio excluído com sucesso!");
     setOpen(false);
   };
 
@@ -195,8 +186,6 @@ const AnnouncementForm = ({
                 {...register("brand")}
                 onChange={(event, value) => {
                   value !== null && setValue("brand", value);
-                  console.log(value);
-                  // setSelectedBrand(value);
                   getCarsPerBrands(value);
                 }}
                 renderInput={(params) => (
@@ -231,7 +220,6 @@ const AnnouncementForm = ({
                 loading={loadingForm}
                 onChange={(event, value) => {
                   value !== null && setValue("model", value);
-                  console.log(value);
                   setSelectedCar(carsList.find((car) => car.name === value));
                   const fipePrice = carsList.find(
                     (car) => car.name === value
@@ -305,7 +293,6 @@ const AnnouncementForm = ({
                 disabled={true}
                 InputLabelProps={{ shrink: true }}
                 onChange={(event) => {
-                  console.log("fuel value", event.target.value);
                   setValue("fuel", event.target.value);
                 }}
               />
@@ -485,7 +472,9 @@ const AnnouncementForm = ({
                 type="button"
               />
               <DefaultButton
-                buttonFunction={() => onDelete(announcement?.id)}
+                buttonFunction={() => {
+                  announcement?.id && onDelete(announcement?.id);
+                }}
                 backgroundcolor="--color-alert1"
                 bordercolor="--color-alert1"
                 textcolor="--color-alert3"

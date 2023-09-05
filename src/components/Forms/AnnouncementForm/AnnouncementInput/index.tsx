@@ -36,28 +36,44 @@ const AnnouncementInput = ({
 
   return (
     <StyledFieldset style={controlSx}>
-      <CssTextField
-        InputLabelProps={{ shrink: true }}
-        fullWidth
-        maxRows={5}
-        helperText={
-          helperText && loadValues.houseDesc?.length > 2
-            ? `${loadValues.houseDesc?.length} caracteres (min:200 max:550)`
-            : false
-        }
-        multiline={multiline ? true : false}
-        value={value}
-        {...register}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        // onChange={(event: any) => onChange(event)}
-        label={label}
-        type={type}
-        InputProps={label == "Preço" &&{
-          startAdornment: (
-            <InputAdornment position="start">R$</InputAdornment>
-          ),
-        }}
-      />
+      {label == "Preço" ? (
+        <CssTextField
+          InputLabelProps={{ shrink: true }}
+          fullWidth
+          maxRows={5}
+          helperText={
+            helperText && loadValues.houseDesc?.length > 2
+              ? `${loadValues.houseDesc?.length} caracteres (min:200 max:550)`
+              : false
+          }
+          multiline={multiline ? true : false}
+          value={value}
+          {...register}
+          label={label}
+          type={type}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">R$</InputAdornment>
+            ),
+          }}
+        />
+      ) : (
+        <CssTextField
+          InputLabelProps={{ shrink: true }}
+          fullWidth
+          maxRows={5}
+          helperText={
+            helperText && loadValues.houseDesc?.length > 2
+              ? `${loadValues.houseDesc?.length} caracteres (min:200 max:550)`
+              : false
+          }
+          multiline={multiline ? true : false}
+          value={value}
+          {...register}
+          label={label}
+          type={type}
+        />
+      )}
       {error ? (
         <StyledParagraph $fontColor="red">{error.message}</StyledParagraph>
       ) : null}

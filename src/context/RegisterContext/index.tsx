@@ -18,8 +18,6 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
   const navigate = useNavigate();
 
   async function submitFunction(data: RegisterData) {
-
-
     const newData = {
       cep: data.cep,
       state: data.state,
@@ -29,9 +27,7 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
       number: data.number,
     };
 
-
     try {
-
       const response = await api.post("/users", data);
       await api.post(`/users/${response.data.id}/address`, newData);
 

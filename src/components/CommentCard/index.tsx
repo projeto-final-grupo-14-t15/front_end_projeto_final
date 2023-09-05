@@ -1,5 +1,5 @@
 import { CommentsContext } from "../../context/CommentsContext/CommentsContext";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { IComment } from "../../interfaces/KenzieKarsContext.types";
 import { StyledCommentCard } from "./style";
 import { FaPen, FaTrashAlt } from "react-icons/fa";
@@ -8,8 +8,8 @@ interface ICommentCardProps {
   comment: IComment;
   handleOpenEdit: () => void;
   handleOpenDelete: () => void;
-  commentId: number;
-  setCommentId: React.Dispatch<React.SetStateAction<number>>;
+  commentId?: number;
+  setCommentId?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const CommentCard = ({
@@ -20,7 +20,7 @@ export const CommentCard = ({
   const loggedUserId = Number(localStorage.getItem("@USERID"));
   const { getCommentToEdit, setCommentId } = useContext(CommentsContext);
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   function getInitials(name: string) {
     const words = name.split(" ");

@@ -13,8 +13,7 @@ export const StyledSendMail = styled.div`
     width: 95%;
     margin: 0 auto;
     font-family: var(--font-family-1);
-    padding-bottom:50px;
-    
+    padding-bottom: 50px;
   }
   button {
     display: flex;
