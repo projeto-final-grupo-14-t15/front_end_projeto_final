@@ -22,6 +22,7 @@ import { StyledForm, TitleContainer } from "./styled";
 import closerIcon from "../../assets/img/closerIcon.svg";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { LoginContext } from "../../context/LoginContext";
 
 interface IProps {
   openEdit: boolean;
@@ -32,6 +33,7 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
   const mdUp = useMediaQuery(theme.breakpoints.up("sm"));
 
   const { getUser, user, updateUser } = useContext(UserContext);
+  const { attNavbar, setAttNavbar } = useContext(LoginContext);
 
   const [openDelete, setOpenDelete] = useState(false);
 
@@ -51,7 +53,7 @@ export const ModalUserEdit = ({ openEdit, setOpenEdit }: IProps) => {
 
   const submit = (data: IUserUpdate) => {
     updateUser(data, userId);
-
+    setAttNavbar(attNavbar + 1);
     setOpenEdit(!openEdit);
   };
 

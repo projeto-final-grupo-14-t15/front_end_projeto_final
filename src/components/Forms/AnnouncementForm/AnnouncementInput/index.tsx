@@ -1,6 +1,5 @@
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { CssTextField, StyledParagraph } from "./style";
-import { StyledFieldset } from "./fieldSetStyled";
 import { CSSProperties } from "react";
 import { InputAdornment } from "@mui/material";
 
@@ -25,17 +24,15 @@ const AnnouncementInput = ({
   type,
   error,
   value,
-  // onChange,
   multiline,
   helperText,
-  controlSx,
 }: IInputProps) => {
   const loadValues = {
     houseDesc: "1",
   };
 
   return (
-    <StyledFieldset style={controlSx}>
+    <>
       {label == "Preço" ? (
         <CssTextField
           InputLabelProps={{ shrink: true }}
@@ -77,7 +74,7 @@ const AnnouncementInput = ({
       {error ? (
         <StyledParagraph $fontColor="red">{error.message}</StyledParagraph>
       ) : null}
-    </StyledFieldset>
+    </>
   );
 };
 

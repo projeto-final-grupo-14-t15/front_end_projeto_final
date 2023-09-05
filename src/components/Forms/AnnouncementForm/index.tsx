@@ -18,7 +18,6 @@ import useKenzieKars from "../../../hooks/useKenzieKars";
 import React, { useEffect, useState } from "react";
 import { ICar } from "../../../interfaces/KenzieKarsContext.types";
 import { CssTextField, StyledParagraph } from "./AnnouncementInput/style";
-import { StyledFieldset } from "./AnnouncementInput/fieldSetStyled";
 import { DefaultButton } from "../../DefaultButton";
 import useAnnouncements from "../../../hooks/useAnnouncements";
 import { IAnnouncementsForm } from "../../../interfaces/announcementsContext.types";
@@ -312,7 +311,7 @@ const AnnouncementForm = ({
               />
             </span>
             <span className="pairInputBox">
-              <StyledFieldset>
+              <>
                 <CssTextField
                   id="outlined-basic"
                   label="Preço tabela FIPE"
@@ -336,7 +335,7 @@ const AnnouncementForm = ({
                     {errors.fipePrice?.message}
                   </StyledParagraph>
                 )}
-              </StyledFieldset>
+              </>
               <AnnouncementInput
                 label="Preço"
                 type="text"
@@ -351,43 +350,49 @@ const AnnouncementForm = ({
               register={register("description")}
               error={errors.description}
             />
-            {!isCreateForm && <DialogTitle>Publicado</DialogTitle>}
-            {!isCreateForm && (
-              <div className="radioContainer">
-                <span style={{ display: "flex", gap: "10px" }}>
-                  <DefaultButton
-                    buttonFunction={() => {
-                      setIsActive(true);
-                      setValue("isActive", true);
-                    }}
-                    backgroundcolor={
-                      isActive ? "--color-brand1" : "--color-grey6"
-                    }
-                    bordercolor={isActive ? "--color-brand1" : "--color-grey6"}
-                    textcolor={
-                      isActive ? "--color-whiteFixed" : "--color-grey2"
-                    }
-                    text="Sim"
-                    type="button"
-                  />
-                  <DefaultButton
-                    buttonFunction={() => {
-                      setIsActive(false);
-                      setValue("isActive", false);
-                    }}
-                    backgroundcolor={
-                      isActive ? "--color-grey6" : "--color-brand1"
-                    }
-                    bordercolor={isActive ? "--color-grey6" : "--color-brand1"}
-                    textcolor={
-                      isActive ? "--color-grey2" : "--color-whiteFixed"
-                    }
-                    text="Não"
-                    type="button"
-                  />
-                </span>
-              </div>
-            )}
+            <div className="is-active-box">
+              {!isCreateForm && <DialogTitle>Anuncio ativo:</DialogTitle>}
+              {!isCreateForm && (
+                <div className="radioContainer">
+                  <span style={{ display: "flex", gap: "10px", height: "35px" }}>
+                    <DefaultButton
+                      buttonFunction={() => {
+                        setIsActive(true);
+                        setValue("isActive", true);
+                      }}
+                      backgroundcolor={
+                        isActive ? "--color-brand1" : "--color-grey6"
+                      }
+                      bordercolor={
+                        isActive ? "--color-brand1" : "--color-grey6"
+                      }
+                      textcolor={
+                        isActive ? "--color-whiteFixed" : "--color-grey2"
+                      }
+                      text="Sim"
+                      type="button"
+                    />
+                    <DefaultButton
+                      buttonFunction={() => {
+                        setIsActive(false);
+                        setValue("isActive", false);
+                      }}
+                      backgroundcolor={
+                        isActive ? "--color-grey6" : "--color-brand1"
+                      }
+                      bordercolor={
+                        isActive ? "--color-grey6" : "--color-brand1"
+                      }
+                      textcolor={
+                        isActive ? "--color-grey2" : "--color-whiteFixed"
+                      }
+                      text="Não"
+                      type="button"
+                    />
+                  </span>
+                </div>
+              )}
+            </div>
 
             {fields.map((field, index) =>
               index == 0 ? (

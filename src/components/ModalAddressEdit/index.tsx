@@ -11,6 +11,7 @@ import { Input } from "../InputsLoginAndRegister";
 import { AddressData, addressUpdateSchema } from "./validate";
 import { TitleContainer } from "../ModalUserEdit/styled";
 import { StyledAddressEdit } from "./styled";
+import { LoginContext } from "../../context/LoginContext";
 
 interface IProps {
   modal: boolean;
@@ -20,6 +21,7 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("sm"));
   const { getUser, user, updateAddress } = useContext(UserContext);
+  const { attNavbar, setAttNavbar } = useContext(LoginContext);
 
   const userId: string | null = localStorage.getItem("@USERID");
 
@@ -41,7 +43,7 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
 
   const submit = (data: AddressData) => {
     updateAddress(data, userId);
-
+    setAttNavbar(attNavbar + 1);
     setModal(!modal);
   };
 

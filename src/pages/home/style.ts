@@ -21,5 +21,19 @@ const StyledHome = styled.main`
     width: 74%;
     gap: 45px;
   }
+
+  .no-announcements-found-box {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    h2 {
+      margin-top: 70px;
+      font-family: "Lexend";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 45px;
+    }
+  }
 `;
 export default StyledHome;

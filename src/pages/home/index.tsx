@@ -46,7 +46,9 @@ export const Home = () => {
             <ProductCard key={announcement.id} announcement={announcement} />
           ))}
           {currentAnnouncements.length == 0 && (
-            <h2>Não encontramos nenhum anuncio com os filtros escolhidos</h2>
+            <div className="no-announcements-found-box">
+              <h2>Não encontramos nenhum anúncio com os filtros escolhidos</h2>
+            </div>
           )}
         </ul>
       </section>

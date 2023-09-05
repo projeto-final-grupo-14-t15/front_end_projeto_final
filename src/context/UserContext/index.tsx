@@ -45,7 +45,6 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         },
       });
       response.data;
-      window.location.reload();
       toast.success('Endereço atualizado com sucesso')
     } catch (error) {
       console.error(error);
@@ -64,7 +63,6 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         }
       );
       response.data;
-      window.location.reload();
       toast.success('Dados do usuário atualizados com sucesso')
     } catch (error) {
       console.error(error);
