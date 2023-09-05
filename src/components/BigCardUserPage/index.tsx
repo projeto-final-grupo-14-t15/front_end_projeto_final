@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { StyledCardUser } from "./style";
 import { api } from "../../services/api";
+import { IUser } from "../../interfaces/IUser";
 
 interface ICardUserProps {
   userId: undefined | string;
@@ -15,7 +16,7 @@ export const BigCardUser = ({ userId }: ICardUserProps) => {
         const response = await api.get(`/users/${userId}/`);
         setUserAnnouncer(response.data);
       } catch (error) {
-        console.log("ERRO AO OBTER INFORMAÇÕES DESSE USER");
+        console.error(error, "ERRO AO OBTER INFORMAÇÕES DESSE USER");
       }
     };
     getUserInfo(userId);

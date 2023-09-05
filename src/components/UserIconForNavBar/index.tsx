@@ -1,3 +1,4 @@
+import { IUser } from "../../interfaces/IUser";
 import { StyledUserIcon } from "./style";
 
 interface IUserNameProps {

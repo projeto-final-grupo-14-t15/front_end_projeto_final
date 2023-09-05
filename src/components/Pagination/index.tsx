@@ -42,13 +42,22 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
     <StyledPagination className="pagination-btn-box">
       <button
         disabled={currentPage == 1}
-        onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
+        onClick={() => {
+          currentPage > 1 && setCurrentPage(currentPage - 1);
+          handleClickScroll();
+        }}
       >
         <MdOutlineKeyboardDoubleArrowLeft />
       </button>
       {currentPage > 4 && (
         <>
-          <p className="page-nav" onClick={() => setCurrentPage(1)}>
+          <p
+            className="page-nav"
+            onClick={() => {
+              setCurrentPage(1);
+              handleClickScroll();
+            }}
+          >
             {1}
           </p>
           <p
@@ -211,7 +220,13 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
           >
             ...
           </p>
-          <p className="page-nav" onClick={() => setCurrentPage(maxPages)}>
+          <p
+            className="page-nav"
+            onClick={() => {
+              setCurrentPage(maxPages);
+              handleClickScroll();
+            }}
+          >
             {maxPages}
           </p>
         </>
@@ -220,6 +235,7 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
         disabled={currentPage >= maxPages}
         onClick={() => {
           setCurrentPage(currentPage + 1);
+          handleClickScroll();
         }}
       >
         <MdOutlineKeyboardDoubleArrowRight />

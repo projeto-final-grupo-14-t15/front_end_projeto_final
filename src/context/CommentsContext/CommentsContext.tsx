@@ -31,7 +31,6 @@ export default function CommentsProvider({ children }: IChildrenProps) {
             },
           }
         );
-        console.log(response);
         const newComment = response.data;
         setComments([...comments, newComment]);
       } catch (error) {

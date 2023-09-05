@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { StyledUserIcon } from "./style";
+import { IUser } from "../../interfaces/IUser";
 
 interface IUserNameProps {
   user: IUser;
