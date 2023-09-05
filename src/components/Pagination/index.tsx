@@ -5,7 +5,13 @@ import {
 } from "react-icons/md";
 import { StyledPagination } from "./style";
 
-const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
+interface IPagination {
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+   currentPage: number;
+   maxPages: number;
+}
+
+const Pagination = ({ setCurrentPage, currentPage, maxPages }: IPagination) => {
  
   const handleClickScroll = () => {
     const element = document.getElementById('announcements-list');
@@ -15,9 +21,9 @@ const Pagination = ({ setCurrentPage, currentPage, maxPages }) => {
       const startingY = window.pageYOffset;
       const diff = elementTop;
       const duration = 370; 
-      let start;
-  
-      const scrollAnimation = (timestamp) => {
+      let start: number | null = null; 
+        
+      const scrollAnimation = (timestamp: number) => {
         if (!start) start = timestamp;
         const timeElapsed = timestamp - start;
         const percentage = Math.min(timeElapsed / duration, 1);
