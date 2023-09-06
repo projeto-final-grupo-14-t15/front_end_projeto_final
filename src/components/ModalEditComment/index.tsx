@@ -73,14 +73,26 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
                 marginRight: "7px",
               }}
             />
-            <DefaultButton
-              text="Comentar"
-              backgroundcolor="--color-brand1"
-              bordercolor="--color-brand1"
-              type="submit"
-              textcolor="--color-grey10"
-              buttonFunction={() => null}
-            />
+            <div className="btns-box">
+              <DefaultButton
+                text="Cancelar"
+                backgroundcolor="--color-whiteFixed"
+                bordercolor="--color-brand1"
+                textcolor="--color-brand1"
+                type="button"
+                buttonFunction={() => {
+                  setModal(!modal);
+                }}
+              />
+              <DefaultButton
+                text="Salvar"
+                backgroundcolor="--color-brand1"
+                bordercolor="--color-brand1"
+                type="submit"
+                textcolor="--color-grey10"
+                buttonFunction={() => null}
+              />
+            </div>
           </form>
         </StyledCommentEdit>
       </Dialog>

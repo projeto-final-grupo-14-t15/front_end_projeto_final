@@ -37,4 +37,10 @@ export const StyledCommentEdit = styled.div`
     margin-top: 13px;
     margin-right: 13px;
   }
+
+  .btns-box{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
 `;
