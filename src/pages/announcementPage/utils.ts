@@ -13,8 +13,8 @@ export const formatNumber = (number: number | string) => {
   return formattedNumber;
 };
 
-export const handleClickWhatsApp = (model: string, year: string) => {
-  const phoneNumber = "+553399205945";
+export const handleClickWhatsApp = (model: string, year: string, telephone: string) => {
+  const phoneNumber = `+55${telephone}`;
   const message = encodeURIComponent(
     `Olá! Gostaria de mais informações sobre o ${model}, ano ${year}!`
   );

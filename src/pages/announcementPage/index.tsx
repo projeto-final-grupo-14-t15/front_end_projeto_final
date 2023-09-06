@@ -51,7 +51,7 @@ export const AnnouncementPage = () => {
   }, []);
 
   useEffect(() => {
-    getAllCommentsOfAnnoucement(announcementId);
+    getAllCommentsOfAnnoucement(Number(announcementId).toString());
   }, []);
 
   const handleSpanClick = (comment: string) => {
@@ -64,10 +64,10 @@ export const AnnouncementPage = () => {
 
   const [textComment, setTextComment] = useState("");
 
-  const handleSubmitNewComment = (event: any) => {
+  const handleSubmitNewComment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textComment.trim().length !== 0) {
-      registerNewComment(textComment, announcementId);
+      registerNewComment(textComment, Number(announcementId));
     }
   };
 
@@ -86,7 +86,7 @@ export const AnnouncementPage = () => {
           <main>
             <section className="container__main-info">
               <div className="container-div container__cover-photo">
-                <img src={announcement.photos[0].link} alt="" />
+                <img src={announcement.photos[0].link.toString()} alt="" />
               </div>
 
               <div className="container-div container__car-info">
@@ -107,7 +107,7 @@ export const AnnouncementPage = () => {
                   textcolor="--color-grey10"
                   bordercolor="--color-brand1"
                   buttonFunction={() =>
-                    handleClickWhatsApp(announcement?.model, announcement?.year)
+                    handleClickWhatsApp(announcement?.model, announcement?.year, announcement?.user.telephone)
                   }
                 />
               </div>
@@ -191,7 +191,6 @@ export const AnnouncementPage = () => {
                         bordercolor="--color-brand1"
                         type="submit"
                         textcolor="--color-grey10"
-                        buttonFunction={null}
                       />
                     </form>
                   </div>
