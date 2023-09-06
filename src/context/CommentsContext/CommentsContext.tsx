@@ -17,7 +17,7 @@ export default function CommentsProvider({ children }: IChildrenProps) {
 
   const registerNewComment = async (
     dataComment: string,
-    announcementeId: number
+    announcementeId: string | undefined
   ): Promise<void> => {
     const token = localStorage.getItem("@TOKEN");
     if (token) {
@@ -54,7 +54,7 @@ export default function CommentsProvider({ children }: IChildrenProps) {
     }
   };
 
-  const getAllCommentsOfAnnoucement = async (announcementId: string) => {
+  const getAllCommentsOfAnnoucement = async (announcementId: string | undefined) => {
     try {
       const response = await api.get(
         `/announcements/${announcementId}/comment`
