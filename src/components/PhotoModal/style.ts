@@ -4,6 +4,8 @@ export const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  user-select: none;
 
   .modal {
     display: flex;
@@ -32,6 +34,7 @@ export const StyledModal = styled.div`
   }
 
   .pagination {
+    user-select: none;
     font-size: 16px;
     padding-bottom: 10px;
   }

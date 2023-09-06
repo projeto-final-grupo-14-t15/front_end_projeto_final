@@ -5,6 +5,7 @@ export const StyledPagination = styled.div`
   align-items: center;
   justify-content: center;
   height: 50px;
+  user-select: none;
   button {
     display: flex;
     align-items: center;
@@ -33,8 +34,7 @@ export const StyledPagination = styled.div`
 
   &.pagination-btn-box {
     display: flex;
-    align-items: center;
-
+    align-items: center; 
     font-size: 13px;
     gap: 13px;
     font-weight: 400;
