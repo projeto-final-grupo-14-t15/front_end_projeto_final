@@ -67,7 +67,7 @@ export const AnnouncementPage = () => {
   const handleSubmitNewComment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textComment.trim().length !== 0) {
-      registerNewComment(textComment, Number(announcementId));
+      registerNewComment(textComment, announcementId);
     }
   };
 
