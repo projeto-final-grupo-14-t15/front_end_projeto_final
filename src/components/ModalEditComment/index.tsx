@@ -82,6 +82,7 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
               />
             </form>
           </div>
+
         </StyledCommentEdit>
       </Dialog>
     </>

@@ -1,12 +1,13 @@
 import { Input } from "../../components/InputsLoginAndRegister";
 import { DefaultButton } from "../../components/DefaultButton";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useContext } from "react";
 import { ThemeH5_500 } from "../../styles/Typography";
 import { StyledSendMail } from "./style";
 import { UserContext } from "../../context/UserContext";
 import { verifyEmailSchema } from "../recoverypassword/validator";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { iMail } from "../../interfaces/IUserContext";
 
 export const SendMail = () => {
   const {
@@ -20,12 +21,15 @@ export const SendMail = () => {
 
   const { submitMail } = useContext(UserContext);
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    submitMail(data as iMail);
+  };
   return (
     <StyledSendMail>
       <div className="form_Container">
         <ThemeH5_500>Recuperacao de senha</ThemeH5_500>
         <p>Enviaremos um email de recuperação para o email cadastrado</p>
-        <form action="" onSubmit={handleSubmit(submitMail)}>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
           <Input
             labelText="Email cadastrado"
             placeHolder="Digitar email"

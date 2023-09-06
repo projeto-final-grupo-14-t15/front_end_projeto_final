@@ -7,6 +7,10 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: 23px;
 
+  .is-active-box{
+    display: flex;
+    align-items: center;
+  }
   .radioContainer {
     display: flex;
     justify-content: space-between;

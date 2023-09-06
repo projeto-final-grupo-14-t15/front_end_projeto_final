@@ -2,14 +2,17 @@ import styled from "styled-components";
 export const StyledCommentDelete = styled.div`
   height: 150px;
   width: 375px;
+  padding: 13px;
   .addressInfoContainer {
     display: flex;
     width: 100%;
     margin: 0 auto;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 13px;
   }
   .addressInfoContainer fieldset input {
-    width: 152px;
+    width: 100%;
+    display: flex;
   }
   input {
     width: 90%;
@@ -24,7 +27,7 @@ export const StyledCommentDelete = styled.div`
     margin-top: 37px;
   }
   form {
-    margin-top: 50px;
+    margin-top: 30px;
   }
   p {
     width: 90%;

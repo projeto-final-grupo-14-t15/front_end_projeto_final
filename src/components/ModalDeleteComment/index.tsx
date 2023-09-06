@@ -58,12 +58,12 @@ export const ModalCommentDelete = ({ modalDelete, setModalDelete }: IProps) => {
             <div className="addressInfoContainer">
               <DefaultButton
                 text="Deletar Comentário"
-                bordercolor="--color-brand1"
-                backgroundcolor="--color-brand2"
-                textcolor="--color-whiteFixed"
+                bordercolor="--color-alert1"
+                backgroundcolor="--color-whiteFixed"
+                textcolor="--color-alert1"
                 type="submit"
               />
-              <div>
+             <div>
                 <button
                   className="cancelButton"
                   onClick={(e) => {
@@ -74,6 +74,7 @@ export const ModalCommentDelete = ({ modalDelete, setModalDelete }: IProps) => {
                   Cancelar
                 </button>
               </div>
+
             </div>
           </form>
         </StyledCommentDelete>

@@ -141,8 +141,7 @@ export const AnnouncementPage = () => {
                   </span>
                   <h2> {announcement.user.name} </h2>
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
+                    {announcement.user.description}
                   </p>
                   <DefaultButton
                     type="button"
@@ -248,8 +247,7 @@ export const AnnouncementPage = () => {
                 </span>
                 <h2> {announcement.user.name}</h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
+                  {announcement.user.description}
                 </p>
                 <DefaultButton
                   type="button"

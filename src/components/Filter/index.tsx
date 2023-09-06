@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { StyledFilter } from "./style";
 import { Slider } from "@mui/material";
-import { IFilterData } from "../../interfaces/announcementsContext.types";
+import { IFilterData, IFilterResponse } from "../../interfaces/announcementsContext.types";
 import { AnnouncementsContext } from "../../context/AnnouncementsContext";
 
 export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<React.SetStateAction<number>> }) => {
@@ -40,11 +40,11 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
     setCurrentPage(1);
   }, [dataFilter]);
 
-  function getUniqueBrands(carList: any) {
-    const uniqueBrands: any = [];
+  function getUniqueBrands(carList: IFilterResponse[]) {
+    const uniqueBrands: string[] = [];
 
-    carList.forEach((car: any) => {
-      if (!uniqueBrands.includes(car.brand)) {
+    carList.forEach((car: IFilterResponse) => {
+      if (car.brand !== undefined && !uniqueBrands.includes(car.brand)) {
         uniqueBrands.push(car.brand);
       }
     });
@@ -53,11 +53,11 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
   }
   const brandsRegistered = getUniqueBrands(Announcements);
 
-  function getUniqueModels(carList: any) {
-    const uniqueModels: any = [];
+  function getUniqueModels(carList: IFilterResponse[]) {
+    const uniqueModels: string[] = [];
 
-    carList.forEach((car: any) => {
-      if (!uniqueModels.includes(car.model)) {
+    carList.forEach((car: IFilterResponse) => {
+      if (car.model !== undefined && !uniqueModels.includes(car.model)) {
         uniqueModels.push(car.model);
       }
     });
@@ -66,11 +66,11 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
   }
   const modelsRegistered = getUniqueModels(Announcements);
 
-  function getUniqueColors(carList: any) {
-    const uniqueColors: any = [];
+  function getUniqueColors(carList: IFilterResponse[]) {
+    const uniqueColors: string[] = [];
 
-    carList.forEach((car: any) => {
-      if (!uniqueColors.includes(car.color)) {
+    carList.forEach((car: IFilterResponse) => {
+      if (car.color !== undefined && !uniqueColors.includes(car.color)) {
         uniqueColors.push(car.color);
       }
     });
@@ -79,11 +79,11 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
   }
   const colorsRegistered = getUniqueColors(Announcements);
 
-  function getUniqueYear(carList: any) {
-    const uniqueYear: any = [];
+  function getUniqueYear(carList: IFilterResponse[]) {
+    const uniqueYear: string[] = [];
 
-    carList.forEach((car: any) => {
-      if (!uniqueYear.includes(car.year)) {
+    carList.forEach((car: IFilterResponse) => {
+      if (car.year !== undefined && !uniqueYear.includes(car.year)) {
         uniqueYear.push(car.year);
       }
     });
@@ -92,11 +92,11 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
   }
   const yearRegistered = getUniqueYear(Announcements);
 
-  function getUniqueFuel(carList: any) {
-    const uniqueFuel: any = [];
+  function getUniqueFuel(carList: IFilterResponse[]) {
+    const uniqueFuel: string[] = [];
 
-    carList.forEach((car: any) => {
-      if (!uniqueFuel.includes(car.fuel)) {
+    carList.forEach((car: IFilterResponse) => {
+      if (car.fuel !== undefined && !uniqueFuel.includes(car.fuel)) {
         uniqueFuel.push(car.fuel);
       }
     });
@@ -105,16 +105,16 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
   }
   const fuelRegistered = getUniqueFuel(Announcements);
 
-  function findLowestAndHighestPrices(carList: any) {
+  function findLowestAndHighestPrices(carList: IFilterResponse[]) {
     let lowestPrice = Number.MAX_SAFE_INTEGER;
     let highestPrice = Number.MIN_SAFE_INTEGER;
 
-    carList.forEach((car: any) => {
-      if (car.price < lowestPrice) {
-        lowestPrice = car.price;
+    carList.forEach((car: IFilterResponse) => {
+      if (Number(car.price) < lowestPrice) {
+        lowestPrice = Number(car.price);
       }
-      if (car.price > highestPrice) {
-        highestPrice = car.price;
+      if (Number(car.price) > highestPrice) {
+        highestPrice = Number(car.price);
       }
     });
 
@@ -123,16 +123,16 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
 
   const lowestAndHighestPrices = findLowestAndHighestPrices(Announcements);
 
-  function findLowestAndHighestKm(carList: any) {
+  function findLowestAndHighestKm(carList: IFilterResponse[]) {
     let lowestKm = Number.MAX_SAFE_INTEGER;
     let highestKm = Number.MIN_SAFE_INTEGER;
 
-    carList.forEach((car: any) => {
-      if (car.km < lowestKm) {
-        lowestKm = car.km;
+    carList.forEach((car: IFilterResponse) => {
+      if (Number(car.km) < lowestKm) {
+        lowestKm = Number(car.km);
       }
-      if (car.km > highestKm) {
-        highestKm = car.km;
+      if (Number(car.km) > highestKm) {
+        highestKm = Number(car.km);
       }
     });
 
@@ -191,7 +191,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
       <header className="filter-header">
         <div>
           <h2> Marcas </h2>
-          {brandsRegistered.map((brand: any) => (
+          {brandsRegistered.map((brand: string) => (
             <button
               className="filter-button"
               key={brand}
@@ -204,7 +204,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
 
         <div>
           <h2> Modelos </h2>
-          {modelsRegistered.map((model: any) => (
+          {modelsRegistered.map((model: string) => (
             <button
               key={model}
               onClick={() => handleFilterFieldClick("model", model)}
@@ -217,7 +217,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
 
         <div>
           <h2> Cor </h2>
-          {colorsRegistered.map((color: any) => (
+          {colorsRegistered.map((color: string) => (
             <button
               key={color}
               onClick={() => handleFilterFieldClick("color", color)}
@@ -230,7 +230,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
 
         <div>
           <h2> Ano </h2>
-          {yearRegistered.map((year: any) => (
+          {yearRegistered.map((year: string) => (
             <button
               key={year}
               onClick={() => handleFilterFieldClick("year", year)}
@@ -242,7 +242,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
         </div>
 
         <h2> Combustivel </h2>
-        {fuelRegistered.map((fuel: any) => (
+        {fuelRegistered.map((fuel: string) => (
           <button
             key={fuel}
             onClick={() => handleFilterFieldClick("fuel", fuel)}
@@ -263,7 +263,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
           onChangeCommitted={(event, value) =>
             handleChangeCommitedKm(
               event as React.SyntheticEvent<Element, Event>,
-              value
+              value as number[]
             )
           }
           valueLabelDisplay="auto"
@@ -283,7 +283,7 @@ export const Filter = ({ setCurrentPage }: { setCurrentPage: React.Dispatch<Reac
           onChangeCommitted={(event, value) =>
             handleChangeCommitedPrice(
               event as React.SyntheticEvent<Element, Event>,
-              value
+              value as number[] 
             )
           }
           valueLabelDisplay="auto"
