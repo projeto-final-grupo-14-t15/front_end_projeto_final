@@ -51,7 +51,7 @@ export const AnnouncementPage = () => {
   }, []);
 
   useEffect(() => {
-    getAllCommentsOfAnnoucement(Number(announcementId).toString());
+    getAllCommentsOfAnnoucement(announcementId);
   }, []);
 
   const handleSpanClick = (comment: string) => {
@@ -64,10 +64,10 @@ export const AnnouncementPage = () => {
 
   const [textComment, setTextComment] = useState("");
 
-  const handleSubmitNewComment = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitNewComment = (event: any) => {
     event.preventDefault();
     if (textComment.trim().length !== 0) {
-      registerNewComment(textComment, Number(announcementId));
+      registerNewComment(textComment, announcementId);
     }
   };
 
@@ -86,7 +86,14 @@ export const AnnouncementPage = () => {
           <main>
             <section className="container__main-info">
               <div className="container-div container__cover-photo">
-                <img src={announcement.photos[0].link.toString()} alt="" />
+
+             { 
+                typeof announcement!.photos[0].link == 'string'
+                ?
+               <img src={announcement!.photos[0].link} alt="" />
+               :
+               null
+             }
               </div>
 
               <div className="container-div container__car-info">
@@ -107,7 +114,7 @@ export const AnnouncementPage = () => {
                   textcolor="--color-grey10"
                   bordercolor="--color-brand1"
                   buttonFunction={() =>
-                    handleClickWhatsApp(announcement?.model, announcement?.year, announcement?.user.telephone)
+                    handleClickWhatsApp(announcement?.model, announcement?.year, announcement.user.telephone)
                   }
                 />
               </div>
@@ -191,6 +198,7 @@ export const AnnouncementPage = () => {
                         bordercolor="--color-brand1"
                         type="submit"
                         textcolor="--color-grey10"
+                        buttonFunction={()=>null}
                       />
                     </form>
                   </div>
