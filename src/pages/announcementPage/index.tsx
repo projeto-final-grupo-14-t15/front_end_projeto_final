@@ -163,7 +163,6 @@ export const AnnouncementPage = () => {
                       comment={comment}
                       handleOpenEdit={handleOpenEdit}
                       handleOpenDelete={handleOpenDelete}
-
                     />
                   ))}
                 </ul>

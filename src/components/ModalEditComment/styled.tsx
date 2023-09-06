@@ -1,29 +1,23 @@
 import styled from "styled-components";
 export const StyledCommentEdit = styled.div`
-  height: 100%;
+  height: 200x;
   width: 375px;
-  padding: 13px;
-  .addressInfoContainer {
-    display: flex;
-    width: 100%;
-    margin: 0 auto;
-    justify-content: space-around;
+  .container__form-comment {
+    position: relative;
   }
-  .addressInfoContainer fieldset input {
-    width: 100%;
+
+  .container__form-comment button {
+    position: absolute;
+    right: 60px;
+    bottom: 4px;
+
   }
-  input {
-    width: 100%;
-  }
-  label {
-    width: 90%;
-  }
-  .buttonContainer {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 37px;
-  }
+
   form {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     margin-top: 30px;
