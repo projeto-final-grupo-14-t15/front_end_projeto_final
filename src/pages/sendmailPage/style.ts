@@ -4,7 +4,7 @@ export const StyledSendMail = styled.div`
   background-color: var(--color-grey8);
   height: 80vh;
   font-family: var(--font-family-1);
-  padding-top: 200px;
+  padding-top: 100px;
   padding-bottom: 100px;
 
   .form_Container {
