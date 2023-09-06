@@ -5,6 +5,7 @@ export const StyledPagination = styled.div`
   align-items: center;
   justify-content: center;
   height: 50px;
+  user-select: none;
   button {
     display: flex;
     align-items: center;
