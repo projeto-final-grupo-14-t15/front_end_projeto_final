@@ -58,28 +58,30 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
               onClick={() => setModal(!modal)}
             />
           </TitleContainer>
-          <form
-            action=""
-            onSubmit={(event) => handleSubmitUpdateComment(event)}
-          >
-            <TextField
-              id="outlined-multiline-static"
-              multiline
-              rows={4}
-              placeholder="Comente aqui"
-              value={textComment} // Use value prop to set the value of TextField
-              onChange={(e) => setTextComment(e.target.value)} // Update textComment when the text changes
-              style={{ width: "90%" }}
-            />
-            <DefaultButton
-              text="Comentar"
-              backgroundcolor="--color-brand1"
-              bordercolor="--color-brand1"
-              type="submit"
-              textcolor="--color-grey10"
-              buttonFunction={()=>null}
-            />
-          </form>
+          <div className="container__form-comment">
+            <form
+              action=""
+              onSubmit={(event) => handleSubmitUpdateComment(event)}
+            >
+              <TextField
+                id="outlined-multiline-static"
+                multiline
+                rows={4}
+                placeholder="Comente aqui"
+                value={textComment} // Use value prop to set the value of TextField
+                onChange={(e) => setTextComment(e.target.value)} // Update textComment when the text changes
+                style={{ width: "90%" }}
+              />
+              <DefaultButton
+                text="Comentar"
+                backgroundcolor="--color-brand1"
+                bordercolor="--color-brand1"
+                type="submit"
+                textcolor="--color-grey10"
+                buttonFunction={() => null}
+              />
+            </form>
+          </div>
         </StyledCommentEdit>
       </Dialog>
     </>

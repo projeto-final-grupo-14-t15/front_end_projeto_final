@@ -63,14 +63,17 @@ export const ModalCommentDelete = ({ modalDelete, setModalDelete }: IProps) => {
                 textcolor="--color-whiteFixed"
                 type="submit"
               />
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setModalDelete(!modalDelete);
-                }}
-              >
-                Cancelar
-              </button>
+              <div>
+                <button
+                  className="cancelButton"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setModalDelete(!modalDelete);
+                  }}
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
           </form>
         </StyledCommentDelete>

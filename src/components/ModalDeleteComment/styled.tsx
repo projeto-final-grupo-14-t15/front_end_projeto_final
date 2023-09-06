@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const StyledCommentDelete = styled.div`
-  height: 200px;
+  height: 150px;
   width: 375px;
   .addressInfoContainer {
     display: flex;
@@ -29,5 +29,16 @@ export const StyledCommentDelete = styled.div`
   p {
     width: 90%;
     margin: 0 auto;
+  }
+  .cancelButton {
+    padding: 8px 15px;
+    background-color: black;
+    color: var(--color-whiteFixed);
+    transition: 400ms;
+    font-size: 14px;
+    font-weight: 500;
+    width: fit-content;
+    border-radius: 4px;
+    border: 1px solid black;
   }
 `;
