@@ -2,6 +2,7 @@ import styled from "styled-components";
 export const StyledCommentEdit = styled.div`
   height: 200x;
   width: 375px;
+  padding: 13px 7px 0 7px;
   .container__form-comment {
     position: relative;
   }
@@ -20,7 +21,7 @@ export const StyledCommentEdit = styled.div`
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 15px;
   }
   p {
     width: 90%;
@@ -30,5 +31,11 @@ export const StyledCommentEdit = styled.div`
     align-self: flex-end;
     margin-top: 13px;
     margin-right: 13px;
+  }
+
+  .btns-box{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
   }
 `;

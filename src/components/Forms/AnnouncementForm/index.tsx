@@ -184,7 +184,8 @@ const AnnouncementForm = ({
                   options={allBrands}
                   filterSelectedOptions
                   {...register("brand")}
-                  onChange={(event, value) => {
+                  onChange={(event,value) => {
+                    console.log(event)
                     value !== null && setValue("brand", value);
                     getCarsPerBrands(value);
                   }}
@@ -222,6 +223,7 @@ const AnnouncementForm = ({
                 disabled={modelsList.length === 0}
                 loading={loadingForm}
                 onChange={(event, value) => {
+                  console.log(event)
                   value !== null && setValue("model", value);
                   setSelectedCar(carsList.find((car) => car.name === value));
                   const fipePrice = carsList.find(
