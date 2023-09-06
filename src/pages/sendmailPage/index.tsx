@@ -13,7 +13,6 @@ export const SendMail = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm({
     mode: "onBlur",
     resolver: zodResolver(verifyEmailSchema),
@@ -35,7 +34,6 @@ export const SendMail = () => {
             placeHolder="Digitar email"
             type="email"
             register={register("email")}
-            errors={errors.email}
           />
           <DefaultButton
             text="Enviar email"
