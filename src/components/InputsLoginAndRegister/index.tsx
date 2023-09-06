@@ -5,8 +5,7 @@ import { StyledFieldset } from "./styledInput";
 interface IInputProps {
   labelText?: string;
   placeHolder?: string;
-  errors?: any;
-  // errors?: FieldError;
+  errors?: FieldError;
   type: undefined | "email" | "password" | "text" | "checkbox" | "radio";
   register?: UseFormRegisterReturn<string>;
   value?: string;

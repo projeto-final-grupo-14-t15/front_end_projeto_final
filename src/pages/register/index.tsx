@@ -2,10 +2,10 @@ import { Input } from "../../components/InputsLoginAndRegister";
 
 import { DefaultButton } from "../../components/DefaultButton";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { FieldError, FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useContext } from "react";
 import { RegisterContext } from "../../context/RegisterContext";
-import { registerSchema } from "./validator";
+import { RegisterData, registerSchema } from "./validator";
 import { StyledRegisterMain } from "./style";
 import { ThemeH5_500, ThemeP2_500 } from "../../styles/Typography";
 
@@ -20,6 +20,11 @@ export const Register = () => {
 
   const { submitFunction } = useContext(RegisterContext);
 
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    submitFunction(data as RegisterData);
+  };
+
   return (
     <StyledRegisterMain>
       <div className="form_Container">
@@ -28,48 +33,48 @@ export const Register = () => {
           Informações pessoais
         </ThemeP2_500>
 
-        <form action="" onSubmit={handleSubmit(submitFunction)}>
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
           <Input
             labelText="Nome"
             placeHolder="Ex: Samuel Leão"
             type="text"
             register={register("name")}
-            errors={errors.name}
+            errors={errors.name as FieldError}
           />
           <Input
             labelText="Email"
             placeHolder="Ex: samuel@kenzie.com.br"
             type="email"
             register={register("email")}
-            errors={errors.email}
+            errors={errors.email as FieldError}
           />
           <Input
             labelText="CPF"
             placeHolder="Ex: samuel@kenzie.com.br"
             type="text"
             register={register("cpf")}
-            errors={errors.cpf}
+            errors={errors.cpf as FieldError}
           />
           <Input
             labelText="Celular"
             placeHolder="(DDD) 90000-0000"
             type="text"
             register={register("telephone")}
-            errors={errors.telephone}
+            errors={errors.telephone as FieldError}
           />
           <Input
             labelText="Data de nascimento"
             placeHolder="00/00/00"
             type="text"
             register={register("dateOfBirth")}
-            errors={errors.dateOfBirth}
+            errors={errors.dateOfBirth as FieldError}
           />
           <Input
             labelText="Descrição"
             placeHolder="Digitar descrição"
             type="text"
             register={register("description")}
-            errors={errors.description}
+            errors={errors.description as FieldError}
           />
 
           <ThemeP2_500 className="accountType" color="--color-grey0">
@@ -149,7 +154,7 @@ export const Register = () => {
             placeHolder="Digitar senha"
             type="password"
             register={register("password")}
-            errors={errors.password}
+            errors={errors.password as FieldError}
           />
 
           <DefaultButton

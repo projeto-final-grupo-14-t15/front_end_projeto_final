@@ -14,6 +14,8 @@ interface LoginContextType {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   handleLogout: () => void;
   userInfo: IUser | null;
+  setAttNavbar: React.Dispatch<React.SetStateAction<number>>;
+  attNavbar: number;
 }
 
 export const LoginContext = createContext({} as LoginContextType);
@@ -91,6 +93,8 @@ export const LoginProvider = ({ children }: IDefaultProviderProps) => {
         setLoading,
         handleLogout,
         userInfo,
+        setAttNavbar,
+        attNavbar
       }}
     >
       {children}

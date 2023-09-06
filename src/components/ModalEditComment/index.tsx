@@ -69,7 +69,9 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
               placeholder="Comente aqui"
               value={textComment} // Use value prop to set the value of TextField
               onChange={(e) => setTextComment(e.target.value)} // Update textComment when the text changes
-              style={{ width: "90%" }}
+              style={{
+                marginRight: "7px",
+              }}
             />
             <DefaultButton
               text="Comentar"
@@ -77,7 +79,7 @@ export const ModalCommentEdit = ({ modal, setModal }: IProps) => {
               bordercolor="--color-brand1"
               type="submit"
               textcolor="--color-grey10"
-              buttonFunction={()=>null}
+              buttonFunction={() => null}
             />
           </form>
         </StyledCommentEdit>

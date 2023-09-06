@@ -6,7 +6,7 @@ import { ModalUserEdit } from "../ModalUserEdit";
 import { ModalAddressEdit } from "../ModalAddressEdit";
 import useHeader from "../../hooks/useHeader";
 
-export const DropDownUserMenu = ({ setVisibility }: any) => {
+export const DropDownUserMenu = ({ setVisibility }: {setVisibility: () => void}) => {
   const { handleLogout } = useContext(LoginContext);
 
   const { swapBurgerIcon } = useHeader();

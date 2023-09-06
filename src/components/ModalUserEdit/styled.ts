@@ -13,4 +13,5 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 27px;
 `;

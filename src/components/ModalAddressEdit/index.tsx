@@ -1,16 +1,16 @@
 import { Button, Dialog, DialogTitle } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import closerIcon from "../../assets/img/closerIcon.svg";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { ThemeP2_500 } from "../../styles/Typography";
 import { Input } from "../InputsLoginAndRegister";
 import { AddressData, addressUpdateSchema } from "./validate";
 import { TitleContainer } from "../ModalUserEdit/styled";
 import { StyledAddressEdit } from "./styled";
+import { LoginContext } from "../../context/LoginContext";
 
 interface IProps {
   modal: boolean;
@@ -20,6 +20,7 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up("sm"));
   const { getUser, user, updateAddress } = useContext(UserContext);
+  const { attNavbar, setAttNavbar } = useContext(LoginContext);
 
   const userId: string | null = localStorage.getItem("@USERID");
 
@@ -41,8 +42,13 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
 
   const submit = (data: AddressData) => {
     updateAddress(data, userId);
-
+    setAttNavbar(attNavbar + 1);
     setModal(!modal);
+  };
+
+  
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    submit(data as AddressData);
   };
 
   return (
@@ -69,11 +75,8 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
           <form
             action="
         "
-            onSubmit={handleSubmit(submit)}
+            onSubmit={handleSubmit(onSubmit)}
           >
-            <ThemeP2_500 className="accountType" color="--color-grey0">
-              Informações de endereço
-            </ThemeP2_500>
             <Input
               labelText="CEP"
               placeHolder="00000.000"
@@ -128,6 +131,7 @@ export const ModalAddressEdit = ({ modal, setModal }: IProps) => {
                 sx={{
                   bgcolor: "#DEE2E6",
                   color: "#495057",
+                  border: "1px solid #495057",
                   fontSize: mdUp ? "1.2rem" : "0.9rem",
                   width: mdUp ? "123px" : "6rem",
                   height: mdUp ? "48px" : "6rem",
