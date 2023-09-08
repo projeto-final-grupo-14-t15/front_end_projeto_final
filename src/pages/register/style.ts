@@ -25,6 +25,7 @@ export const StyledRegisterMain = styled.div`
     position: relative;
     cursor: pointer;
     border: 1.5px solid var(--color-grey4);
+    border-radius: 4px;
   }
 
   .button label,
@@ -46,8 +47,8 @@ export const StyledRegisterMain = styled.div`
   .button input[type="radio"]:checked + label {
     background: var(--color-brand1);
     color: var(--color-whiteFixed);
-
     border-radius: 4px;
+
   }
 
   .button label {

@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RegisterData } from "../../pages/register/validator";
 import { api } from "../../services/api";
@@ -33,10 +33,15 @@ export const RegisterProvider = ({ children }: IDefaultProviderProps) => {
 
       toast.success("Cliente cadastrado com sucesso!");
       setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    } catch (error) {
-      toast.error("Erro ao cadastrar cliente");
+        navigate("/login");
+      }, 1300);
+    } catch (error: any) {
+      console.error(error);
+      if (error.response.data.message == "Email already in use!") {
+        toast.error(<p>Este email já está cadastrado! <br></br><br></br> <Link to={'https://road-rovers.vercel.app/sendmail'}>CLIQUE AQUI caso não se lembre de sua senha</Link></p> );
+      } else {
+        toast.error("Erro ao cadastrar cliente");
+      }
     }
   }
   return (
